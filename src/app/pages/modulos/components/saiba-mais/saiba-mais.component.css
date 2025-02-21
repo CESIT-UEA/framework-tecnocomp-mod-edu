@@ -13,10 +13,6 @@
   align-items: center;
 }
 
-.header-atividade img {
-  margin-left: 5px;
-}
-
 .header-links {
   display: flex;
   justify-content: center;
@@ -92,4 +88,21 @@
   align-items: flex-end;
   column-gap: 10px;
   justify-content: center;
+}
+
+
+@media (max-width: 800px) {
+  .header-atividade{
+    grid-template-columns: 90% 10%;
+  }
+}
+
+@media (max-width: 489px) {
+  .container-links-text-caixa, #container-links-text-frase{
+    width: 95%;
+  }
+
+  .container-links-text {
+    padding: 10px 0;
+  }
 }

@@ -326,4 +326,12 @@ button.atividade-botao {
   .saibaMais{
     margin: 0 1.2rem;
   }
+  .buttons-final{
+    align-items: center;
+  }
+  a {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
 }

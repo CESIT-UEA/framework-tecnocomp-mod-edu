@@ -13,10 +13,6 @@
   align-items: center;
 }
 
-.header-atividade img {
-  margin-left: 5px;
-}
-
 .header-links {
   display: flex;
   justify-content: center;
@@ -30,4 +26,13 @@
 }
 .teste{
   height: 90vh;
+}
+
+
+
+
+@media (max-width: 800px) {
+  .header-atividade{
+    grid-template-columns: 90% 10%;
+  }
 }

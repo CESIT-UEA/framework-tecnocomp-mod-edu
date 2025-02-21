@@ -106,9 +106,23 @@
 }
 
 
+@media (max-width: 800px) {
+  .container-links{
+    grid-template-columns: 90% 10%;
+ }
+}
+
 @media(max-width: 692px){
   .container-links-text-lista {
     background-image: none;
     grid-template-columns: 1fr;
+  }
+  
+  .container-links-text-lista li{
+    width: 95%;
+  }
+
+  .header-links p {
+    font-size: 1.2rem;
   }
 }
