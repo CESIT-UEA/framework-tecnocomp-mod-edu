@@ -13,9 +13,10 @@ import { ErrorComponent } from './components/error/error.component';
 import { ModuloComponent } from './personalizavel/modulo/modulo.component';
 import { TopicoComponent } from './personalizavel/modulo/topico/topico.component';
 import { PaginaInicialComponent } from './components/pagina-inicial/pagina-inicial.component';
+import { ModuloConcluidoComponent } from './components/modulo-concluido/modulo-concluido.component';
 
 const routes: Routes = [
-  {path: '', component: PaginaInicialComponent},
+  {path: '', component: ModuloConcluidoComponent},
   { path: 'teorias-da-aprendizagemHome', component: HomeComponent },
   {
     path: 'teorias-da-aprendizagem',
