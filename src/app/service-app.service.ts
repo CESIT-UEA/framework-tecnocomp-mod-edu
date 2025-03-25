@@ -477,4 +477,5 @@ export class ServiceAppService {
   sobre(){
     this.controllerSwitchHome = 2;
   }
+
 }

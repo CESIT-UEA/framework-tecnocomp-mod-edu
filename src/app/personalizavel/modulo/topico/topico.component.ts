@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModuloService } from '../../modulo.service';
 import { config } from 'rxjs';
 import { MatSidenavContainer } from '@angular/material/sidenav';
+import { DownloadPlataformaService } from 'src/app/download-plataforma.service';
 
 @Component({
   selector: 'app-topico',
@@ -31,12 +32,14 @@ export class TopicoComponent implements OnInit {
     private route: ActivatedRoute,
     public moduloService: ModuloService,
     private router: Router,
-    public ltiService: ServiceAppService
+    public ltiService: ServiceAppService,
+    public downloadService: DownloadPlataformaService
   ) {}
 
   ngOnInit(): void {
     this.ltiService.getDadosCompletos();
     this.ltiService.loadYouTubeAPI();
+    this.downloadService.initEventInstall()
   }
 
   proximo(): void {

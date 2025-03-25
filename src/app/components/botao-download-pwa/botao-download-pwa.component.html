@@ -1,2 +1,8 @@
-<!-- Em fase de testes -->
-<button (click)="installPromptEvent()" id="install" [hidden]="this.hiddenButton">Install</button>
+<!-- botão para download da plataforma Tecnocomp -->
+<div class="container-botao-download" *ngIf="!downloadService.getHiddenButton()">
+    <button (click)="downloadService.installPromptEvent()">
+    <img src="../../../assets/icons/download.svg" alt="Ícone para baixar a plataforma Tecnocomp+">
+    <p style="color: white; font-size: 18px;" >App</p>
+    </button>
+</div>
+

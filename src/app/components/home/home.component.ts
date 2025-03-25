@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSidenavContainer } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DownloadPlataformaService } from 'src/app/download-plataforma.service';
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
 import { ServiceAppService } from 'src/app/service-app.service';
 
@@ -30,7 +31,8 @@ export class HomeComponent {
     public moduloService: ModuloService,
     private router: Router,
     private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public downloadService: DownloadPlataformaService
   ) {}
 
   /**

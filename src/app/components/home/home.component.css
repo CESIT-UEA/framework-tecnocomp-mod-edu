@@ -201,6 +201,15 @@ app-video-section iframe {
   margin: 40px 0 45px 0;
 }
 
+.container-download-app {
+    position: fixed;
+    justify-content: end;
+    padding-right: 1rem;
+    right: 0;
+    top: 13%;
+}
+
+
 /* Responsividade */
 @media (max-width: 1100px) {
   .content-container {
@@ -229,6 +238,7 @@ app-video-section iframe {
   .imagem-acima {
     margin-bottom: 50px;
   }
+
 }
 
 @media (max-width: 899px) {
@@ -255,6 +265,7 @@ app-video-section iframe {
   .header nav {
     width: fit-content;
   }
+ 
 }
 
 @media (max-width: 600px) {
