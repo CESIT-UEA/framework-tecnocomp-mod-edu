@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Bloqueio } from './bloqueioInterface';
 import { Topico } from './components/forum/topico.interface';
 import { TopicoF } from './components/forum/topico-forum/topico-forum.interface';
@@ -433,7 +433,7 @@ export class ServiceAppService {
           this.setDadosCompletos(response);
         });
       }
-/*       setTimeout(() => {
+      /*       setTimeout(() => {
         this.proximo();
       }, 3000); */
     }
@@ -452,29 +452,58 @@ export class ServiceAppService {
     }
     this.salvarProgressoVideos().subscribe((response) => {
       console.log('Progresso salvo:', response);
-      this.removeDadosCompletos()
-      this.setDadosCompletos(response)
+      this.removeDadosCompletos();
+      this.setDadosCompletos(response);
     });
   }
 
   voltar(): void {
     if (this.currentVideoIndex - 1 >= 0) {
-      console.log(this.currentVideoIndex)
+      console.log(this.currentVideoIndex);
       this.currentVideoIndex = this.currentVideoIndex - 1;
       this.recreatePlayer();
     }
 
     this.salvarProgressoVideos().subscribe((response) => {
       console.log('Progresso salvo:', response);
-      this.removeDadosCompletos()
-      this.setDadosCompletos(response)
+      this.removeDadosCompletos();
+      this.setDadosCompletos(response);
     });
   }
 
-  fichaTecnica(){
+  fichaTecnica() {
     this.controllerSwitchHome = 1;
   }
-  sobre(){
+  sobre() {
     this.controllerSwitchHome = 2;
+  }
+
+  enviarAvaliacao(avaliacao: any): Observable<any> {
+    console.log(this.dados_completos);
+    const body = {
+      id_user_modulo: this.dados_completos.userModulo.id,
+      avaliacao: avaliacao.avaliacao,
+      comentario: avaliacao.comentario || '',
+      ltik: this.dados_completos.user.ltik,
+    };
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.dados_completos.user.ltik,
+    });
+
+    console.log(body);
+    return this.http.post(`${this.apiUrl}/enviar_avaliacao`, body, {
+      headers,
+    });
+  }
+  verificaAvaliacaoNaoFoiFeitaEstrelas(): boolean {
+    if (
+      this.dados_completos.userModulo.avaliacao == null
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

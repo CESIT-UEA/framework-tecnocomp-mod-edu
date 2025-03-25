@@ -79,7 +79,7 @@
                       {{ this.ltiService.dados_completos.user.nome[0] }}
                     </div>
                     <mat-icon
-                      style="color: white; cursor: pointer;"
+                      style="color: white; cursor: pointer"
                       (click)="
                         this.ltiService.abreMenuUser(); $event.stopPropagation()
                       "
@@ -110,7 +110,8 @@
               class="container-main-conteudo-links-voltar"
               [ngClass]="{
                 'container-links':
-                  this.verificaVoltar() && this.verificaProximo()
+                  (this.verificaVoltar() && this.verificaProximo()) ||
+                  this.verificaProximo() == false
               }"
             >
               <div
@@ -153,6 +154,46 @@
                   width="30px"
                   height="30px"
                 />
+              </div>
+              <div
+                class="button-finalizar-box"
+                *ngIf="
+                  !verificaProximo() &&
+                  this.ltiService.dados_completos.userTopico[
+                    this.moduloService.controll_topico
+                  ].UsuarioTopicos[0].encerrado == true
+                "
+                routerLink="../../../avaliar"
+                [ngClass]="{
+                  'button-finalizar-avaliado':
+                    !this.ltiService.verificaAvaliacaoNaoFoiFeitaEstrelas(),
+                  'button-finalizar-nao-avaliado':
+                    this.ltiService.verificaAvaliacaoNaoFoiFeitaEstrelas() &&
+                    this.ltiService.dados_completos.userTopico[
+                      this.moduloService.controll_topico
+                    ].UsuarioTopicos[0].encerrado == true
+                }"
+              >
+                <mat-icon>check</mat-icon>
+                <p>
+                  {{
+                    this.ltiService.verificaAvaliacaoNaoFoiFeitaEstrelas()
+                      ? "Concluir Módulo"
+                      : "Módulo concluído"
+                  }}
+                </p>
+              </div>
+              <div
+                class="button-finalizar-box button-finalizar-desabilitado"
+                *ngIf="
+                  !verificaProximo() &&
+                  this.ltiService.dados_completos.userTopico[
+                    this.moduloService.controll_topico
+                  ].UsuarioTopicos[0].encerrado == false
+                "
+              >
+                <mat-icon>check</mat-icon>
+                <p>Concluir Módulo</p>
               </div>
             </div>
           </mat-sidenav-content>

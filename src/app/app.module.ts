@@ -60,6 +60,7 @@ import { YoutubePlayerComponent } from './components/youtube-player/youtube-play
 import { BotaoVoltarAvaComponent } from './components/botao-voltar-ava/botao-voltar-ava.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ModuloConcluidoComponent } from './components/modulo-concluido/modulo-concluido.component';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -130,7 +131,8 @@ import { ModuloConcluidoComponent } from './components/modulo-concluido/modulo-c
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

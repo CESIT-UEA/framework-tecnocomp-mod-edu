@@ -16,7 +16,7 @@ import { PaginaInicialComponent } from './components/pagina-inicial/pagina-inici
 import { ModuloConcluidoComponent } from './components/modulo-concluido/modulo-concluido.component';
 
 const routes: Routes = [
-  {path: '', component: ModuloConcluidoComponent},
+  {path: 'avaliar', component: ModuloConcluidoComponent},
   { path: 'teorias-da-aprendizagemHome', component: HomeComponent },
   {
     path: 'teorias-da-aprendizagem',
