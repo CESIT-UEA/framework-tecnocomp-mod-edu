@@ -1,1 +1,152 @@
-<p>modulo-concluido works!</p>
+<header class="header-atividade">
+  <img
+    (click)="voltar()"
+    src="assets/icons/close.svg"
+    alt="Ícone para ir para a atividade da unidade"
+    width="30px"
+    height="30px"
+    style="cursor: pointer"
+  />
+</header>
+
+<div class="container">
+  <div class="descricao-conclusao">
+    <img
+      class="concluido"
+      src="../../../assets/icons/concluido.svg"
+      alt="Concluído"
+    />
+    <p>Parabéns! Você concluiu o módulo com sucesso!</p>
+  </div>
+
+  <div class="descricao-modulo">
+    <p>{{ ltiService.dados_completos.modulo.nome_modulo }}</p>
+    <p class="pontuacao">Pontuação: <span class="value">100%</span></p>
+  </div>
+
+  <div class="avaliacao-modulo">
+    <form [formGroup]="formAvaliacao" (ngSubmit)="enviarAvaliacao()">
+      <div class="avaliacao-modulo">
+        <p *ngIf="this.ltiService.verificaAvaliacaoNaoFoiFeitaEstrelas()">
+          Como você avalia este módulo?
+        </p>
+        <p *ngIf="this.ltiService.verificaAvaliacaoNaoFoiFeitaEstrelas() == false && this.editar">
+          Como você avalia este módulo?
+        </p>
+        <p *ngIf="this.ltiService.verificaAvaliacaoNaoFoiFeitaEstrelas() == false && this.editar == false">
+          Sua avaliação para este módulo:
+        </p>
+        <div class="avaliacao-estrela">
+          <div class="foto-header">
+            {{ this.ltiService.dados_completos.user.nome[0] }}
+          </div>
+          <mat-icon
+            [ngClass]="{ disabled: this.disabled_estrelas }"
+            *ngFor="let estrela of estrelas; let i = index"
+            class="estrela"
+            [class.selected]="i < formAvaliacao.get('avaliacao')?.value"
+            (click)="selecionarAvaliacao(i + 1)"
+          >
+            star
+          </mat-icon>
+          <mat-icon
+            style="cursor: initial"
+            class="icon"
+            *ngIf="this.editar == false"
+            >autorenew</mat-icon
+          >
+          <mat-icon
+            class="icon"
+            *ngIf="this.editar == true"
+            (click)="this.ativarEstrelas()"
+            >autorenew</mat-icon
+          >
+        </div>
+        <!-- Mensagem de erro -->
+        <p
+          class="erro"
+          *ngIf="
+            formAvaliacao.controls['avaliacao'].invalid &&
+            formAvaliacao.controls['avaliacao'].touched
+          "
+        >
+          Selecione pelo menos uma estrela para avaliar.
+        </p>
+      </div>
+
+      <textarea
+        [ngClass]="{ disabled: this.disabled_comentario == true }"
+        formControlName="comentario"
+        class="textarea"
+        placeholder="Escrever feedback (Opcional)"
+        cols="30"
+        rows="5"
+      ></textarea>
+
+      <div class="box-final">
+        <div class="final">
+          <div class="moodle" (click)="this.ltiService.retornarLms()">
+            <img
+              src="../../../assets/icons/voltarMoodle.svg"
+              alt="Ícone para voltar ao AVA"
+              width="22px"
+              height="24px"
+            />
+            <a>Voltar ao AVA</a>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="botao-enviar"
+          [disabled]="formAvaliacao.invalid"
+          *ngIf="this.ltiService.verificaAvaliacaoNaoFoiFeitaEstrelas()"
+          [ngClass]="{ desativado: formAvaliacao.invalid }"
+        >
+          <img src="../../../assets/icons/enviar.svg" alt="Editar avaliação" />
+          Enviar Avaliação
+        </button>
+
+        <button
+          (click)="ativarForm()"
+          class="botao-enviar editar"
+          [disabled]="formAvaliacao.invalid"
+          *ngIf="
+            this.ltiService.verificaAvaliacaoNaoFoiFeitaEstrelas() == false &&
+            this.editar == false
+          "
+          [ngClass]="{ desativado: formAvaliacao.invalid }"
+        >
+          <img src="../../../assets/icons/editar.svg" alt="" />
+          Editar Avaliação
+        </button>
+
+        <button
+          type="button"
+          class="botao-enviar editar"
+          [disabled]="formAvaliacao.invalid"
+          *ngIf="
+            this.ltiService.verificaAvaliacaoNaoFoiFeitaEstrelas() == false &&
+            this.editar == true
+          "
+          (click)="cancelar()"
+        >
+          Cancelar
+        </button>
+
+        <button
+          type="submit"
+          class="botao-enviar"
+          [disabled]="formAvaliacao.invalid"
+          *ngIf="
+            this.ltiService.verificaAvaliacaoNaoFoiFeitaEstrelas() == false &&
+            this.editar == true
+          "
+          [ngClass]="{ desativado: formAvaliacao.invalid }"
+        >
+          Salvar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

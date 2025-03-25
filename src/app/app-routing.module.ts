@@ -14,11 +14,12 @@ import { ModuloComponent } from './personalizavel/modulo/modulo.component';
 import { TopicoComponent } from './personalizavel/modulo/topico/topico.component';
 import { PaginaInicialComponent } from './components/pagina-inicial/pagina-inicial.component';
 import { CadastroAvaComponent } from './components/cadastro-ava/cadastro-ava.component';
+import { ModuloConcluidoComponent } from './components/modulo-concluido/modulo-concluido.component';
 
 const routes: Routes = [
-  {path: '', component: PaginaInicialComponent},
-  {path: 'ava/editar/:id', component: CadastroAvaComponent},
-  {path: 'ava/adicionar', component: CadastroAvaComponent},
+  { path: 'avaliar', component: ModuloConcluidoComponent },
+  { path: 'ava/editar/:id', component: CadastroAvaComponent },
+  { path: 'ava/adicionar', component: CadastroAvaComponent },
   { path: 'teorias-da-aprendizagemHome', component: HomeComponent },
   {
     path: 'teorias-da-aprendizagem',
@@ -41,10 +42,9 @@ const routes: Routes = [
     component: HomeComponent,
   },
 
-  {path:'modulo/:nome_modulo', component:ModuloComponent},
-  {path:'modulo/:nome_modulo/topicos', component:TopicoComponent},
-  {path: '**', component:ErrorComponent},
-
+  { path: 'modulo/:nome_modulo', component: ModuloComponent },
+  { path: 'modulo/:nome_modulo/topicos', component: TopicoComponent },
+  { path: '**', component: ErrorComponent },
 ];
 
 @NgModule({

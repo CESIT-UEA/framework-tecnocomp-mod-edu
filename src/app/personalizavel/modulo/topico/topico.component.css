@@ -214,3 +214,39 @@
     padding-top: calc(4% - 5px);
   }
 }
+
+.button-finalizar-box {
+  margin-left: 20px;
+  display: flex;
+  height: 40px;
+  padding: 10px 35px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.button-finalizar-box button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+.button-finalizar-desabilitado {
+  border-radius: 6px;
+  opacity: 0.5;
+  background: #793cd4;
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.25);
+}
+.button-finalizar-nao-avaliado {
+  border-radius: 6px;
+  background: #793cd4;
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.25);
+}
+.button-finalizar-avaliado {
+  border-radius: 6px;
+  border: 1px solid #74CC66;
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.25);
+  color: #74CC66;
+}

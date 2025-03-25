@@ -63,7 +63,7 @@ import { ModuloConcluidoComponent } from './components/modulo-concluido/modulo-c
 import { CadastroAvaComponent } from './components/cadastro-ava/cadastro-ava.component';
 import { DialogAvaComponent } from './components/dialog-ava/dialog-ava.component';
 import { BotaoDownloadPwaComponent } from './components/botao-download-pwa/botao-download-pwa.component';
-
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -137,7 +137,8 @@ import { BotaoDownloadPwaComponent } from './components/botao-download-pwa/botao
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

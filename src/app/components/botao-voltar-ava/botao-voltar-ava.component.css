@@ -10,6 +10,7 @@
   flex-shrink: 0;
   border-radius: 8px;
   background: var(--Primaria, #9665df);
+  cursor: pointer;
 }
 .moodle a {
   margin-left: 5px;
