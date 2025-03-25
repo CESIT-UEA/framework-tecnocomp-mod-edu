@@ -191,4 +191,10 @@
     .container-atividade{
       width: 90%;
     }    
+    .texto-cima {
+      padding: 0 5px;
+    }
+    .texto-baixo {
+      width: 90%;
+    }
 }
