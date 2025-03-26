@@ -17,6 +17,7 @@ import { CadastroAvaComponent } from './components/cadastro-ava/cadastro-ava.com
 import { ModuloConcluidoComponent } from './components/modulo-concluido/modulo-concluido.component';
 
 const routes: Routes = [
+  { path: '', component: PaginaInicialComponent },
   { path: 'avaliar', component: ModuloConcluidoComponent },
   { path: 'ava/editar/:id', component: CadastroAvaComponent },
   { path: 'ava/adicionar', component: CadastroAvaComponent },
