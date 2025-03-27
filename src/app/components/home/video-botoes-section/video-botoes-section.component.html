@@ -1,0 +1,39 @@
+<div class="container">
+  <section class="container-section">
+    <div class="container-esquerdo">
+      <p>Módulo:</p>
+      <h1 class="title">
+        <span class="text-unidade">{{
+          this.appService.dados_completos.modulo.nome_modulo
+        }}</span>
+      </h1>
+
+      <app-video-section
+        [videoUrl]="this.appService.dados_completos?.modulo?.video_inicial"
+      ></app-video-section>
+    </div>
+    <div class="container-direito">
+      <div class="progresso">
+        <p>Seu progresso:</p>
+        <div class="progresso-barra">
+          <mat-progress-bar
+            color="warn"
+            mode="determinate"
+            [value]="this.appService.dados_completos?.userModulo?.nota"
+          ></mat-progress-bar>
+          <p>{{ this.appService.dados_completos?.userModulo?.nota }}%</p>
+        </div>
+
+        <p style="display: flex; align-items: center; gap: 10px">
+          Duração: 8h <mat-icon>access_time</mat-icon>
+        </p>
+        <p>Categoria: Computação</p>
+      </div>
+      <app-botoes-section
+        nome_ebook="Ebook de Teste"
+        caminho_ebook="assets/E-book Teste.PDF"
+        urlInicio="topicos"
+      ></app-botoes-section>
+    </div>
+  </section>
+</div>

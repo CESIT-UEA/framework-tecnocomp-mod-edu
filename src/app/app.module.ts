@@ -65,6 +65,7 @@ import { DialogAvaComponent } from './components/dialog-ava/dialog-ava.component
 import { BotaoDownloadPwaComponent } from './components/botao-download-pwa/botao-download-pwa.component';
 import {MatInputModule} from '@angular/material/input';
 import { HeaderOficialComponent } from './components/header-oficial/header-oficial.component';
+import { VideoBotoesSectionComponent } from './components/home/video-botoes-section/video-botoes-section.component';
 
 @NgModule({
   declarations: [
@@ -113,6 +114,7 @@ import { HeaderOficialComponent } from './components/header-oficial/header-ofici
     DialogAvaComponent,
     BotaoDownloadPwaComponent,
     HeaderOficialComponent,
+    VideoBotoesSectionComponent,
   ],
   imports: [
     BrowserModule,

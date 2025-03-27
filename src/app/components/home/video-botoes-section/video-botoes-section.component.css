@@ -1,0 +1,69 @@
+@font-face {
+  font-family: minhaFonte;
+  src: url("../../../../assets/fonteProjeto.ttf");
+}
+.container {
+  width: 100%;
+  padding: 100px 0;
+}
+.container-section {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  justify-content: center;
+  color: white;
+  align-items: end;
+  text-align: center;
+}
+.container-esquerdo {
+  height: 100%;
+}
+.container-esquerdo p {
+  text-align: center;
+  font-family: Arial;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 30px;
+}
+.container-esquerdo h1 {
+  margin-bottom: 30px;
+  color: var(--13, #9f69ef);
+  text-align: center;
+  font-family: "minhaFonte";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.container-esquerdo app-video-section iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+.progresso {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  align-self: stretch;
+  border-radius: 15px;
+  background: #2a2a2e;
+  width: 60%;
+  margin: 0 auto;
+  color: #fff;
+  text-align: center;
+  font-family: Arial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 45px;
+}
+.progresso .progresso-barra{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+}

@@ -5,6 +5,15 @@
 }
 .main-container {
   width: 100%;
+  background: linear-gradient(
+      167deg,
+      rgba(61, 34, 102, 0.7) 3.02%,
+      rgba(34, 25, 72, 0.42) 24.84%,
+      rgba(16, 19, 53, 0.24) 54.42%,
+      rgba(11, 20, 69, 0.37) 77.21%,
+      rgba(34, 45, 102, 0.7) 100%
+    ),
+    #000;
 }
 /* .main-container {
   background: url("../../../assets/fundo-alternativo.png"),

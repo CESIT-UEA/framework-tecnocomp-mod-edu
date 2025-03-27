@@ -2,9 +2,11 @@
   font-family: minhaFonte;
   src: url("../../../assets/fonteProjeto.ttf");
 }
-.container{
+.container {
   width: 100%;
   border-bottom: 1px solid var(--22, #1c1c1c);
+  position: fixed;
+  background: #000;
 }
 .header {
   display: flex;
@@ -12,8 +14,7 @@
   height: 76px;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--22, #1c1c1c);
-  background: #000;
+
   margin: 0 auto;
 }
 .header img {
@@ -42,7 +43,7 @@
   flex-direction: row-reverse;
   color: white;
 }
-.end-navbar{
+.end-navbar {
   display: flex;
   align-items: center;
   gap: 40px;
@@ -72,9 +73,7 @@
   line-height: normal;
 }
 
-
 /* Responsivo */
 /* Começa a quebrar com 900px de width, implementar o menu hamburguer */
-@media (max-width: 900px){
-
+@media (max-width: 900px) {
 }
