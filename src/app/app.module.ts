@@ -66,6 +66,7 @@ import { BotaoDownloadPwaComponent } from './components/botao-download-pwa/botao
 import {MatInputModule} from '@angular/material/input';
 import { HeaderOficialComponent } from './components/header-oficial/header-oficial.component';
 import { VideoBotoesSectionComponent } from './components/home/video-botoes-section/video-botoes-section.component';
+import { InformacoesGeraisModuloComponent } from './components/informacoes-gerais-modulo/informacoes-gerais-modulo.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +116,7 @@ import { VideoBotoesSectionComponent } from './components/home/video-botoes-sect
     BotaoDownloadPwaComponent,
     HeaderOficialComponent,
     VideoBotoesSectionComponent,
+    InformacoesGeraisModuloComponent,
   ],
   imports: [
     BrowserModule,

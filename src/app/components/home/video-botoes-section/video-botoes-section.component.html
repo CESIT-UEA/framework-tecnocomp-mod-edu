@@ -23,11 +23,12 @@
           ></mat-progress-bar>
           <p>{{ this.appService.dados_completos?.userModulo?.nota }}%</p>
         </div>
-
-        <p style="display: flex; align-items: center; gap: 10px">
-          Duração: 8h <mat-icon>access_time</mat-icon>
-        </p>
-        <p>Categoria: Computação</p>
+        <div class="info">
+          <p>0 / {{this.appService.dados_completos.topicos.length}} tópicos</p>
+          <p style="display: flex; align-items: center; gap: 10px">
+            Duração: <strong>8h</strong> <mat-icon>access_time</mat-icon>
+          </p>
+        </div>
       </div>
       <app-botoes-section
         nome_ebook="Ebook de Teste"
