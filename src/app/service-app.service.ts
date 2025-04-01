@@ -506,4 +506,14 @@ export class ServiceAppService {
       return false;
     }
   }
+
+  getTopicosFinalizados(): number{
+    let contador = 0;
+    this.dados_completos.userTopico.map( (topico: any) => {
+      if (topico.UsuarioTopicos[0].encerrado) {
+        contador = contador + 1
+      }
+    })
+    return contador
+  }
 }

@@ -5,7 +5,6 @@
 .container {
   width: 100%;
   padding-top: 100px;
-  padding-bottom: 40px;
 }
 .container-section {
   width: 100%;
@@ -15,6 +14,9 @@
   color: white;
   align-items: end;
   text-align: center;
+}
+.container-direito {
+  padding-top: 80px;
 }
 .container-esquerdo {
   height: 100%;
@@ -29,14 +31,22 @@
   margin-bottom: 30px;
 }
 .container-esquerdo h1 {
-  margin-bottom: 30px;
-  color: var(--13, #9f69ef);
-  text-align: center;
-  font-family: "minhaFonte";
-  font-size: 36px;
+
+  color: var(--Terciaria, #fff);
+  font-family: Arial;
+  font-size: 25px;
   font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  font-weight: 700;
+  line-height: 28px; /* 112% */
+  border-left: 3px solid #9256ed;
+  width: 70%;
+  margin: 0 auto;
+  padding-right: 30px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+.text-unidade{
+  padding-left: 20px;
 }
 .container-esquerdo app-video-section iframe {
   width: 100%;

@@ -9,7 +9,7 @@ import { ServiceAppService } from 'src/app/service-app.service';
 @Component({
   selector: 'app-header-oficial',
   templateUrl: './header-oficial.component.html',
-  styleUrls: ['./header-oficial.component.css']
+  styleUrls: ['./header-oficial.component.css'],
 })
 export class HeaderOficialComponent {
   /**
@@ -48,17 +48,16 @@ export class HeaderOficialComponent {
           this.moduloService.urlInicio =
             this.tokenData.modulo.nome_modulo + 'Home';
 
-            localStorage.setItem(
+          localStorage.setItem(
             'bloqueio',
             JSON.stringify(this.tokenData.userTopico)
           );
 
           this.appService.setDadosCompletos(data);
 
-
           let teste2 = localStorage.getItem('token');
           if (teste2) {
-            localStorage.removeItem('token')
+            localStorage.removeItem('token');
           }
 
           localStorage.setItem('token', this.tokenData.user.ltik);
@@ -81,7 +80,7 @@ export class HeaderOficialComponent {
         }
       );
     }
-
+    console.log(this.moduloService.urlInicio);
     this.appService.getDadosCompletos();
   }
 
@@ -93,23 +92,30 @@ export class HeaderOficialComponent {
   }
 
   clickHeader(controller: number) {
-    return (this.appService.controllerSwitchHome = controller)
+    return (this.appService.controllerSwitchHome = controller);
   }
 
   fecharMenuClick() {
     this.sidenavContainer.close();
   }
 
-  navegarModulo(topicoId:number){
-    console.log(topicoId)
-    this.moduloService.controll_topico = topicoId
+  navegarModulo(topicoId: number) {
+    console.log(topicoId);
+    this.moduloService.controll_topico = topicoId;
     this.sidenavContainer.close();
-    if (this.appService.dados_completos.userTopico[this.moduloService.controll_topico].UsuarioTopicos[0].indice_video != null) {
-      this.appService.currentVideoIndex = this.appService.dados_completos.userTopico[this.moduloService.controll_topico].UsuarioTopicos[0].indice_video
-      console.log("Video retornado salvo já")
-    }else{
-      this.appService.currentVideoIndex = 0
+    if (
+      this.appService.dados_completos.userTopico[
+        this.moduloService.controll_topico
+      ].UsuarioTopicos[0].indice_video != null
+    ) {
+      this.appService.currentVideoIndex =
+        this.appService.dados_completos.userTopico[
+          this.moduloService.controll_topico
+        ].UsuarioTopicos[0].indice_video;
+      console.log('Video retornado salvo já');
+    } else {
+      this.appService.currentVideoIndex = 0;
     }
-    this.appService.recreatePlayer()
+    this.appService.recreatePlayer();
   }
 }

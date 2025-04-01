@@ -1,9 +1,8 @@
 <div class="container">
   <section class="container-section">
     <div class="container-esquerdo">
-      <p>Módulo:</p>
       <h1 class="title">
-        <span class="text-unidade">{{
+        <span class="text-unidade">Módulo - {{
           this.appService.dados_completos.modulo.nome_modulo
         }}</span>
       </h1>
@@ -24,7 +23,7 @@
           <p>{{ this.appService.dados_completos?.userModulo?.nota }}%</p>
         </div>
         <div class="info">
-          <p>0 / {{this.appService.dados_completos.topicos.length}} tópicos</p>
+          <p>{{this.appService.getTopicosFinalizados()}} / {{this.appService.dados_completos.topicos.length}} tópicos</p>
           <p style="display: flex; align-items: center; gap: 10px">
             Duração: <strong>8h</strong> <mat-icon>access_time</mat-icon>
           </p>

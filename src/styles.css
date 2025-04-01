@@ -9,6 +9,8 @@
 html,
 body {
   background-color: #000000;
+  --mat-menu-container-color: #0A080F;
+  --mat-menu-item-label-text-color : white;
 }
 
 body {
@@ -53,12 +55,6 @@ body {
   padding: 10px;
   --mdc-dialog-container-shape: 8px !important;
   --mdc-dialog-container-elevation: -4px 4px 10px 0px rgba(0, 0, 0, 0.50) !important;
-}
-
-.mat-mdc-dialog-actions, .mdc-dialog__title  {
-  justify-content: center !important;
-  margin-bottom: 10px !important;
-  color: white !important;
 }
 
 

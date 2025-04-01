@@ -2,6 +2,7 @@
   font-family: minhaFonte;
   src: url("../../../assets/fonteProjeto.ttf");
 }
+
 .container {
   width: 100%;
   border-bottom: 1px solid var(--22, #1c1c1c);
