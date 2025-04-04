@@ -1,5 +1,5 @@
 :host() {
-  height: 100vh;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,6 +12,7 @@
   margin: 0;
   font-size: 16px;
 }
+
 .header-atividade {
   width: 100%;
   padding: 20px;
@@ -211,4 +212,59 @@ form{
   background-color: white;
   border-radius: 28px;
   border: 1px solid var(--Primaria, #9665df);
+}
+
+
+@media(max-width: 674px){
+  :host(){
+    justify-content: start;
+  }
+  .box-final{
+    gap: 10px;
+  }
+  .descricao-conclusao{
+    margin-bottom: 15px;
+  }
+
+  .header-atividade{
+    position: relative;
+  }
+  .container{
+    padding: 0 20px 20px 20px;
+  }
+}
+
+
+@media(max-width: 500px){
+  .avaliacao-modulo, .box-final {
+    flex-direction: column-reverse;
+  }
+  .box-final{
+    gap: 20px
+  }
+
+  .box-final, .final {
+    width: 100%;
+  }
+  .moodle, .botao-enviar {
+    width: 90%;
+    max-width: none;
+  }
+
+  .container, .avaliacao-modulo{
+    padding: 5px;
+  }
+}
+
+/* @media(max-width: 439px){
+  .avaliacao-modulo{
+    gap: 5px;
+  }
+} */
+
+
+@media(max-width: 375px){
+  .descricao-conclusao{
+    margin-bottom: 20px;
+  }  
 }

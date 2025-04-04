@@ -250,3 +250,13 @@
   box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.25);
   color: #74CC66;
 }
+
+
+@media(max-width: 375px){
+  .header .logo{
+    padding: 10px 0;
+  }
+  .container-main-conteudo-links-voltar{
+    padding-top: calc(18% - 5px);
+}
+}
