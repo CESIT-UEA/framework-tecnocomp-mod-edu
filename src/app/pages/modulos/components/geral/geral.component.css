@@ -308,11 +308,19 @@ button.atividade-botao {
 
 
 @media(max-width: 489px){
+  :host{
+    display: flex;
+    flex-direction: column;
+    height: initial;
+    min-height: 80vh;
+  }
   .container-main-conteudo {
     width: 100%;
+    flex-grow: 1;
   }
   .div-slide{
     width: 90%;
+    height: 40vh;
   }
 
   .botoes-cima {
@@ -332,6 +340,7 @@ button.atividade-botao {
   .section-texto{
       flex-direction: row;
       gap: 0;
+      margin-bottom: .5rem;
   }
   .saibaMais{
     margin: 0 0.2rem;
@@ -346,14 +355,27 @@ button.atividade-botao {
   }
 }
 
-@media(max-width: 375px){
+@media(max-width: 389px){
   .saibaMais,
   .referencias,
   .textoApoio{
-    width: 85px;
+    width: 80px;
   }
 
-  .container-main-conteudo-links-voltar{
+  /* .container-main-conteudo-links-voltar{
     margin-top: calc(4% - 5px);
+  } */
+}
+
+@media(max-width: 350px){
+  .saibaMais, .referencias, .textoApoio{
+    width: 75px;
+  }
+  .container-main-conteudo{
+    row-gap: 1.5rem;
+  }
+
+  .link-proximo{
+    font-size: 13px;
   }
 }

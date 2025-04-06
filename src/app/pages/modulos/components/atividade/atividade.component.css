@@ -198,3 +198,21 @@
       width: 90%;
     }
 }
+
+@media(max-width: 389px){
+  .header-atividade{
+    grid-template-columns: 85% 15%;
+  }
+  .container-atividade h3{
+    font-size: .9rem;
+  }
+  .texto-cima, .texto-baixo{
+    font-size: 1rem;
+  }
+  /* .texto-baixo{
+    margin-right: 3rem;
+  } */
+  .respostaCorreta{
+    margin-right: 1.5rem;
+  }
+}

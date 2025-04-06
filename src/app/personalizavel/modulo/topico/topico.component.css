@@ -210,9 +210,9 @@
   #icon{
     margin-right: 1rem;
   }
-  .container-main-conteudo-links-voltar{
+  /* .container-main-conteudo-links-voltar{
     padding-top: calc(4% - 5px);
-  }
+  } */
 }
 
 .button-finalizar-box {
@@ -256,7 +256,16 @@
   .header .logo{
     padding: 10px 0;
   }
-  .container-main-conteudo-links-voltar{
+  /* .container-main-conteudo-links-voltar{
     padding-top: calc(18% - 5px);
+} */
 }
+
+@media(max-width: 350px){
+  .link-proximo, .link-voltar{
+    font-size: 12px;
+  }
+  .header .logo{
+    padding: 15px 0;
+  }
 }

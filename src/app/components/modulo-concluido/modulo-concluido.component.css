@@ -216,7 +216,7 @@ form{
 
 
 @media(max-width: 674px){
-  :host(){
+  :host() {
     justify-content: start;
   }
   .box-final{
