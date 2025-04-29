@@ -16,6 +16,7 @@ import { ServiceAppService } from 'src/app/service-app.service';
 export class SlideUnidadeComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input({ required: true }) videos!: any[];
   isLoading = false;
+  panelOpenState = false;
 
   constructor(
     public ltiService: ServiceAppService,

@@ -1,20 +1,19 @@
 <div class="video-container" *ngIf="!isLoading; else loading">
-  <!-- Iframe para o player -->
   <div id="player"></div>
 </div>
 
-<!-- Navegação entre os vídeos -->
 <div class="navigation-button">
   <div class="box-navigate-left">
-    <p class="navigate-p" style="color: white">
-      {{ getVerificaVideosAssistidos() }}/{{ videos.length }} Assistidos
+    <p class="navigate-p">
+      {{ getVerificaVideosAssistidos() }}/{{ videos.length }} Vídeos Assistidos
     </p>
   </div>
   <div class="box-navigate-right">
     <mat-icon
       class="mat-18 voltar"
       (click)="this.ltiService.voltar()"
-      [ngClass]="{ disabled: this.ltiService.currentVideoIndex == 0 }">
+      [ngClass]="{ disabled: this.ltiService.currentVideoIndex == 0 }"
+    >
       arrow_back
     </mat-icon>
     <ul>
@@ -24,8 +23,9 @@
           naoConcluido: !videos[i].UsuarioVideos[0].completo,
           active: this.ltiService.currentVideoIndex == i
         }"
-        (click)="selectVideo(i)">
-        {{ i + 1 }}
+        (click)="selectVideo(i)"
+      >
+        Vídeo {{ i + 1 }}
         <mat-icon class="concluido" *ngIf="videos[i].UsuarioVideos[0].completo">
           check
         </mat-icon>
@@ -36,12 +36,72 @@
       (click)="this.ltiService.proximo()"
       [ngClass]="{
         disabled: this.ltiService.currentVideoIndex + 1 == videos.length
-      }">
+      }"
+    >
       arrow_forward
     </mat-icon>
   </div>
 </div>
 
+<div class="transcricao">
+  <mat-expansion-panel
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Transcrição do vídeo {{ this.ltiService.currentVideoIndex + 1 }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>I'm visible because I am open</p>
+  </mat-expansion-panel>
+</div>
+
+<div class="box-recursos">
+  <div class="box-flex">
+    <p>Recursos do Tópico:</p>
+    <button class="exercicio" routerLink="/">
+      <img
+        src="../../../assets/icons/To Do List.svg"
+        alt="Ícone da seção de exercicios"
+      />
+      Exercício
+    </button>
+    <div class="botao-dois">
+      <button>
+        <img
+          src="../../../assets/icons/slide-branco.svg"
+          alt="Ícone da seção de exercicios"
+        />
+        Slide
+      </button>
+      <button>
+        <img
+          src="../../../assets/icons/saiba-mais.png"
+          alt="Ícone da seção de exercicios"
+        />
+        Saiba Mais
+      </button>
+    </div>
+    <button class="ebook-topico">
+      <img
+        src="../../../assets/icons/download-branco.svg"
+        alt="Ícone da seção de exercicios"
+      />
+      E-book do Tópico
+    </button>
+  </div>
+</div>
+<div class="divisao-final">
+  <hr />
+  <button>
+    <img
+    src="../../../assets/icons/home-roxo.svg"
+    alt="Ícone da seção de exercicios"
+  />
+    Voltar ao AVA
+  </button>
+</div>
 <!-- Tela de carregamento -->
 <ng-template #loading>
   <div class="video-container">

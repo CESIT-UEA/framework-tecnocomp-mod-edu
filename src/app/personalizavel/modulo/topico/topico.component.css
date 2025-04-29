@@ -250,3 +250,53 @@
   box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.25);
   color: #74CC66;
 }
+.example-sidenav-content{
+  height: 100%;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+app-header-oficial {
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.sidenav-container {
+  flex: 1;
+  height: calc(100vh - 60px);
+}
+
+mat-sidenav-content {
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-sidenav {
+  width: 300px;
+  background-color: #1f1f1f;
+  color: white;
+  box-shadow: -2px 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.menu-conteudo {
+  padding: 16px;
+}
+
+.menu-conteudo ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-conteudo li {
+  margin: 12px 0;
+  cursor: pointer;
+  border-bottom: 1px solid #555;
+}

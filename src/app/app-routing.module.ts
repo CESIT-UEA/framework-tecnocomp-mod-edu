@@ -17,6 +17,10 @@ import { CadastroAvaComponent } from './components/cadastro-ava/cadastro-ava.com
 import { ModuloConcluidoComponent } from './components/modulo-concluido/modulo-concluido.component';
 import { SobreComponent } from './components/home/sobre/sobre.component';
 import { FichaTecnicaComponent } from './components/home/ficha-tecnica/ficha-tecnica.component';
+import { ReferenciasComponent } from './pages/modulos/components/referencias/referencias.component';
+import { SaibaMaisComponent } from './pages/modulos/components/saiba-mais/saiba-mais.component';
+import { SlideComponent } from './components/slide/slide.component';
+import { AtividadeComponent } from './pages/modulos/components/atividade/atividade.component';
 
 const routes: Routes = [
   { path: '', component: PaginaInicialComponent },
@@ -36,6 +40,10 @@ const routes: Routes = [
       { path: ':nome_modulo/sobre', component: SobreComponent },
       { path: ':nome_modulo/ficha-tecnica', component: FichaTecnicaComponent },
       { path: ':nome_modulo/topicos', component: TopicoComponent },
+      { path: ':nome_modulo/topicos/referencias', component: ReferenciasComponent },
+      { path: ':nome_modulo/topicos/saiba-mais', component: SaibaMaisComponent },
+      { path: ':nome_modulo/topicos/slide', component: SlideComponent },
+      { path: ':nome_modulo/topicos/exercicios', component: AtividadeComponent },
       { path: '**', redirectTo: ':nome_modulo' },
 
     ],

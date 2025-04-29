@@ -1,4 +1,4 @@
-<div *ngIf="this.ltiService?.dados_completos" style="height: 100%">
+<!-- <div *ngIf="this.ltiService?.dados_completos" style="height: 100%">
   <div
     class="container-geral"
     [ngSwitch]="controllerSwitch"
@@ -202,3 +202,35 @@
     </div>
   </div>
 </div>
+ -->
+ <app-header-oficial></app-header-oficial>
+
+<mat-sidenav-container class="sidenav-container" autosize>
+  <mat-sidenav #sidenav
+               mode="side"
+               position="end"
+               [fixedInViewport]="true"
+               fixedTopGap="60"
+               [(opened)]="menuAberto"
+               class="custom-sidenav">
+    <div class="menu-conteudo">
+      <button mat-icon-button (click)="menuAberto = false"><mat-icon>close</mat-icon></button>
+      <ul>
+        <li (click)="menuAberto = false">Referências</li>
+        <li (click)="menuAberto = false">Links</li>
+        <li (click)="menuAberto = false">Texto de apoio</li>
+        <li (click)="menuAberto = false">Atividade</li>
+      </ul>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-geral
+    [nome]="this.ltiService.dados_completos.topicos?.[this.moduloService.controll_topico]?.nome_topico"
+    [videos]="this.ltiService.dados_completos.topicos?.[this.moduloService.controll_topico]?.VideoUrls"
+    [liberado]="this.moduloService.bloqueio?.[this.moduloService.controll_topico]?.encerrado"
+    (abrirMenu)="menuAberto = true"
+  ></app-geral>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

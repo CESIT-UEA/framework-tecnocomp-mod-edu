@@ -8,6 +8,7 @@
   border-bottom: 1px solid var(--22, #1c1c1c);
   position: fixed;
   background: #000;
+  z-index: 1;
 }
 .header {
   display: flex;
