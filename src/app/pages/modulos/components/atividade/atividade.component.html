@@ -13,7 +13,7 @@
   </div>
   <!-- ícone que quando clicado volta para a página geral da unidade -->
   <img
-    (click)="atividadeClick.emit()"
+    routerLink="../"
     src="assets/icons/close.svg"
     alt="Icone para ir para a atividade da unidade"
     width="30px"
@@ -24,7 +24,9 @@
 
 <div
   class="container-atividade"
-  *ngIf="this.ltiService.dados_completos?.userTopico?.[this.idTopico]?.UsuarioTopicos[0].encerrado == false; else elseAtividade"
+  *ngIf="this.ltiService.dados_completos?.userTopico[
+  this.moduloService.controll_topico
+]?.UsuarioTopicos[0].encerrado == false; else elseAtividade"
 >
   <div *ngIf="questao">
     <h3>{{ questao.questao }}</h3>
@@ -44,7 +46,7 @@
               alternativa.correta == true
                 ? '#58DB43'
                 : (resposta === alternativa.descricao &&
-                  alternativa.correta == false) || this.ltiService.dados_completos?.userTopico?.[this.idTopico]?.UsuarioTopicos[0].resposta_errada != null
+                  alternativa.correta == false) || this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0].resposta_errada != null
                 ? 'red'
                 : null,
             border:
@@ -55,7 +57,7 @@
         >
           <p
             *ngIf="
-              resposta != alternativa.descricao && this.respostaEnviada == false && (this.ltiService.dados_completos?.userTopico?.[this.idTopico]?.UsuarioTopicos[0].resposta_errada != alternativa.descricao || this.ltiService.dados_completos?.userTopico?.[this.idTopico]?.UsuarioTopicos[0].resposta_errada == null)
+              resposta != alternativa.descricao && this.respostaEnviada == false && (this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0].resposta_errada != alternativa.descricao || this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0].resposta_errada == null)
             "
             class="options"
           >
@@ -81,7 +83,7 @@
           <img
             class="img img-errada"
             *ngIf="
-              (resposta === alternativa.descricao && this.respostaEnviada == true && alternativa.correta == false) || this.ltiService.dados_completos?.userTopico?.[this.idTopico]?.UsuarioTopicos[0].resposta_errada == alternativa.descricao && alternativa.correta == false
+              (resposta === alternativa.descricao && this.respostaEnviada == true && alternativa.correta == false) || this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0].resposta_errada == alternativa.descricao && alternativa.correta == false
             "
             src="../../../../../assets/img/erradoAtividade.png"
             alt=""
@@ -93,7 +95,7 @@
             'active-alternativa':
               this.respostaEscolhida == alternativa.descricao &&
               this.respostaEnviada == false &&
-              this.ltiService.dados_completos?.userTopico?.[this.idTopico]?.UsuarioTopicos[0].resposta_errada == null
+              this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0].resposta_errada == null
           }"
         >
           <div class="texto-cima">
@@ -101,12 +103,12 @@
             <mat-icon
               *ngIf="
                 (resposta === alternativa.descricao &&
-                alternativa.correta == false) || this.ltiService.dados_completos?.userTopico?.[this.idTopico]?.UsuarioTopicos[0].resposta_errada == alternativa.descricao
+                alternativa.correta == false) || this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0].resposta_errada == alternativa.descricao
               "
               (click)="clickOlho()"
               [ngStyle]="{
                 color:
-                  (resposta === alternativa.descricao && this.abre == true) || (this.ltiService.dados_completos?.userTopico?.[this.idTopico]?.UsuarioTopicos[0].resposta_errada == alternativa.descricao && this.abre == true || this.abre == null)
+                  (resposta === alternativa.descricao && this.abre == true) || (this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0].resposta_errada == alternativa.descricao && this.abre == true || this.abre == null)
                     ? '#A174E2'
                     : this.abre == false
                     ? 'white'
@@ -119,7 +121,7 @@
             class="texto-baixo"
             *ngIf="
               resposta === alternativa.descricao &&
-              (this.abre == true || this.abre == null) && this.ltiService.dados_completos?.userTopico?.[this.idTopico]?.UsuarioTopicos[0].resposta_errada == alternativa.descricao == null
+              (this.abre == true || this.abre == null) && this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0].resposta_errada == alternativa.descricao == null
             "
             [ngClass]="{
               respostaErrada: this.questao.respostaCorreta != resposta
@@ -132,7 +134,7 @@
             class="texto-baixo"
             *ngIf="
             (
-            (this.abre == true || this.abre == null) ) && this.ltiService.dados_completos?.userTopico?.[this.idTopico]?.UsuarioTopicos[0].resposta_errada == alternativa.descricao
+            (this.abre == true || this.abre == null) ) && this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0].resposta_errada == alternativa.descricao
           "
               [ngClass]="{
                 'respostaErrada': alternativa.correta == false,
@@ -140,9 +142,9 @@
               }"
           >
             <p
-              *ngIf="this.ltiService.dados_completos?.userTopico?.[this.idTopico]?.UsuarioTopicos[0].resposta_errada == alternativa.descricao != null"
+              *ngIf="this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0].resposta_errada == alternativa.descricao != null"
             >
-              {{ getExplicacao(this.ltiService.dados_completos?.userTopico?.[this.idTopico]?.UsuarioTopicos[0].resposta_errada)}}
+              {{ getExplicacao(this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0].resposta_errada)}}
             </p>
           </div>
         </div>
@@ -152,7 +154,7 @@
       <button
       style="cursor: pointer;"
         class="refazer"
-        *ngIf="(this.respostaEnviada == true || this.ltiService.dados_completos?.userTopico?.[this.idTopico]?.UsuarioTopicos[0].resposta_errada != null) && this.respondidoOficialmente == false"
+        *ngIf="(this.respostaEnviada == true || this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0].resposta_errada != null) && this.respondidoOficialmente == false"
         (click)="refazer()"
         [disabled]="respostaCorretaEnviada"
       >
@@ -161,7 +163,9 @@
       <button
       style="cursor: pointer;"
         class="btn-submit active"
-        *ngIf="this.respostaEscolhida != null && this.respostaEnviada != true && this.ltiService.dados_completos?.userTopico?.[this.idTopico]?.UsuarioTopicos[0].resposta_errada == null"
+        *ngIf="this.respostaEscolhida != null && this.respostaEnviada != true && this.ltiService.dados_completos?.userTopico[
+        this.moduloService.controll_topico
+      ]?.UsuarioTopicos[0].resposta_errada == null"
         (click)="!respostaEnviada && responder(this.respostaEscolhida)"
       >
         Enviar

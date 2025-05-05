@@ -5,7 +5,7 @@
   <div class="sub-header">
     <div class="voltar">
       <p>
-        <mat-icon>arrow_back</mat-icon>
+        <mat-icon (click)="voltar()">arrow_back</mat-icon>
         Tópico
       </p>
     </div>
@@ -13,7 +13,17 @@
       <p>{{ this.moduloService.controll_topico + 1 }}. {{ this.nome }}</p>
     </div>
     <div class="final-sub-header">
-      <button>
+      <button
+      *ngIf="verificaProximo()"
+      class="link-proximo"
+      (click)="proximo()"
+      [ngClass]="{
+        'opactiy-active':
+          this.ltiService.dados_completos.userTopico[
+            this.moduloService.controll_topico
+          ].UsuarioTopicos[0].encerrado == false
+      }"
+      >
         Próximo Tópico
         <mat-icon>arrow_forward</mat-icon>
       </button>

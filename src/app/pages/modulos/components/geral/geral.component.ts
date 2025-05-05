@@ -34,8 +34,6 @@ export class GeralComponent implements OnInit {
   @Output() subMenuClick = new EventEmitter<void>();
 
   @Input() link: number = 0;
-  @Input() voltar!: string;
-  @Input() proximo!: string;
   @Input() liberado: boolean = false;
 
   ngOnInit(): void {
@@ -88,6 +86,68 @@ export class GeralComponent implements OnInit {
   menuAberto = false;
   @Output() abrirMenu = new EventEmitter<void>();
 
+  verificaProximo() {
+    let topicos: any[] = this.ltiService.dados_completos.topicos;
 
+    if (
+      this.moduloService.controll_topico >= 0 &&
+      this.moduloService.controll_topico < topicos.length - 1
+    ) {
+      return true;
+    }
 
+    return false;
+  }
+
+  proximo(): void {
+    this.ltiService.currentVideoIndex = 0;
+    if (
+      this.moduloService.controll_topico <
+      this.ltiService.dados_completos.topicos.length - 1
+    ) {
+      if (
+        this.ltiService.dados_completos.userTopico[
+          this.moduloService.controll_topico
+        ]?.UsuarioTopicos[0].encerrado
+      ) {
+        this.moduloService.controll_topico += 1;
+      } else {
+        this.ltiService.mensagem('Você precisa responder à atividade antes!');
+      }
+    }
+
+    if (
+      this.ltiService.dados_completos.userTopico[
+        this.moduloService.controll_topico
+      ].UsuarioTopicos[0].indice_video != null
+    ) {
+      this.ltiService.currentVideoIndex =
+        this.ltiService.dados_completos.userTopico[
+          this.moduloService.controll_topico
+        ].UsuarioTopicos[0].indice_video;
+      console.log('Video retornado salvo já');
+    }
+
+    this.ltiService.recreatePlayer();
+  }
+
+  voltar(): void {
+    if (this.moduloService.controll_topico > 0) {
+      this.moduloService.controll_topico -= 1;
+      this.ltiService.currentVideoIndex = 0;
+    }
+
+    if (
+      this.ltiService.dados_completos.userTopico[
+        this.moduloService.controll_topico
+      ].UsuarioTopicos[0].indice_video != null
+    ) {
+      this.ltiService.currentVideoIndex =
+        this.ltiService.dados_completos.userTopico[
+          this.moduloService.controll_topico
+        ].UsuarioTopicos[0].indice_video;
+      console.log('Video retornado salvo já');
+    }
+    this.ltiService.recreatePlayer();
+  }
 }
