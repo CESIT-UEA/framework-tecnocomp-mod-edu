@@ -10,32 +10,42 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.17.1'
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.17.1'
 
-    - name: Install Dependencies
-      run: npm install
+      - name: Install Dependencies
+        run: npm install
 
-    - name: Build Project
-      run: npm run build
+      - name: Build Project
+        run: npm run build
 
-    - name: Set up SSH
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H ${{ secrets.DEPLOY_SERVER }} >> ~/.ssh/known_hosts
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.DEPLOY_SERVER }} >> ~/.ssh/known_hosts
 
-    - name: Deploy to Server
-      env:
-        DEPLOY_SERVER: ${{ secrets.DEPLOY_SERVER }}
-        DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-        DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-      run: |
-        ssh $DEPLOY_USER@$DEPLOY_SERVER "rm -rf $DEPLOY_PATH/*"
-        scp -r dist/app/* $DEPLOY_USER@$DEPLOY_SERVER:$DEPLOY_PATH
+      - name: Deploy to Server
+        env:
+          DEPLOY_SERVER: ${{ secrets.DEPLOY_SERVER }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          # Compactar a pasta dist/app
+          tar -czf dist.tar.gz -C dist app
+
+          # Enviar com keep-alive para evitar timeout
+          scp -o ServerAliveInterval=60 -o ServerAliveCountMax=10 dist.tar.gz $DEPLOY_USER@$DEPLOY_SERVER:$DEPLOY_PATH
+
+          # Acessar o servidor, limpar o destino e extrair
+          ssh $DEPLOY_USER@$DEPLOY_SERVER "
+            rm -rf $DEPLOY_PATH/* && \
+            tar -xzf $DEPLOY_PATH/dist.tar.gz -C $DEPLOY_PATH && \
+            rm $DEPLOY_PATH/dist.tar.gz
+          "
