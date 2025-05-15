@@ -210,9 +210,9 @@
   #icon{
     margin-right: 1rem;
   }
-  .container-main-conteudo-links-voltar{
+  /* .container-main-conteudo-links-voltar{
     padding-top: calc(4% - 5px);
-  }
+  } */
 }
 
 .button-finalizar-box {
@@ -249,4 +249,23 @@
   border: 1px solid #74CC66;
   box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.25);
   color: #74CC66;
+}
+
+
+@media(max-width: 375px){
+  .header .logo{
+    padding: 10px 0;
+  }
+  /* .container-main-conteudo-links-voltar{
+    padding-top: calc(18% - 5px);
+} */
+}
+
+@media(max-width: 350px){
+  .link-proximo, .link-voltar{
+    font-size: 12px;
+  }
+  .header .logo{
+    padding: 15px 0;
+  }
 }

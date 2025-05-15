@@ -291,9 +291,26 @@
     justify-content: center;
   }
 
+  @media(max-width: 705px){
+    .content-container-ficha-tecnica-equipe-caixa-teste{
+      display: none;
+    }
+  }
+
   @media(max-width:500px) {
     .content-container-ficha-tecnica-inicio .sobre .sobre-conteudo p {
       font-size: 18px;
+    }
+
+    .section{
+      flex-direction: column;
+    }
+    .logo{
+      height: 230px;
+      margin-bottom: 1.5rem;
+    }
+    .descricao{
+      padding-bottom: 25px;
     }
   }
 

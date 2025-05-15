@@ -106,3 +106,13 @@
     padding: 10px 0;
   }
 }
+
+
+@media(max-width: 389px){
+  .header-atividade{
+    grid-template-columns: 85% 15%;
+  }
+  .container-links-text-caixa{
+    width: 90%;
+  }
+}

@@ -125,4 +125,23 @@
   .header-links p {
     font-size: 1.2rem;
   }
+
+}
+
+@media(max-width: 692px){
+  .header-links p{
+    font-size: 1.1rem;
+  }
+  .container-links-text-p{
+    font-size: .9rem;
+  }
+}
+
+@media(max-width: 389px){
+  .container-links{
+    grid-template-columns: 85% 15%;
+  }
+  .container-links-text-lista li{
+    width: 90%;
+  }
 }
