@@ -10,49 +10,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout do código
+    - name: Checkout Code
       uses: actions/checkout@v3
 
-    - name: Configurar Node.js
+    - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18.17.1'
 
-    - name: Instalar dependências
+    - name: Install Dependencies
       run: npm install
 
-    - name: Build do projeto
+    - name: Build Project
       run: npm run build
 
-    - name: Verificar estrutura dist
-      run: ls -la dist && ls -la dist/app
-
-    - name: Compactar pasta dist/app
-      run: |
-        tar -czf ./dist.tar.gz -C dist app
-        echo "Arquivo compactado:"
-        ls -lh dist.tar.gz
-
-    - name: Configurar SSH
+    - name: Set up SSH
       run: |
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.DEPLOY_SERVER }} >> ~/.ssh/known_hosts
 
-    - name: Enviar e extrair no servidor remoto
+    - name: Deploy to Server
       env:
         DEPLOY_SERVER: ${{ secrets.DEPLOY_SERVER }}
         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
         DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
       run: |
-        echo "Enviando dist.tar.gz para $DEPLOY_SERVER..."
-        scp -o ServerAliveInterval=60 -o ServerAliveCountMax=10 ./dist.tar.gz $DEPLOY_USER@$DEPLOY_SERVER:$DEPLOY_PATH
-
-        echo "Conectando via SSH para extrair os arquivos..."
-        ssh $DEPLOY_USER@$DEPLOY_SERVER "
-          rm -rf $DEPLOY_PATH/* && \
-          tar -xzf $DEPLOY_PATH/dist.tar.gz -C $DEPLOY_PATH && \
-          rm $DEPLOY_PATH/dist.tar.gz && \
-          echo 'Deploy concluído com sucesso!'
-        "
+        ssh $DEPLOY_USER@$DEPLOY_SERVER "rm -rf $DEPLOY_PATH/*"
+        scp -r dist/app/* $DEPLOY_USER@$DEPLOY_SERVER:$DEPLOY_PATH
