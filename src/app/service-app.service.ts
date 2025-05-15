@@ -514,4 +514,33 @@ export class ServiceAppService {
   }): Observable<any> {
     return this.http.post<any>(this.webhookUrl, payload);
   }
+
+  salvarAvaliacaoIA(payload: {
+  idTopico: number;
+  respostaAluno: string;
+  nota: number;
+  justificativa: string;
+  teto: number;
+}): Observable<any> {
+  const token = localStorage.getItem('token');
+
+  const body = {
+    idTopico: payload.idTopico,
+    respostaAluno: payload.respostaAluno,
+    nota: payload.nota,
+    justificativa: payload.justificativa,
+    teto: payload.teto,
+    token,
+  };
+
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer ' + token,
+  });
+
+  return this.http.post(`${this.apiUrl}/api/salvarAvaliacaoIA`, body, {
+    headers: headers,
+  });
+}
+
 }

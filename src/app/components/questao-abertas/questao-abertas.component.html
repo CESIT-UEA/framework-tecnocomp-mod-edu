@@ -2,16 +2,26 @@
   <h2>{{ pergunta }}</h2>
 
   <form [formGroup]="form" (ngSubmit)="enviarResposta()">
-    <textarea formControlName="resposta" rows="6" placeholder="Digite sua resposta..."></textarea>
+    <textarea
+      formControlName="resposta"
+      rows="6"
+      placeholder="Digite sua resposta..."
+      [readonly]="form.disabled"
+    ></textarea>
 
-    <button type="submit" [disabled]="form.invalid || loading">
+    <button
+      type="submit"
+      *ngIf="!form.disabled"
+      [disabled]="form.invalid || loading"
+    >
       {{ loading ? 'Enviando...' : 'Enviar Resposta' }}
     </button>
   </form>
 
+  <!-- Resultado da IA -->
   <div *ngIf="nota !== null" [ngClass]="status" class="resultado">
-    <p><strong>Nota:</strong> {{ nota | number:'1.1-2' }}</p>
-    <p><strong>Nota Máxima que pode ser obtida:</strong> {{ teto | number:'1.1-2' }}</p>
+    <p><strong>Nota:</strong> {{ nota | number: '1.1-2' }}</p>
+    <p><strong>Nota Máxima:</strong> {{ teto | number: '1.1-2' }}</p>
     <p><strong>Justificativa:</strong> {{ justificativa }}</p>
   </div>
 </div>

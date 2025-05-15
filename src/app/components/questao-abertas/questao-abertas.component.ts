@@ -1,5 +1,5 @@
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServiceAppService } from 'src/app/service-app.service';
 
@@ -8,7 +8,7 @@ import { ServiceAppService } from 'src/app/service-app.service';
   templateUrl: './questao-abertas.component.html',
   styleUrls: ['./questao-abertas.component.css'],
 })
-export class QuestaoAbertasComponent {
+export class QuestaoAbertasComponent implements OnInit {
   form: FormGroup;
   loading = false;
   nota: number | null = null;
@@ -21,7 +21,10 @@ export class QuestaoAbertasComponent {
 
   status: 'success' | 'fail' | null = null;
 
-  pergunta = this.ltiService.dados_completos.topicos?.[this.moduloService.controll_topico]?.Exercicios?.[0].questao; // Pode ser dinâmico futuramente
+  pergunta =
+    this.ltiService.dados_completos.topicos?.[
+      this.moduloService.controll_topico
+    ]?.Exercicios?.[0].questao; // Pode ser dinâmico futuramente
 
   constructor(
     private fb: FormBuilder,
@@ -31,6 +34,34 @@ export class QuestaoAbertasComponent {
     this.form = this.fb.group({
       resposta: ['', Validators.required],
     });
+  }
+  ngOnInit(): void {
+    const encerrado =
+      this.ltiService.dados_completos?.userTopico?.[
+        this.moduloService.controll_topico
+      ]?.UsuarioTopicos[0].encerrado;
+      console.log(encerrado)
+    if (encerrado) {
+      console.log(encerrado)
+       this.form.patchValue({
+        resposta: this.ltiService.dados_completos?.userTopico?.[
+        this.moduloService.controll_topico
+      ]?.UsuarioTopicos[0].resposta_aberta_aluno || '',
+      });
+      this.form.disable();
+
+      this.nota = this.ltiService.dados_completos?.userTopico?.[
+        this.moduloService.controll_topico
+      ]?.UsuarioTopicos[0].resposta_aberta_nota_IA;
+      this.justificativa = this.ltiService.dados_completos?.userTopico?.[
+        this.moduloService.controll_topico
+      ]?.UsuarioTopicos[0].resposta_aberta_justificativa_IA;
+      this.teto = this.ltiService.dados_completos?.userTopico?.[
+        this.moduloService.controll_topico
+      ]?.UsuarioTopicos[0].resposta_aberta_teto;
+
+      this.status = this.nota! >= this.teto * 0.7 ? 'success' : 'fail';
+    }
   }
 
   enviarResposta() {
@@ -62,6 +93,29 @@ export class QuestaoAbertasComponent {
         if (this.tipo_resposta != 'resposta que precisa ser melhorada') {
           if (this.nota != null) {
             this.tratarRespostaCorreta(this.nota);
+            const idTopico =
+              this.ltiService.dados_completos.topicos?.[
+                this.moduloService.controll_topico
+              ]?.id;
+
+            this.ltiService
+              .salvarAvaliacaoIA({
+                idTopico,
+                respostaAluno: payload.respostaAluno,
+                nota: this.nota,
+                justificativa: this.justificativa!,
+                teto: this.teto,
+              })
+              .subscribe({
+                next: (res) => {
+                  console.log('Avaliação IA salva com sucesso', res);
+                  this.ltiService.removeDadosCompletos();
+                  this.ltiService.setDadosCompletos(res);
+                },
+                error: (err) => {
+                  console.error('Erro ao salvar avaliação IA', err);
+                },
+              });
           }
         }
       },
@@ -88,7 +142,8 @@ export class QuestaoAbertasComponent {
     }
 
     this.enviarNota();
-    this.liberarProximoTopico();
+
+    /*     this.liberarProximoTopico(); */
     /*     this.resposta = resposta;
     this.respostaEnviada = true; */
   }
