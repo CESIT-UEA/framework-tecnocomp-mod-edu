@@ -1,0 +1,17 @@
+<div class="question-box">
+  <h2>{{ pergunta }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="enviarResposta()">
+    <textarea formControlName="resposta" rows="6" placeholder="Digite sua resposta..."></textarea>
+
+    <button type="submit" [disabled]="form.invalid || loading">
+      {{ loading ? 'Enviando...' : 'Enviar Resposta' }}
+    </button>
+  </form>
+
+  <div *ngIf="nota !== null" [ngClass]="status" class="resultado">
+    <p><strong>Nota:</strong> {{ nota | number:'1.1-2' }}</p>
+    <p><strong>Nota Máxima que pode ser obtida:</strong> {{ teto | number:'1.1-2' }}</p>
+    <p><strong>Justificativa:</strong> {{ justificativa }}</p>
+  </div>
+</div>

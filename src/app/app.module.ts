@@ -64,6 +64,8 @@ import { CadastroAvaComponent } from './components/cadastro-ava/cadastro-ava.com
 import { DialogAvaComponent } from './components/dialog-ava/dialog-ava.component';
 import { BotaoDownloadPwaComponent } from './components/botao-download-pwa/botao-download-pwa.component';
 import {MatInputModule} from '@angular/material/input';
+import { QuestaoAbertasComponent } from './components/questao-abertas/questao-abertas.component';
+import { ChatN8nComponent } from './components/chat-n8n/chat-n8n.component';
 
 @NgModule({
   declarations: [
@@ -111,6 +113,8 @@ import {MatInputModule} from '@angular/material/input';
     CadastroAvaComponent,
     DialogAvaComponent,
     BotaoDownloadPwaComponent,
+    QuestaoAbertasComponent,
+    ChatN8nComponent,
   ],
   imports: [
     BrowserModule,

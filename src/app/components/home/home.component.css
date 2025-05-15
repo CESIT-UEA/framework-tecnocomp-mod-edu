@@ -265,7 +265,7 @@ app-video-section iframe {
   .header nav {
     width: fit-content;
   }
- 
+
 }
 
 @media (max-width: 600px) {
@@ -294,3 +294,4 @@ app-video-section iframe {
     display: none;
   }
 }
+

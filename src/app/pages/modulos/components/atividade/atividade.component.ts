@@ -59,6 +59,7 @@ export class AtividadeComponent implements OnInit, OnChanges {
     }
 
       this.atualizarQuestao();
+      console.log(this.ltiService.dados_completos.topicos?.[this.idTopico]?.Exercicios?.[0].aberta)
   }
 
   ngOnChanges(changes: SimpleChanges) {

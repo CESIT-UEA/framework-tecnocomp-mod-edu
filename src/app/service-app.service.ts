@@ -498,12 +498,20 @@ export class ServiceAppService {
     });
   }
   verificaAvaliacaoNaoFoiFeitaEstrelas(): boolean {
-    if (
-      this.dados_completos.userModulo.avaliacao == null
-    ) {
+    if (this.dados_completos.userModulo.avaliacao == null) {
       return true;
     } else {
       return false;
     }
+  }
+  private webhookUrl = 'https://tecnocomp.uea.edu.br:5678/webhook/1cf5320a-77b7-4a3d-98ba-a5a9f83600ac';
+  desativa_chat = false;
+
+  enviarResposta(payload: {
+    pergunta: string;
+    respostaAluno: string;
+    teto : number;
+  }): Observable<any> {
+    return this.http.post<any>(this.webhookUrl, payload);
   }
 }

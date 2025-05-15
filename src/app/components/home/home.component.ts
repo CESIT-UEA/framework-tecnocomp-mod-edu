@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatSidenavContainer } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DownloadPlataformaService } from 'src/app/download-plataforma.service';
@@ -32,7 +32,8 @@ export class HomeComponent {
     private router: Router,
     private http: HttpClient,
     private route: ActivatedRoute,
-    public downloadService: DownloadPlataformaService
+    public downloadService: DownloadPlataformaService,
+    private renderer: Renderer2
   ) {}
 
   /**
@@ -86,6 +87,7 @@ export class HomeComponent {
     }
 
     this.appService.getDadosCompletos();
+
   }
 
   /**
