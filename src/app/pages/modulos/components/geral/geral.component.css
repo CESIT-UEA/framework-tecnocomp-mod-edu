@@ -12,12 +12,12 @@
 .container {
   width: 100%;
   height: 100%;
-  padding-top: 77px;
+  padding-top: 17px;
 }
 /* Sub Header */
 .sub-header {
   display: flex;
-  height: 60px;
+  min-height: 60px;
   justify-content: space-between;
   align-items: center;
   background: #272729;
@@ -26,10 +26,15 @@
   width: 25px;
   height: 25px;
 }
+
+.voltar {
+  display: flex;
+}
+
 .sub-header .voltar p {
   display: flex;
   align-items: center;
-  padding-left: 60px;
+  padding-left: 20px; /*aqui era 60px kauê*/
   color: #fff;
   text-align: center;
   font-family: Arial;
@@ -113,7 +118,7 @@
 }
 
 .sub-header {
-  height: 60px;
+  min-height: 60px;
   background: #272729;
   display: flex;
   justify-content: space-between;
@@ -143,3 +148,54 @@
 .conteudo-principal {
   padding: 24px;
 }
+
+/* Desativa o submenu do mobile */
+.sub-menu{
+  display: none;
+}
+
+@media(max-width: 1045px){
+  .sub-header{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+  }
+  .final-sub-header {
+    justify-self: end;
+  }
+}
+
+@media(max-width: 891px){
+  .sub-header{
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px
+  }; 
+
+  .final-sub-header {
+    display: flex;
+    gap: 12px;
+  }
+    
+  .sub-header .voltar p {
+    padding-left: 0;
+  }
+
+  /* Ativa o submenu do mobile */
+  .sub-menu{
+    display: block;
+  }
+  .sub-header .final-sub-header .sub-menu {
+    display: none;
+  }
+  .sub-header .final-sub-header button {
+    margin-bottom: 10px;
+  }
+   .voltar {
+    width: 100%;
+    justify-content: space-between;
+    align-self: start;
+    align-items: center;
+    padding-top: 5px;
+   }
+   
+  }

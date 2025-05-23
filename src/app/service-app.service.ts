@@ -444,7 +444,7 @@ export class ServiceAppService {
     if (
       this.currentVideoIndex <
       this.dados_completos.topicos?.[this.moduloService.controll_topico]
-        ?.VideoUrls.length
+        ?.VideoUrls.length - 1
     ) {
       console.log('Entrei');
       this.currentVideoIndex++;

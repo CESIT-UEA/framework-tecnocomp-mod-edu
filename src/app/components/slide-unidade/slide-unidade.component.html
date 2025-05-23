@@ -9,34 +9,34 @@
     </p>
   </div>
   <div class="box-navigate-right">
+    <!-- INICIO DO TESTE -->
     <mat-icon
-      class="mat-18 voltar"
-      (click)="this.ltiService.voltar()"
-      [ngClass]="{ disabled: this.ltiService.currentVideoIndex == 0 }"
-    >
-      arrow_back
+    class="mat-18 voltar"
+    (click)="this.prevPage()"
+    [ngClass]="{ disabled: this.currentPage == 0 }"
+  >
+    arrow_back
     </mat-icon>
     <ul>
       <li
-        *ngFor="let video of videos; index as i"
+        *ngFor="let video of paginatedVideos; let i = index"
         [ngClass]="{
-          naoConcluido: !videos[i].UsuarioVideos[0].completo,
-          active: this.ltiService.currentVideoIndex == i
+          naoConcluido: !video.UsuarioVideos[0].completo,
+          active: ltiService.currentVideoIndex == (i + currentPage * pageSize)
         }"
-        (click)="selectVideo(i)"
+        (click)="selectVideo(i + currentPage * pageSize)"
       >
-        Vídeo {{ i + 1 }}
-        <mat-icon class="concluido" *ngIf="videos[i].UsuarioVideos[0].completo">
+        Vídeo {{ i + 1 + currentPage * pageSize }}
+        <mat-icon class="concluido" *ngIf="video.UsuarioVideos[0].completo">
           check
         </mat-icon>
       </li>
     </ul>
-    <mat-icon
-      class="mat-18 proximo"
-      (click)="this.ltiService.proximo()"
-      [ngClass]="{
-        disabled: this.ltiService.currentVideoIndex + 1 == videos.length
-      }"
+    <!-- Controles de paginação -->
+    <mat-icon 
+    class="mat-18 proximo" (click)="this.nextPage()" [ngClass]="{
+      disabled: this.currentPage >= this.totalPages - 1
+    }"  
     >
       arrow_forward
     </mat-icon>

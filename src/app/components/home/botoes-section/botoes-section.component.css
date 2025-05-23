@@ -141,8 +141,16 @@
     display: block;
     width: 100%;
   }
+  
+}
+
+@media(max-width: 487px){
+  .button-section .button-group button {
+    width: 80%;
+  }
   .button-section .button-group .start-button,
   .button-section .button-group .download-button {
     width: 80%;
   }
+  
 }

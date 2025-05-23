@@ -4,10 +4,11 @@
 <div class="container">
   <div class="sub-header">
     <div class="voltar">
-      <p>
-        <mat-icon>arrow_back</mat-icon>
-        Tópico
-      </p>
+      <mat-icon>arrow_back</mat-icon>
+      <p>Tópico</p>
+      <div class="sub-menu mobile" (click)="abrirMenu.emit()">
+        <img width="25" height="25" src="../../../../../assets/icons/sub-menu.svg" alt="icone para acessar o sub menu">
+      </div>
     </div>
     <div class="titulo-topico">
       <p>{{ this.moduloService.controll_topico + 1 }}. {{ this.nome }}</p>
