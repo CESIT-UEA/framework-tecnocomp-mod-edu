@@ -32,7 +32,7 @@
     <li *ngFor="let item of referencias">
       <div *ngIf="item.caminhoDaImagem && item.referencia" class="referencias-div">
         <img [src]="item.caminhoDaImagem" alt="img da referencia do livro">
-        <p>{{ item.referencia }}</p>
+        <p matTooltip={{item.referencia}} >{{ item.referencia | slice: 0 : 150 }}...</p>
       </div>
     </li>
   </ul>

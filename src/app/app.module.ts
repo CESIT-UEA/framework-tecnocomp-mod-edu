@@ -66,6 +66,7 @@ import { BotaoDownloadPwaComponent } from './components/botao-download-pwa/botao
 import {MatInputModule} from '@angular/material/input';
 import { QuestaoAbertasComponent } from './components/questao-abertas/questao-abertas.component';
 import { ChatN8nComponent } from './components/chat-n8n/chat-n8n.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -142,7 +143,8 @@ import { ChatN8nComponent } from './components/chat-n8n/chat-n8n.component';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    MatInputModule
+    MatInputModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

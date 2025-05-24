@@ -10,7 +10,7 @@
 .parte-cima {
   background-color: #232324;
   border-radius: 20px 0 0 0;
-  height: 20vh;
+  height: 25%;
 }
 .titulo-topico {
   font-size: 18px;
@@ -27,6 +27,7 @@
   justify-self: end;
   margin-right: 15px;
   margin-top: 5px;
+  cursor: pointer;
 }
 .progresso {
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.25);
@@ -64,10 +65,11 @@ input[type="checkbox"] {
 }
 
 .container-topico {
-  height: 50vh;
+  height: 100%;
   overflow-y: scroll;
 }
 .container-topicos {
+  height: 50%;
   background-color: #171719;
 }
 .container-topico::-webkit-scrollbar-track {
@@ -101,8 +103,8 @@ input[type="checkbox"] {
   cursor: auto;
 }
 
-.hover:hover{
-  background-color: #19191A;
+.hover:hover {
+  background-color: #19191a;
   cursor: pointer;
 }
 .active-topico-container {
@@ -157,7 +159,7 @@ input[type="checkbox"] {
   color: rgba(255, 255, 255, 0.5);
   font-size: 16px;
   background-color: #171719;
-  height: 30vh;
+  height: 25%;
 }
 .outros-links h3 {
   padding-top: 5px;

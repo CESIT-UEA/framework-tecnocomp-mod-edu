@@ -1,4 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ServiceAppService } from 'src/app/service-app.service';
 
 /**
  * Componente Ficha Tecnica, a qual deve ser transformado em um componente reutilizavel, pois todo modulo tem sua ficha tecnica única
@@ -8,7 +9,13 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   templateUrl: './ficha-tecnica.component.html',
   styleUrls: ['./ficha-tecnica.component.css'],
 })
-export class FichaTecnicaComponent {
+export class FichaTecnicaComponent implements OnInit {
+  constructor(public ltiService: ServiceAppService) {}
+
+  ngOnInit(): void {
+    this.ltiService.getDadosCompletos();
+  }
+
   /**
    * Vetor de Objetos os quais guarda as informações das equipes e de seus membros
    */
