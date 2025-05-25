@@ -90,6 +90,7 @@
   margin-right: 15px;
   max-width: 175px;
   height: 100%;
+  min-height: 160px;
 }
 .container-links-text-lista li p {
   font-size: 14px;
@@ -98,7 +99,8 @@
   color: #cccccc;
 }
 .referencias-div {
-height: 160px;  width: 100%;
+min-height: 160px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -134,6 +136,13 @@ height: 160px;  width: 100%;
   }
 }
 
+@media (max-width: 492px) {
+.referencias-div {
+	flex-direction: column;
+	padding: 15px;
+	row-gap: 10px
+}
+}
 @media (max-width: 389px) {
   .container-links {
     grid-template-columns: 85% 15%;
