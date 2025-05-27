@@ -65,3 +65,11 @@ body {
 }
 
 
+:root{
+  --chat--window--bottom: 10%;
+  --chat--toggle--background: #793cd4 !important;
+  --chat--toggle--hover--background: #793cd4 !important;
+  --chat--toggle--active--background: #793cd4 !important;
+  --chat--header--background:#5e17eb !important;
+  --chat--window--right:2%;
+}

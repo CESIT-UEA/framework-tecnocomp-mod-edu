@@ -5,7 +5,7 @@ import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
   templateUrl: './chat-n8n.component.html',
   styleUrls: ['./chat-n8n.component.css'],
 })
-export class ChatN8nComponent implements OnInit, OnDestroy {
+export class ChatN8nComponent implements OnInit {
   private chatScript!: HTMLScriptElement;
 
   constructor(private renderer: Renderer2) {}
@@ -38,16 +38,5 @@ export class ChatN8nComponent implements OnInit, OnDestroy {
       });
     `;
     this.renderer.appendChild(document.body, this.chatScript);
-  }
-
-  ngOnDestroy(): void {
-    if (this.chatScript && this.chatScript.parentNode) {
-      this.chatScript.parentNode.removeChild(this.chatScript);
-    }
-
-    const chatWidget = document.querySelector('n8n-chat-widget');
-    if (chatWidget && chatWidget.parentNode) {
-      chatWidget.parentNode.removeChild(chatWidget);
-    }
   }
 }
