@@ -71,5 +71,6 @@ body {
   --chat--toggle--hover--background: #793cd4 !important;
   --chat--toggle--active--background: #793cd4 !important;
   --chat--header--background:#5e17eb !important;
+  --chat--message--user--background:#5e17eb !important;
   --chat--window--right:2%;
 }
