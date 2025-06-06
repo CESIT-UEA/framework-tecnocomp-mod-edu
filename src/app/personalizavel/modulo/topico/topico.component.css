@@ -28,7 +28,7 @@
   color: black;
   background-color: white;
   border-radius: 28px;
-  border: 1px solid var(--Primaria, #9665df);
+  border: 1px solid var(--Primaria, var(--terciaria));
 }
 .menu-user {
   width: 270px;
@@ -39,7 +39,7 @@
   align-items: center;
   gap: 10px;
   border-radius: 8px;
-  border: 1px solid var(--Primaria, #9665df);
+  border: 1px solid var(--Primaria, var(--terciaria));
   background: var(--Background, #131313);
 }
 .header nav {
@@ -160,7 +160,7 @@
   align-items: center;
   gap: 10px;
   border-radius: 8px;
-  border: 1px solid var(--Primaria, #9665df);
+  border: 1px solid var(--Primaria, var(--terciaria));
   background: var(--Background, #131313);
   position: fixed;
   right: 8%;
@@ -236,12 +236,12 @@
 .button-finalizar-desabilitado {
   border-radius: 6px;
   opacity: 0.5;
-  background: #793cd4;
+  background: var(--primaria);
   box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.25);
 }
 .button-finalizar-nao-avaliado {
   border-radius: 6px;
-  background: #793cd4;
+  background: var(--primaria);
   box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.25);
 }
 .button-finalizar-avaliado {

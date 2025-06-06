@@ -40,7 +40,7 @@
 .titulo-topico ul li:before {
   content: "\2022";
   margin: 0 10px;
-  color: #9665df;
+  color: var(--terciaria);
 }
 
 .titulo-topico hr {
@@ -49,7 +49,7 @@
   margin: auto;
   margin-bottom: 10px;
   border-radius: 10px;
-  background-color: #3c2859;
+  background-color: var(--quintenaria);
   border: none;
 }
 
@@ -74,7 +74,7 @@
   font-weight: 700;
   line-height: normal;
   padding-bottom: 5px;
-  border-bottom: 2px solid #9665df;
+  border-bottom: 2px solid var(--terciaria);
 }
 
 .section-texto {
@@ -180,12 +180,12 @@ button.atividade-botao {
 
 }
 .active {
-  background: var(--2, #793cd4);
+  background: var(--2, var(--primaria));
 }
 .disabled {
   box-shadow: -5.574px 5.574px 5.574px 0px rgba(0, 0, 0, 0.25);
   opacity: 0.5;
-  background: var(--2, #793CD4);
+  background: var(--2, var(--primaria));
 }
 .active-incorreto {
   background-color: #de3535;
@@ -199,7 +199,7 @@ button.atividade-botao {
   display: flex;
   justify-content: right;
   padding-bottom: 20px;
-  
+
 }
 .container-main-conteudo-link-left {
   width: 95%;

@@ -41,7 +41,7 @@
 }
 
 .descricao-modulo {
-  color: var(--16, #c3a1f5);
+  color: var(--16, var(--quartenaria));
   text-align: center;
   font-family: Arial;
   font-size: 25px;
@@ -162,7 +162,7 @@ form{
   align-items: center;
   gap: 15px;
   border-radius: 8px;
-  background: var(--2, #793cd4);
+  background: var(--2, var(--primaria));
   box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.25);
   color: var(--Terciaria, #fff);
   font-size: 16px;
@@ -211,7 +211,7 @@ form{
   color: black;
   background-color: white;
   border-radius: 28px;
-  border: 1px solid var(--Primaria, #9665df);
+  border: 1px solid var(--Primaria, var(--terciaria));
 }
 
 
@@ -266,5 +266,5 @@ form{
 @media(max-width: 375px){
   .descricao-conclusao{
     margin-bottom: 20px;
-  }  
+  }
 }

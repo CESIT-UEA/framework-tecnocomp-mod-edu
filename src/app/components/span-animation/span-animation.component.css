@@ -5,7 +5,7 @@ button {
   align-items: center;
   justify-content: flex-start;
   border-radius: 20px;
-  border: 1px solid #9665DF;
+  border: 1px solid var(--terciaria);
   background-color: black;
   color: #9A9A9A;
   font-family: Arial;
@@ -18,6 +18,6 @@ button {
 }
 
 mat-icon {
-  color: #9665DF;
+  color: var(--terciaria);
   margin: 0 4px 0 0;
 }

@@ -47,7 +47,7 @@
   cursor: pointer;
 }
 .active-alternativa{
-  border: 4px solid #9665df;
+  border: 4px solid var(--terciaria);
   border-radius: 15px;
 }
 
@@ -79,7 +79,7 @@
   width: 100px;
   height: 35px;
   color: white;
-  background-color: #9665DF;
+  background-color: var(--terciaria);
   outline: none;
   border-radius: 5px;
   margin: 0 auto;
@@ -128,7 +128,7 @@
   line-height: 150%;
   color: white;
   font-size: 40px;
-  background-color: #9665df;
+  background-color: var(--terciaria);
   display: flex;
   height: 100%;
   width: 100%;
@@ -190,7 +190,7 @@
 @media (max-width: 489px) {
     .container-atividade{
       width: 90%;
-    }    
+    }
     .texto-cima {
       padding: 0 5px;
     }

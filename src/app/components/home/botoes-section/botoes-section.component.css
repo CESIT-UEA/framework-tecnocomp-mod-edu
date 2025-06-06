@@ -70,7 +70,7 @@
 
 .button-section .button-group .start-button {
   border-radius: 0.49963rem;
-  background: #793CD4;
+  background: var(--primaria);
   font-family: Arial, Helvetica, sans-serif;
   color: var(--Terciaria, #fff);
   text-align: center;

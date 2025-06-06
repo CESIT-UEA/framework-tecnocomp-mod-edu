@@ -29,7 +29,7 @@
   color: #9a9a9a;
 }
 .corpo-postagem a {
-  color: #9665df;
+  color: var(--terciaria);
 }
 .autor .foto-autor {
   width: 40px;
@@ -44,7 +44,7 @@
   color: #686868;
 }
 .p-autor {
-  color: #9665df;
+  color: var(--terciaria);
   text-transform: capitalize;
 }
 .p1 {

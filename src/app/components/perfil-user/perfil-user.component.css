@@ -5,7 +5,7 @@
   align-items: center;
   gap: 10px;
   border-radius: 8px;
-  border: 1px solid var(--Primaria, #9665df);
+  border: 1px solid var(--Primaria, var(--terciaria));
   background: linear-gradient(
       167deg,
       rgba(61, 34, 102, 0.7) 3.02%,
@@ -46,7 +46,7 @@
   gap: 15px;
   color: white;
   border-radius: 8px;
-border: 1px solid var(--Primaria, #9665DF);
+border: 1px solid var(--Primaria, var(--terciaria));
 margin: 10px 15px;
 }
 .mat-mdc-progress-spinner {
@@ -73,7 +73,7 @@ margin: 10px 15px;
   color: black;
   background-color: white;
   border-radius: 28px;
-  border: 3px solid var(--Primaria, #9665df);
+  border: 3px solid var(--Primaria, var(--terciaria));
   margin: 0 auto;
   font-size: 40px;
   font-weight: 700;

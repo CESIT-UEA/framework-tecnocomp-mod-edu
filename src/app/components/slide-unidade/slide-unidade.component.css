@@ -57,7 +57,7 @@
   line-height: normal;
   color: #fff;
   cursor: pointer;
-  border: 1px solid #793cd4;
+  border: 1px solid var(--primaria);
   position: relative; /* Permite posicionamento relativo */
 }
 .navigate-p {
@@ -94,7 +94,7 @@
   background-color: #2e2e2e;
 }
 .active {
-  background-color: #9665df;
+  background-color: var(--terciaria);
   border: 2px solid white;
 }
 

@@ -1,7 +1,7 @@
 .container{
   height: 500px;
   background-color: black;
-  border: 1px solid #3C2859;
+  border: 1px solid var(--quintenaria);
 }
 
 .container-titulo{

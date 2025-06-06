@@ -5,7 +5,7 @@
 
 .header img {
    min-height: 10vh;
-   max-height: 10vh; 
+   max-height: 10vh;
    margin-left: 1rem;
  }
 
@@ -74,11 +74,11 @@
 
 
 .buttons > .button-enable {
-    background-color: #793CD4;
-} 
+    background-color: var(--primaria);
+}
 
 .button-disabled {
-   background-color:#793CD4;
+   background-color:var(--primaria);
    opacity: 0.5;
 }
 

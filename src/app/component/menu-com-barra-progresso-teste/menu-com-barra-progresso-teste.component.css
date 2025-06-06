@@ -19,7 +19,7 @@
   font-weight: 700;
   line-height: 150%;
   width: 80%;
-  color: #b4a1e5;
+  color: var(--quartenaria);
   margin-left: 20px;
 }
 .close {
@@ -41,7 +41,7 @@
 }
 .p-progresso {
   background-color: #232324;
-  color: #b4a1e5;
+  color: var(--quartenaria);
   text-align: center;
   padding-bottom: 10px;
   font-size: 14px;
@@ -108,7 +108,7 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 .active-topico-container {
-  border: 2px solid var(--Primaria, #9665df);
+  border: 2px solid var(--Primaria, var(--terciaria));
   background: #232324;
   box-shadow: -3px 3px 3px 0px rgba(0, 0, 0, 0.25);
   font-weight: bold;
@@ -134,7 +134,7 @@ input[type="checkbox"] {
 }
 .btn-forum {
   background-color: #262626;
-  color: #9665df;
+  color: var(--terciaria);
   width: 80%;
   border-radius: 5px;
   padding: 10px;
@@ -183,7 +183,7 @@ input[type="checkbox"] {
   margin-bottom: 15px;
 }
 .moodle a {
-  color: #c3a1f5;
+  color: var(--quartenaria);
   margin-left: 5px;
   outline: none;
 }

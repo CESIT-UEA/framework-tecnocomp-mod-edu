@@ -84,7 +84,7 @@
 }
 
 .container-links-text-lista li img {
-  border: 3px solid #9665df;
+  border: 3px solid var(--terciaria);
   border-radius: 15px;
   max-width: auto;
   margin-right: 15px;

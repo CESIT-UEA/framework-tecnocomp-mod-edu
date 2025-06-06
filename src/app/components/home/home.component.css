@@ -89,13 +89,13 @@ app-video-section iframe {
   display: inline-block;
 }
 .btn-ficha:hover, .btn-home:hover, .btn-sobre:hover {
-  border-bottom: 3px solid #793cd4;
+  border-bottom: 3px solid var(--primaria);
   padding-bottom: 3px;
   width: fit-content;
 }
 
 .active-topico-container {
-  border-bottom: 3px solid #793cd4;
+  border-bottom: 3px solid var(--primaria);
   padding-bottom: 3px;
   width: fit-content;
 }
@@ -161,7 +161,7 @@ app-video-section iframe {
   color: black;
   background-color: white;
   border-radius: 28px;
-  border: 1px solid var(--Primaria, #9665df);
+  border: 1px solid var(--Primaria, var(--terciaria));
 }
 /* Grid geral */
 .content-container-section {
@@ -193,7 +193,7 @@ app-video-section iframe {
 }
 
 .text-unidade {
-  color: #9665df;
+  color: var(--terciaria);
 }
 .position {
   max-width: 680px;

@@ -4,6 +4,6 @@
 }
 
 .button-dois {
-    background-color: #793CD4;
+    background-color: var(--primaria);
     color: white !important;
 }

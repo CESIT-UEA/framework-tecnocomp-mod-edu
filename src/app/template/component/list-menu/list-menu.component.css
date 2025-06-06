@@ -20,7 +20,7 @@ ul li{
 }
 
 ul li:hover{
-    background-color: #6C36BC;
+    background-color: var(--quintenaria);
 }
 
 ul li a{
