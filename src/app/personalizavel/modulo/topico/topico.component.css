@@ -278,7 +278,19 @@ mat-sidenav-content {
   display: flex;
   flex-direction: column;
 }
+mat-sidenav-content::-webkit-scrollbar {
+  width: 0px;
+}
 
+mat-sidenav-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+mat-sidenav-content::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 0px;
+  border: 0px solid transparent;
+}
 .custom-sidenav {
   width: 300px;
   background-color: #1f1f1f;
