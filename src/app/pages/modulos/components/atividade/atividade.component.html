@@ -18,10 +18,12 @@
     alt="Icone para ir para a atividade da unidade"
     width="30px"
     height="30px"
-    style="cursor: pointer;"
+    style="cursor: pointer"
   />
 </div>
-
+<div *ngIf="this.ltiService.dados_completos.topicos?.[this.idTopico]?.Exercicios?.[0].aberta == true">
+  <app-questao-abertas></app-questao-abertas>
+</div>
 <div
   class="container-atividade"
   *ngIf="this.ltiService.dados_completos?.userTopico[
@@ -38,7 +40,7 @@
       >
         <div
           class="container-prefix"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           [ngStyle]="{
             'background-color':
               (resposta === alternativa.descricao &&
@@ -75,7 +77,9 @@
           <img
             class="img img-correta"
             *ngIf="
-              resposta == alternativa.descricao && this.respostaEnviada == true && alternativa.correta == true
+              resposta == alternativa.descricao &&
+              this.respostaEnviada == true &&
+              alternativa.correta == true
             "
             src="../../../../../assets/img/checkAtividade.png"
             alt=""
@@ -136,10 +140,10 @@
             (
             (this.abre == true || this.abre == null) ) && this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0].resposta_errada == alternativa.descricao
           "
-              [ngClass]="{
-                'respostaErrada': alternativa.correta == false,
-                'respostaCorreta': alternativa.correta == true
-              }"
+            [ngClass]="{
+              respostaErrada: alternativa.correta == false,
+              respostaCorreta: alternativa.correta == true
+            }"
           >
             <p
               *ngIf="this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0].resposta_errada == alternativa.descricao != null"
@@ -152,7 +156,7 @@
     </div>
     <div class="butoes">
       <button
-      style="cursor: pointer;"
+        style="cursor: pointer"
         class="refazer"
         *ngIf="(this.respostaEnviada == true || this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0].resposta_errada != null) && this.respondidoOficialmente == false"
         (click)="refazer()"
@@ -161,7 +165,7 @@
         Refazer
       </button>
       <button
-      style="cursor: pointer;"
+        style="cursor: pointer"
         class="btn-submit active"
         *ngIf="this.respostaEscolhida != null && this.respostaEnviada != true && this.ltiService.dados_completos?.userTopico[
         this.moduloService.controll_topico
@@ -175,14 +179,14 @@
 </div>
 
 <ng-template #elseAtividade>
-  <div class="container-atividade">
+  <div *ngIf="this.ltiService.dados_completos.topicos?.[this.idTopico]?.Exercicios?.[0].aberta == false" class="container-atividade">
     <div *ngIf="questao">
       <h3>{{ questao.questao }}</h3>
-      <div *ngFor="let alternativa of questao.Alternativas; let i = index" >
+      <div *ngFor="let alternativa of questao.Alternativas; let i = index">
         <div
           class="alternativas"
           (click)="responderAlternativo(alternativa.descricao)"
-          style="cursor: pointer;"
+          style="cursor: pointer"
         >
           <div
             class="container-prefix"
@@ -270,7 +274,8 @@
                 (click)="clickOlho()"
                 [ngStyle]="{
                   color:
-                    (resposta === alternativa.descricao && (this.abre == true || this.abre == null))
+                    resposta === alternativa.descricao &&
+                    (this.abre == true || this.abre == null)
                       ? '#A174E2'
                       : this.abre == false
                       ? 'white'
@@ -283,8 +288,8 @@
               class="texto-baixo"
               *ngIf="resposta === alternativa.descricao && this.abre == true"
               [ngClass]="{
-                'respostaErrada': alternativa.correta == false,
-                'respostaCorreta': alternativa.correta == true
+                respostaErrada: alternativa.correta == false,
+                respostaCorreta: alternativa.correta == true
               }"
             >
               <p>{{ resposta ? getExplicacao(resposta) : "" }}</p>

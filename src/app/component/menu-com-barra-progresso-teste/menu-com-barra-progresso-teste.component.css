@@ -11,18 +11,26 @@
 }
 .parte-cima {
   background-color: #232324;
+  border-radius: 20px 0 0 0;
+  height: 25%;
 }
 .titulo-topico {
   color: var(--Terciaria, #fff);
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
+  line-height: 150%;
+  width: 80%;
+  color: var(--quartenaria);
+  margin-left: 20px;
   line-height: normal;
   padding: 0 15px;
 }
 .close {
   font-size: 30px;
   justify-self: end;
+  margin-right: 15px;
+  margin-top: 5px;
   cursor: pointer;
 }
 .progresso {
@@ -37,6 +45,8 @@
 }
 .p-progresso {
   background-color: #232324;
+  color: var(--quartenaria);
+  text-align: center;
   padding-bottom: 10px;
   font-size: 14px;
   font-weight: 400;
@@ -60,10 +70,11 @@ input[type="checkbox"] {
 }
 
 .container-topico {
-  height: 35vh;
+  height: 100%;
   overflow-y: scroll;
 }
 .container-topicos {
+  height: 50%;
   background-color: #171719;
 }
 .container-topico::-webkit-scrollbar-track {
@@ -101,8 +112,10 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 .active-topico-container {
-  border-left: 7px solid var(--12, #9256ed);
-  background: #272729;
+  border: 2px solid var(--Primaria, var(--terciaria));
+  background: #232324;
+  box-shadow: -3px 3px 3px 0px rgba(0, 0, 0, 0.25);
+
   font-weight: bold;
 }
 .caixa {
@@ -126,7 +139,7 @@ input[type="checkbox"] {
 }
 .btn-forum {
   background-color: #262626;
-  color: #9665df;
+  color: var(--terciaria);
   width: 80%;
   border-radius: 5px;
   padding: 10px;
@@ -151,6 +164,7 @@ input[type="checkbox"] {
   color: rgba(255, 255, 255, 0.5);
   font-size: 16px;
   background-color: #171719;
+  height: 25%;
 }
 .outros-links h3 {
   padding-top: 15px;
@@ -180,6 +194,7 @@ input[type="checkbox"] {
   margin-bottom: 15px;
 }
 .moodle a {
+  color: var(--quartenaria);
   margin-left: 5px;
   outline: none;
 }

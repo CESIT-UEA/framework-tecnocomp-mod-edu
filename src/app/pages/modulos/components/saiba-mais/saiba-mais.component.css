@@ -52,7 +52,7 @@
 }
 
 .container-links-text-caixa{
-  border: 1px solid #9665DF;
+  border: 1px solid var(--terciaria);
   width: 60%;
   margin-top: 15px;
   border-radius: 10px;
@@ -77,7 +77,7 @@
 
 .container-links-text-caixa a{
   display: inline-block;
-  background-color: #9665DF;
+  background-color: var(--terciaria);
   padding: 5px 10px;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -104,5 +104,15 @@
 
   .container-links-text {
     padding: 10px 0;
+  }
+}
+
+
+@media(max-width: 389px){
+  .header-atividade{
+    grid-template-columns: 85% 15%;
+  }
+  .container-links-text-caixa{
+    width: 90%;
   }
 }

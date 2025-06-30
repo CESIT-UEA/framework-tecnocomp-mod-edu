@@ -159,8 +159,7 @@
   .content-container-ficha-tecnica-equipe {
     height: 90%;
     width: 100%;
-    background: rgb(101,49,176);
-    background: linear-gradient(180deg, rgba(101,49,176,1) 4%, rgba(108,54,188,1) 8%);
+    background: var(--quintenaria);
     display: flex;
   }
 
@@ -174,7 +173,7 @@
     width: 100%;
   }
   .content-container-ficha-tecnica-equipe-caixa-teste h1{
-    background-color: #9665DF;
+    background-color: var(--terciaria);
     color: white;
     border-radius: 10px;
     width: 40%;
@@ -291,9 +290,26 @@
     justify-content: center;
   }
 
+  @media(max-width: 705px){
+    .content-container-ficha-tecnica-equipe-caixa-teste{
+      display: none;
+    }
+  }
+
   @media(max-width:500px) {
     .content-container-ficha-tecnica-inicio .sobre .sobre-conteudo p {
       font-size: 18px;
+    }
+
+    .section{
+      flex-direction: column;
+    }
+    .logo{
+      height: 230px;
+      margin-bottom: 1.5rem;
+    }
+    .descricao{
+      padding-bottom: 25px;
     }
   }
 

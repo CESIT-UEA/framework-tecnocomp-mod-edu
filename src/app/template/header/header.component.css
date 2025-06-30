@@ -83,7 +83,7 @@ mat-sidenav {
 }
 
 .text-unidade {
-  color: #9665df;
+  color: var(--terciaria);
 }
 
 .position {
@@ -100,3 +100,4 @@ mat-sidenav {
     left: 60%;
   }
 }
+

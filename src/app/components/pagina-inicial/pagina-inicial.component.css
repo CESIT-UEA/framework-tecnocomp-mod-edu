@@ -5,7 +5,7 @@
 
 .header img {
     min-height: 10vh;
-    max-height: 10vh; 
+    max-height: 10vh;
     margin-left: 1rem;
  }
 
@@ -47,7 +47,7 @@
     background-position-x: right;
  }
 
- .main-section-form input::-webkit-input-placeholder { 
+ .main-section-form input::-webkit-input-placeholder {
     color: white;
  }
 
@@ -123,7 +123,7 @@
 
  .bloco-dois a>span:first-child{
    font-size: 40px;
-   color: #C3A1F5;
+   color: var(--quartenaria);
 }
 
 

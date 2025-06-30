@@ -39,7 +39,7 @@ p {
   width: 91px;
   height: 35px;
   color: white;
-  background-color: #9665DF;
+  background-color: var(--terciaria);
   border-radius: 5px;
   outline: none;
   border: none;
