@@ -1,0 +1,66 @@
+<div class="container">
+  <header class="header">
+    <img src="assets/tecnocomp.png" alt="Tecnocom+ LOGO" routerLink="./" />
+    <nav class="nav">
+      <ul>
+        <li>
+          <button mat-button>
+            AVA
+          </button>
+        </li>
+        <li>
+          <button mat-button [matMenuTriggerFor]="menu2">
+            <span class="modulo">Módulo</span>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+          <mat-menu #menu2="matMenu">
+            <button mat-menu-item  routerLink="../">
+              Início do Módulo
+              <mat-icon>home</mat-icon>
+            </button>
+            <button mat-menu-item>Tópico Atual</button>
+            <button mat-menu-item>
+              <mat-icon>home</mat-icon>
+              Referências Bibliográficas
+            </button>
+            <button mat-menu-item routerLink="ficha-tecnica">Ficha Técnica</button>
+          </mat-menu>
+        </li>
+        <li>
+          <button mat-button [matMenuTriggerFor]="menu3">
+            Informações e Suporte
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+          <mat-menu #menu3="matMenu">
+            <button mat-menu-item routerLink="sobre">
+              <mat-icon>home</mat-icon>
+              Sobre
+            </button>
+            <button mat-menu-item>Suporte</button>
+          </mat-menu>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="end-navbar">
+      <app-botao-download-pwa></app-botao-download-pwa>
+      <div
+        *ngIf="this.appService.perfilUser == false"
+        class="container-foto-header"
+      >
+        <div class="foto-header">
+          {{ this.appService.dados_completos.user.nome[0] }}
+        </div>
+        <mat-icon
+          style="color: white; cursor: pointer"
+          (click)="this.appService.abreMenuUser(); $event.stopPropagation()"
+        >
+          keyboard_arrow_down
+        </mat-icon>
+      </div>
+      <app-perfil-user
+        *ngIf="this.appService.perfilUser == true"
+      ></app-perfil-user>
+    </div>
+  </header>
+</div>

@@ -1,0 +1,94 @@
+@font-face {
+  font-family: minhaFonte;
+  src: url("../../../assets/fonteProjeto.ttf");
+}
+
+.container {
+  width: 100%;
+  border-bottom: 1px solid var(--22, #1c1c1c);
+  position: fixed;
+  background: #000;
+  z-index: 1;
+}
+.header {
+  display: flex;
+  width: 90%;
+  height: 76px;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 0 auto;
+}
+.header img {
+  display: flex;
+  width: 210px;
+  height: 66px;
+  padding-right: 10px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.header nav {
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+.header nav ul {
+  display: flex;
+  align-items: center;
+}
+.header ul li {
+  list-style: none;
+}
+.header ul li button {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  color: white;
+}
+.end-navbar {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.container-foto-header {
+  display: flex;
+  padding: 2px;
+  align-items: center;
+  gap: 5px;
+  border-radius: 20px;
+  background: #131313;
+}
+.foto-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  background-color: white;
+  border-radius: 28px;
+  border: 1px solid var(--Primaria, #9665df);
+  color: #000;
+  font-family: "minhaFonte";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+/* Responsivo */
+/* Começa a quebrar com 900px de width, implementar o menu hamburguer */
+@media (max-width: 900px) {
+  .header nav {
+    display: none;
+  }
+}
+
+@media(max-width: 528px){
+  .header img {
+    width: 150px;
+    height: 50px;
+  }
+  .end-navbar {
+    gap: 10px;
+  }
+}

@@ -1,0 +1,123 @@
+@font-face {
+  font-family: minhaFonte;
+  src: url("../../../../assets/fonteProjeto.ttf");
+}
+.container {
+  width: 100%;
+  padding-top: 100px;
+}
+.container-section {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  justify-content: center;
+  color: white;
+  align-items: end;
+  text-align: center;
+}
+.container-direito {
+  padding-top: 80px;
+}
+.container-esquerdo {
+  height: 100%;
+  width: 100%;
+}
+.container-esquerdo p {
+  text-align: center;
+  font-family: Arial;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 30px;
+}
+.container-esquerdo h1 {
+
+  color: var(--Terciaria, #fff);
+  font-family: Arial;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px; /* 112% */
+  border-left: 3px solid #9256ed;
+  width: 70%;
+  margin: 0 auto;
+  /* padding-right: 30px; */
+  margin-bottom: 30px;
+  text-align: left;
+}
+.text-unidade{
+  padding-left: 20px;
+}
+.container-esquerdo app-video-section iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+.progresso {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  align-self: stretch;
+  border-radius: 15px;
+  background: #2a2a2e;
+  width: 60%;
+  margin: 0 auto;
+  color: #fff;
+  text-align: center;
+  font-family: Arial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 45px;
+}
+.progresso .progresso-barra {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+}
+.progresso .progresso-barra .oculto {
+  display: none !important;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+@media(max-width: 998px){
+  .container-section{
+    display: flex;
+    flex-direction: column;
+    align-items: initial;
+  }
+  .container-esquerdo{
+    width: 100%;
+  }
+  .container-direito{
+    padding-top: 40px;
+  }
+  .container-esquerdo h1 {
+    text-align: center;
+  }
+  .container-esquerdo h1 {
+    width: 60%;
+    font-size: 23px;
+  }
+}
+
+@media(max-width: 487px){
+  .progresso {
+    width: 90%;
+  }
+  .container-esquerdo h1 {
+    width: 90%;
+    font-size: 23px;
+  }
+}
+

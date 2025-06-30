@@ -3,8 +3,19 @@
   font-family: minhaFonte;
   src: url("../../../assets/fonteProjeto.ttf");
 }
-
 .main-container {
+  width: 100%;
+  background: linear-gradient(
+      167deg,
+      rgba(61, 34, 102, 0.7) 3.02%,
+      rgba(34, 25, 72, 0.42) 24.84%,
+      rgba(16, 19, 53, 0.24) 54.42%,
+      rgba(11, 20, 69, 0.37) 77.21%,
+      rgba(34, 45, 102, 0.7) 100%
+    ),
+    #000;
+}
+/* .main-container {
   background: url("../../../assets/fundo-alternativo.png"),
     lightgray -283px -148.75px / 134.172% 160.539%;
   background-repeat: no-repeat;
@@ -53,7 +64,6 @@
   margin: 0 auto;
   cursor: pointer;
 }
-/* Mat-Sidenav */
 mat-sidenav {
   height: 100vh;
   background-color: transparent;
@@ -69,11 +79,10 @@ section.content-container-ficha-tecnica {
   height: 100%;
 }
 
-/* Responsividade do iframe do YouTube */
 app-video-section iframe {
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9; /* Mantém proporção padrão de vídeos */
+  aspect-ratio: 16 / 9;
 }
 
 .links {
@@ -100,7 +109,6 @@ app-video-section iframe {
   width: fit-content;
 }
 
-/* Header e navegação */
 .header nav {
   width: 60%;
   display: flex;
@@ -163,7 +171,6 @@ app-video-section iframe {
   border-radius: 28px;
   border: 1px solid var(--Primaria, var(--terciaria));
 }
-/* Grid geral */
 .content-container-section {
   display: grid;
   justify-content: center;
@@ -210,7 +217,6 @@ app-video-section iframe {
 }
 
 
-/* Responsividade */
 @media (max-width: 1100px) {
   .content-container {
     padding: 20px;

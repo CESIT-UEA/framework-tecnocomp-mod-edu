@@ -31,8 +31,9 @@
 
 html,
 body {
-  height: 100vh;
   background-color: #000000;
+  --mat-menu-container-color: #0a080f;
+  --mat-menu-item-label-text-color: white;
 }
 
 body {

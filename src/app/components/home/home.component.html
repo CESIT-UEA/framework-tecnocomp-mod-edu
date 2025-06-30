@@ -1,5 +1,6 @@
 <!-- <div class="main-container" style="--primaria:black;"> -->
 <div class="main-container">
+<!--
   <mat-sidenav-container>
     <mat-sidenav #sidenav mode="over" fixedInViewport="Fixed" position="end">
       <app-menu-com-barra-progresso-teste
@@ -94,13 +95,10 @@
           <app-sobre></app-sobre>
         </section>
 
-        <!-- Section padrão da página incial HOME com video e botões -->
         <section class="container-section" *ngSwitchDefault>
-          <!-- Botão para download do app -->
            <div class="container-download-app">
                 <app-botao-download-pwa></app-botao-download-pwa>
            </div>
-          <!-- <p style="color: white; text-align: center; font-size: 16px;">Módulo:</p> -->
           <div class="content-container">
             <div class="container-esquerdo">
               <h1 class="title">
@@ -134,5 +132,9 @@
         </section>
       </div>
     </mat-sidenav-content>
-  </mat-sidenav-container>
+  </mat-sidenav-container> -->
+  <app-header-oficial></app-header-oficial>
+  <app-video-botoes-section></app-video-botoes-section>
+  <app-informacoes-gerais-modulo></app-informacoes-gerais-modulo>
+  <app-footer-ficha></app-footer-ficha>
 </div>

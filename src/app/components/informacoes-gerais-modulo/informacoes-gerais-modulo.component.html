@@ -1,0 +1,59 @@
+<section class="container">
+  <div class="esquerdo">
+    <div class="box">
+      <h1>
+        Faça este módulo de
+        {{ this.appService.dados_completos.modulo.nome_modulo }} e:
+      </h1>
+      <ul>
+        <li>Aprenda Lorem ipsum dolor sit amet consectetur</li>
+        <li>Aprenda Lorem ipsum dolor sit amet consectetur</li>
+        <li>Aprenda Lorem ipsum dolor sit amet consectetur</li>
+        <li>Aprenda Lorem ipsum dolor sit amet consectetur</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h1>Tópicos abordados:</h1>
+      <ol>
+        <li *ngFor="let topico of this.appService.dados_completos.topicos">
+          {{ topico.nome_topico }}
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="direito">
+    <div class="box">
+      <h1>Instrutor(a)</h1>
+      <div class="box-imagem">
+        <img
+          src="../../../assets/img/prof-joao.png"
+          alt=""
+          width="100px"
+          height="100px"
+        />
+        <p>Jõao da Mata</p>
+      </div>
+    </div>
+    <div class="box av">
+      <h1>Avaliação do Módulo:</h1>
+      <div class="box-avaliacao">
+        <div class="box-estrelas-conteudo">
+          <p>Média:</p>
+          <div class="box-estrelas">
+            <mat-icon
+              *ngFor="let estrela of estrelas; let i = index"
+              class="estrela"
+              [ngClass]="{
+                'colorido': i + 1 <= 4
+              }"
+            >
+              star
+            </mat-icon>
+          </div>
+        </div>
+        <hr />
+        <p>Baseado em 10 avaliações</p>
+      </div>
+    </div>
+  </div>
+</section>

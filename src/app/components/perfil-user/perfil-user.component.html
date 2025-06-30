@@ -1,33 +1,32 @@
-<div
-class="container-foto-header-active"
->
-<div class="cima">
-<p class="cima-p">Perfil</p>
-  <mat-icon style="color: white;cursor: pointer;" (click)="this.ltiService.fechaMenuUser()">
-    keyboard_arrow_up
-  </mat-icon>
-</div>
-<div class="nome">
-  <div class="foto-header">
-    {{ this.ltiService.dados_completos.user.nome[0] }}
+<section class="container-foto-header-active">
+  <div class="cima">
+    <p class="cima-p">Conta</p>
+    <mat-icon
+      style="color: white; cursor: pointer"
+      (click)="this.ltiService.fechaMenuUser()"
+    >
+      close
+    </mat-icon>
   </div>
-  <p>{{this.ltiService.dados_completos.user.nome}}</p>
-</div>
-<div class="meio">
-  <p>Progresso:</p>
-  <div class="spinner">
-    <mat-progress-spinner
-      class="example-margin"
+  <div class="nome">
+    <div class="foto-header">
+      {{ this.ltiService.dados_completos.user.nome[0] }}
+    </div>
+    <div class="nome-info">
+      <p>{{ this.ltiService.dados_completos.user.nome }}</p>
+      <p class="email">{{ this.ltiService.dados_completos.user.email }}</p>
+    </div>
+  </div>
+  <div class="meio">
+    <p>Progresso:</p>
+    <mat-progress-bar
+      color="warn"
       mode="determinate"
       [value]="this.ltiService.dados_completos?.userModulo?.nota"
-      style="width: 66px; height: 64px; border-radius: 40px;"
-    >
-    </mat-progress-spinner>
+    ></mat-progress-bar>
     <span class="progress-spinner"
-      >{{
-        this.ltiService.dados_completos?.userModulo?.nota
-      }}%</span
+      >{{ this.ltiService.dados_completos?.userModulo?.nota }}%</span
     >
   </div>
-</div>
-<app-botao-voltar-ava></app-botao-voltar-ava>
+  <app-botao-voltar-ava></app-botao-voltar-ava>
+</section>

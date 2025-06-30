@@ -1,11 +1,13 @@
 :host {
   height: 100%;
   display: block;
+  background: #161617;
 }
 .header-menu {
-  color: white;
-  width: 100%;
-  text-align: end;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
 }
 .parte-cima {
   background-color: #232324;
@@ -13,14 +15,16 @@
   height: 25%;
 }
 .titulo-topico {
-  font-size: 18px;
-  font-family: Arial;
+  color: var(--Terciaria, #fff);
+  font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: 150%;
   width: 80%;
   color: var(--quartenaria);
   margin-left: 20px;
+  line-height: normal;
+  padding: 0 15px;
 }
 .close {
   font-size: 30px;
@@ -35,7 +39,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 10px 25px;
+  padding: 10px 15px;
   padding-bottom: 0;
   gap: 5px;
 }
@@ -47,6 +51,7 @@
   font-size: 14px;
   font-weight: 400;
   font-family: Arial;
+  padding: 15px;
 }
 input[type="checkbox"] {
   background-color: transparent;
@@ -84,12 +89,10 @@ input[type="checkbox"] {
   border-radius: 35px;
 }
 .topico-container {
-  border-radius: 8px;
-  width: 95%;
+  width: 100%;
   max-width: 300px;
   height: 70px;
   color: #fff;
-  margin: 15px auto;
   padding: 16px 10px;
   font-family: Arial;
   gap: 10px;
@@ -101,6 +104,7 @@ input[type="checkbox"] {
   outline: none;
   background-color: #232324;
   cursor: auto;
+  border-bottom: 1px solid #4f4f4f;
 }
 
 .hover:hover {
@@ -111,6 +115,7 @@ input[type="checkbox"] {
   border: 2px solid var(--Primaria, var(--terciaria));
   background: #232324;
   box-shadow: -3px 3px 3px 0px rgba(0, 0, 0, 0.25);
+
   font-weight: bold;
 }
 .caixa {
@@ -162,14 +167,20 @@ input[type="checkbox"] {
   height: 25%;
 }
 .outros-links h3 {
-  padding-top: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   width: 90%;
   margin: 0 auto;
+  color: #fff;
+  font-family: Arial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 .moodle {
   display: flex;
   height: 34px;
-  justify-content: center;
   align-items: center;
   gap: 8px;
   align-self: stretch;

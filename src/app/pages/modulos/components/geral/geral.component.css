@@ -2,29 +2,14 @@
   font-family: minhaFonte;
   src: url("../../../../../assets/fonteProjeto.ttf");
 }
-:host {
-  height: 80vh;
+
+:host() {
+  color: white;
+  font-family: "minhaFonte";
   display: block;
+  height: 100%;
 }
 .container {
-  background-color: #131313;
-}
-.container-main-conteudo {
-  display: flex;
-  justify-content: space-evenly;
-  border-bottom: 2px solid #222222;
-  padding-bottom: 20px;
-  height: 90%;
-  align-items: center;
-}
-.container-video {
-  height: 100%;
-}
-.div-slide {
-  width: 60%;
-  height: 100%;
-}
-.titulo-topico {
   width: 100%;
 }
 .titulo-topico ul li {
@@ -98,78 +83,35 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  border-radius: 6px;
-  background: #2a2a2a;
-  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  color: white;
-  border: none;
-  position: relative;
+  background: #272729;
 }
-.referencias {
-  margin: 0 auto;
+.sub-header .voltar mat-icon {
+  width: 25px;
+  height: 25px;
 }
-.box {
-  position: absolute;
-  top: 5px; /* Ajuste para mover para cima */
-  right: 5px;
-  border: 1.5px solid white;
-  border-radius: 50px;
-  width: 15px;
-  height: 15px;
-}
-.concluido {
-  position: absolute;
-  top: -5px;
-  right: -1px;
-  font-size: 27px;
-  color: #58DB43;
-}
-.buttons-final {
+
+.voltar {
   display: flex;
-  flex-direction: column;
 }
 
-button.ebook-botao {
-  display: inline-flex;
-  padding: 9.868px 35.883px;
-  justify-content: center;
+.sub-header .voltar p {
+  display: flex;
   align-items: center;
-  gap: 12.559px;
-  background-color: transparent;
-  border-radius: 7.177px;
-  border: 1.794px solid var(--Terciaria, #fff);
-  cursor: pointer;
-  height: 40px;
-  width: 95%;
-}
-
-button.ebook-botao a {
+  padding-left: 20px; /*aqui era 60px kauê*/
   color: #fff;
   text-align: center;
   font-family: Arial;
-  font-size: 15.25px;
+  font-size: 20px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   line-height: normal;
-  text-decoration: none;
-  width: 100%;
+  gap: 15px;
 }
-
-button.atividade-botao {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12.559px;
-  border: none;
-  border-radius: 7.177px;
-
+.sub-header .titulo-topico p {
   color: #fff;
   text-align: center;
   font-family: Arial;
-  font-size: 15.25px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -201,108 +143,130 @@ button.atividade-botao {
   padding-bottom: 20px;
 
 }
-.container-main-conteudo-link-left {
-  width: 95%;
+
+.sub-header .final-sub-header button {
   display: flex;
-  justify-content: left;
-  padding-bottom: 20px;
-}
-
-.container-main-conteudo-link-ul {
-  width: 95%;
-  padding: 0 0 0 50px;
-}
-
-.container-main-conteudo-links {
-  width: 100%;
-  display: flex;
+  width: 190px;
+  height: 40px;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-}
-
-.link-proximo {
-  display: inline-grid;
-  grid-template-columns: auto auto;
-  align-items: center;
-  text-decoration: none;
-  color: #4f4f4f;
-  font: normal 400 16px normal Arial;
-  column-gap: 10px;
-  padding-right: 20px;
-  padding-bottom: 10px;
-}
-.container-main-conteudo-links-voltar {
-  display: grid;
-  grid-template-columns: auto auto;
-  justify-content: space-between;
-}
-.link-voltar {
-  display: inline-grid;
-  grid-template-columns: auto auto;
-  align-items: center;
-  text-decoration: none;
-  color: #fff;
-  font-family: Arial;
-  font-size: 16px;
-  line-height: normal;
-  column-gap: 10px;
-  padding-left: 20px;
-  padding-bottom: 10px;
-}
-
-.linha {
-  width: 85%;
-  height: 2px;
-  border: none;
-  outline: none;
-  margin: 20px auto;
-
-  background-color: white;
-  opacity: 0.5;
-}
-
-.voltar-ava .button {
-  color: white;
-  text-align: center;
+  gap: 15px;
   border-radius: 8px;
-  background: linear-gradient(
-      90deg,
-      rgba(92, 51, 153, 0.75) 0%,
-      rgba(71, 42, 125, 0.61) 14.78%,
-      rgba(57, 36, 107, 0.53) 24.39%,
-      rgba(29, 38, 92, 0.45) 57.95%,
-      rgba(40, 53, 122, 0.6) 85.46%,
-      rgba(51, 68, 153, 0.75) 100%
-    ),
-    #0f0f0f;
-  width: 90%;
-  padding: 10px 15px;
-  margin: 0 auto;
-  cursor: pointer;
-
-  color: var(--Terciaria, #fff);
-  font-family: Arial;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+  background: var(--12, #9256ed);
+  color: #fff;
+}
+.sub-header .final-sub-header .sub-menu {
+  display: inline-flex;
+  padding: 6px 12px;
+  align-items: center;
+  gap: 2px;
+  border-radius: 0px 8px 8px 0px;
+  background: var(--23, #353535);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3);
 }
 
-@media (max-width: 800px) {
-  .container-main-conteudo {
+/* Conteudo */
+.container .container-conteudo {
+  height: 100%;
+}
+.container .container-conteudo .container-video {
+  height: 70%;
+}
+
+
+/*  */
+.sidenav-container {
+  height: 100%;
+  width: 100%;
+}
+
+.custom-sidenav {
+  width: 320px;
+  background-color: #1f1f1f;
+  color: white;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  margin-top: 60px;
+  height: calc(100% - 60px);
+}
+
+.menu-conteudo ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-conteudo li {
+  padding: 12px 0;
+  border-bottom: 1px solid #444;
+  cursor: pointer;
+}
+
+.sub-header {
+  min-height: 60px;
+  background: #272729;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  color: white;
+}
+
+.titulo-topico p,
+.voltar p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.final-sub-header {
+  display: flex;
+  gap: 12px;
+}
+
+.sub-menu {
+  background-color: #353535;
+  padding: 6px 12px;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+}
+
+.conteudo-principal {
+  padding: 24px;
+}
+
+/* Desativa o submenu do mobile */
+.sub-menu{
+  display: none;
+}
+
+@media(max-width: 1045px){
+  .sub-header{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .final-sub-header {
+    justify-self: end;
+  }
+}
+
+@media(max-width: 891px){
+  .sub-header{
+    display: flex;
     flex-direction: column;
-    row-gap: 20px;
-  }
-  .botoes {
-    margin: 0 auto;
-  }
-  .div-slide {
-    width: 80%;
+    row-gap: 12px
+  };
+
+  .final-sub-header {
+    display: flex;
+    gap: 12px;
   }
 
-  .titulo-topico {
-    width: 90%;
-    margin: 0 auto;
+  .sub-header .voltar p {
+    padding-left: 0;
+  }
+
+  /* Ativa o submenu do mobile */
+  .sub-menu{
+    display: block;
   }
 }
 
