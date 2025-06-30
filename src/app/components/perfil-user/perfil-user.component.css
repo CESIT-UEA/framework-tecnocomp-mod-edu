@@ -9,7 +9,7 @@
   align-items: center;
   gap: 10px;
   border-radius: 8px;
-  border: 1px solid var(--Primaria, #9665df);
+  border: 1px solid var(--Primaria, var(--terciaria));
   background: linear-gradient(
       167deg,
       rgba(61, 34, 102, 0.7) 3.02%,
@@ -70,6 +70,26 @@
 .meio {
   display: flex;
   align-items: center;
+  gap: 15px;
+  color: white;
+  border-radius: 8px;
+border: 1px solid var(--Primaria, var(--terciaria));
+margin: 10px 15px;
+}
+.mat-mdc-progress-spinner {
+  background-color: #281446;
+}
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: #58db43;
+}
+.spinner{
+  position: relative;
+}
+.progress-spinner {
+  position: absolute;
+  top: 27%;
+  right: 20%;
+  font-size: 16px;
   width: 80%;
   gap: 5px;
   color: var(--30, #e6e6e6);
@@ -88,7 +108,7 @@
   height: 45px;
   background-color: white;
   border-radius: 28px;
-  border: 3px solid var(--Primaria, #9665df);
+  border: 3px solid var(--Primaria, var(--terciaria));
   margin: 0 auto;
   color: #474747;
   font-family: "minhaFonte";

@@ -47,6 +47,6 @@ export class GeralComponent implements OnInit {
   }
   clicarVideos() {
     console.log(this.videos.length);
-    this.ltiService.mensagem("Assista todos os videos para poder fazer a atividade! ");
+    this.ltiService.mensagem("Assista todos os vídeos para poder fazer a atividade! ");
   }
 }

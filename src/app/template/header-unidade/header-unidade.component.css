@@ -21,7 +21,7 @@ a svg {
 .titulo-topico {
   padding: 1rem;
   color: #E0D1F5;
-  background-color: #9665DF;
+  background-color: var(--terciaria);
   border-radius: 20px 0px 0px 0px;
   font-size: 20px;
   font-style: normal;
@@ -84,7 +84,7 @@ a svg {
   font-weight: bold;
   padding: 5px;
   background-color: #E0D1F5;
-  border: 1px solid #9665DF;
+  border: 1px solid var(--terciaria);
   border-radius: 50%;
 }
 @media (max-width: 425px) {
@@ -92,3 +92,4 @@ a svg {
     margin-left: 0;
   }
 }
+

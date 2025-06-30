@@ -10,13 +10,13 @@
   margin-bottom: 30px;
 }
 .icon-forum {
-  background-color: #9665df;
+  background-color: var(--terciaria);
 }
 .center-header {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #c3a1f5;
+  color: var(--quartenaria);
   column-gap: 15px;
   font-size: 20px;
 }
@@ -42,14 +42,14 @@
 .container-topico-forum h1:before {
   content: "\2022";
   margin: 0 10px;
-  color: #9665df /* cor da bolinha */;
+  color: var(--terciaria) /* cor da bolinha */;
 }
 .container-topico-forum .topico_forum_hr {
   width: 100%;
   margin: 0 auto;
   height: 2px;
   border: none;
-  background-color: #3c2859;
+  background-color: var(--quintenaria);
 }
 .pesquisa-forum {
   margin-top: 25px;
@@ -79,7 +79,7 @@ nav {
   width: 111px;
 }
 .pesquisa-forum nav button:nth-child(1) {
-  background-color: #9665df;
+  background-color: var(--terciaria);
   border: none;
 }
 .pesquisa-forum input {
@@ -136,7 +136,7 @@ nav {
   color: #9a9a9a;
 }
 .corpo-postagem a {
-  color: #9665df;
+  color: var(--terciaria);
   text-decoration: underline;
 }
 .autor .foto-autor {
@@ -152,7 +152,7 @@ nav {
   color: #686868;
 }
 .p-autor {
-  color: #9665df;
+  color: var(--terciaria);
   text-transform: capitalize;
 }
 .p1 {
@@ -162,7 +162,7 @@ nav {
 .container-postagem-form {
   margin-top: 20px;
   background-color: #242228;
-  border-top: 3px solid #9665df;
+  border-top: 3px solid var(--terciaria);
   border-radius: 8px;
   margin-bottom: 30px;
 }

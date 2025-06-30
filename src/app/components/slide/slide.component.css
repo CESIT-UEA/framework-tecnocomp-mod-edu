@@ -36,3 +36,9 @@
     grid-template-columns: 90% 10%;
   }
 }
+
+@media(max-width: 389px){
+  .header-atividade{
+    grid-template-columns: 85% 15%;
+  }
+}

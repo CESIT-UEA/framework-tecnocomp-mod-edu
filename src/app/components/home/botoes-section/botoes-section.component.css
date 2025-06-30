@@ -69,7 +69,7 @@
 
 .button-section .button-group .start-button {
   border-radius: 0.49963rem;
-  background: #793cd4;
+  background: var(--primaria);
   font-family: Arial, Helvetica, sans-serif;
   color: var(--Terciaria, #fff);
   text-align: center;
@@ -141,8 +141,11 @@
     display: block;
     width: 100%;
   }
-  .button-section .button-group .start-button,
-  .button-section .button-group .download-button {
+  .button-section .button-group .start-button, .button-section .button-group .download-button{
+    width: 80%;
+  }
+
+  .button-section .button-group button{
     width: 80%;
   }
 }

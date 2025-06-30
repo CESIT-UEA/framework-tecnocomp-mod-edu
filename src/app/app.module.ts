@@ -64,9 +64,9 @@ import { CadastroAvaComponent } from './components/cadastro-ava/cadastro-ava.com
 import { DialogAvaComponent } from './components/dialog-ava/dialog-ava.component';
 import { BotaoDownloadPwaComponent } from './components/botao-download-pwa/botao-download-pwa.component';
 import {MatInputModule} from '@angular/material/input';
-import { HeaderOficialComponent } from './components/header-oficial/header-oficial.component';
-import { VideoBotoesSectionComponent } from './components/home/video-botoes-section/video-botoes-section.component';
-import { InformacoesGeraisModuloComponent } from './components/informacoes-gerais-modulo/informacoes-gerais-modulo.component';
+import { QuestaoAbertasComponent } from './components/questao-abertas/questao-abertas.component';
+import { ChatN8nComponent } from './components/chat-n8n/chat-n8n.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -114,9 +114,8 @@ import { InformacoesGeraisModuloComponent } from './components/informacoes-gerai
     CadastroAvaComponent,
     DialogAvaComponent,
     BotaoDownloadPwaComponent,
-    HeaderOficialComponent,
-    VideoBotoesSectionComponent,
-    InformacoesGeraisModuloComponent,
+    QuestaoAbertasComponent,
+    ChatN8nComponent,
   ],
   imports: [
     BrowserModule,
@@ -144,7 +143,8 @@ import { InformacoesGeraisModuloComponent } from './components/informacoes-gerai
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    MatInputModule
+    MatInputModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

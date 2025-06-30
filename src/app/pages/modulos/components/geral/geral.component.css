@@ -40,7 +40,7 @@
 .titulo-topico ul li:before {
   content: "\2022";
   margin: 0 10px;
-  color: #9665df;
+  color: var(--terciaria);
 }
 
 .titulo-topico hr {
@@ -49,7 +49,7 @@
   margin: auto;
   margin-bottom: 10px;
   border-radius: 10px;
-  background-color: #3c2859;
+  background-color: var(--quintenaria);
   border: none;
 }
 
@@ -74,7 +74,7 @@
   font-weight: 700;
   line-height: normal;
   padding-bottom: 5px;
-  border-bottom: 2px solid #9665df;
+  border-bottom: 2px solid var(--terciaria);
 }
 
 .section-texto {
@@ -92,7 +92,7 @@
 .referencias,
 .textoApoio {
   display: flex;
-  width: 96px;
+  width: 6rem;
   height: 70px;
   padding: 8px;
   flex-direction: column;
@@ -180,12 +180,12 @@ button.atividade-botao {
 
 }
 .active {
-  background: var(--2, #793cd4);
+  background: var(--2, var(--primaria));
 }
 .disabled {
   box-shadow: -5.574px 5.574px 5.574px 0px rgba(0, 0, 0, 0.25);
   opacity: 0.5;
-  background: var(--2, #793CD4);
+  background: var(--2, var(--primaria));
 }
 .active-incorreto {
   background-color: #de3535;
@@ -199,6 +199,7 @@ button.atividade-botao {
   display: flex;
   justify-content: right;
   padding-bottom: 20px;
+
 }
 .container-main-conteudo-link-left {
   width: 95%;
@@ -307,11 +308,28 @@ button.atividade-botao {
 
 
 @media(max-width: 489px){
+  :host{
+    display: flex;
+    flex-direction: column;
+    height: initial;
+    min-height: 80vh;
+  }
   .container-main-conteudo {
     width: 100%;
+    flex-grow: 1;
   }
   .div-slide{
     width: 90%;
+    height: 40vh;
+  }
+
+  .botoes-cima {
+    width: 67%;
+    margin: 5px 0;
+  }
+  .botoes-baixo{
+    width: 33%;
+    margin: 5px 0;
   }
 
   .botoes{
@@ -322,9 +340,10 @@ button.atividade-botao {
   .section-texto{
       flex-direction: row;
       gap: 0;
+      margin-bottom: .5rem;
   }
   .saibaMais{
-    margin: 0 1.2rem;
+    margin: 0 0.2rem;
   }
   .buttons-final{
     align-items: center;
@@ -333,5 +352,30 @@ button.atividade-botao {
     display: block;
     width: 100%;
     text-align: center;
+  }
+}
+
+@media(max-width: 389px){
+  .saibaMais,
+  .referencias,
+  .textoApoio{
+    width: 80px;
+  }
+
+  /* .container-main-conteudo-links-voltar{
+    margin-top: calc(4% - 5px);
+  } */
+}
+
+@media(max-width: 350px){
+  .saibaMais, .referencias, .textoApoio{
+    width: 75px;
+  }
+  .container-main-conteudo{
+    row-gap: 1.5rem;
+  }
+
+  .link-proximo{
+    font-size: 13px;
   }
 }
