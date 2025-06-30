@@ -24,7 +24,7 @@ export class AtividadeComponent implements OnInit, OnChanges {
   teste: any;
   @Input() gradeIn = true;
   @Input() bloqueio: any = false;
-  @Input() idTopico!: number;
+  idTopico!: number;
   @Output() atividadeClick = new EventEmitter<void>();
   vetorLetras: string[] = ['A', 'B', 'C', 'D'];
   abre: boolean | null = null;
@@ -48,13 +48,18 @@ export class AtividadeComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
+    this.ltiService.getDadosCompletos();
+    this.idTopico = this.ltiService.dados_completos.topicos[
+      this.moduloService.controll_topico
+    ].id
+    console.log(this.idTopico)
     if (this.ltiService.dados_completos) {
       this.quantidadeTopicos = this.ltiService.dados_completos.topicos;
       this.ltiService.quantidadeTopicos = this.quantidadeTopicos.length;
       this.tokenStorage = this.ltiService.dados_completos.user.ltik;
       console.log(this.respondidoOficialmente);
     }
-    if (this.idTopico === this.quantidadeTopicos.length - 1) {
+    if (this.moduloService.controll_topico === this.quantidadeTopicos.length - 1) {
       this.gradeIn = false;
     }
 
@@ -70,9 +75,19 @@ export class AtividadeComponent implements OnInit, OnChanges {
 
   atualizarQuestao() {
     this.questao =
-      this.ltiService.dados_completos.topicos?.[this.idTopico]?.Exercicios?.[0];
+      this.ltiService.dados_completos.topicos[
+        this.moduloService.controll_topico
+      ].Exercicios[0];
+    console.log(this.ltiService.dados_completos.topicos?.[this.moduloService.controll_topico]);
 
-    if (this.questao && Array.isArray(this.questao.Alternativas) && (this.ltiService.dados_completos?.userTopico?.[this.idTopico]?.UsuarioTopicos[0].encerrado == false && this.ltiService.dados_completos?.userTopico?.[this.idTopico]?.UsuarioTopicos[0].resposta_errada == null )) {
+    if (
+      this.questao &&
+      Array.isArray(this.questao.Alternativas) &&
+      this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]
+        ?.UsuarioTopicos[0].encerrado == false &&
+      this.ltiService.dados_completos?.userTopico?.[this.moduloService.controll_topico]
+        ?.UsuarioTopicos[0].resposta_errada == null
+    ) {
       this.questao.Alternativas = this.embaralharAlternativas(
         this.questao.Alternativas
       );
@@ -88,7 +103,7 @@ export class AtividadeComponent implements OnInit, OnChanges {
 
   responder(resposta: string) {
     if (
-      this.bloqueio[this.idTopico]?.encerrado == true ||
+      this.bloqueio[this.moduloService.controll_topico]?.encerrado == true ||
       this.respostaCorretaEnviada
     ) {
       return;
@@ -101,7 +116,9 @@ export class AtividadeComponent implements OnInit, OnChanges {
       this.respostaEnviada = true;
       this.ltiService
         .enviarRespostaIncorreta(
-          this.ltiService.dados_completos.topicos?.[this.idTopico].id,
+          this.ltiService.dados_completos.topicos[
+            this.moduloService.controll_topico
+          ].id,
           this.ltiService.dados_completos.user.ltik,
           resposta
         )
@@ -152,7 +169,9 @@ export class AtividadeComponent implements OnInit, OnChanges {
 
     this.ltiService
       .enviarResetarRespostaIncorreta(
-        this.ltiService.dados_completos.topicos?.[this.idTopico].id,
+        this.ltiService.dados_completos.topicos[
+          this.moduloService.controll_topico
+        ].id,
         this.ltiService.dados_completos.user.ltik
       )
       .subscribe(
@@ -213,17 +232,19 @@ export class AtividadeComponent implements OnInit, OnChanges {
     }
 
     this.enviarNota();
-    this.liberarProximoTopico()
+    this.liberarProximoTopico();
     this.resposta = resposta;
     this.respostaEnviada = true;
   }
 
   private liberarProximoTopico() {
     this.ltiService
-      .liberar(this.ltiService.dados_completos.topicos?.[this.idTopico].id)
+      .liberar(this.ltiService.dados_completos.topicos[
+        this.moduloService.controll_topico
+      ].id)
       .subscribe(
         (response) => {
-          console.log('Proximo tópico liberado com sucesso', response)
+          console.log('Proximo tópico liberado com sucesso', response);
           this.ltiService.removeDadosCompletos();
           this.ltiService.setDadosCompletos(response);
         },

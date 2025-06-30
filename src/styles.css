@@ -32,8 +32,8 @@
 html,
 body {
   background-color: #000000;
-  --mat-menu-container-color: #0A080F;
-  --mat-menu-item-label-text-color : white;
+  --mat-menu-container-color: #0a080f;
+  --mat-menu-item-label-text-color: white;
 }
 
 body {

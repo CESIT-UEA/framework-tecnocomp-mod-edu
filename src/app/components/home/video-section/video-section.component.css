@@ -27,7 +27,7 @@ i {
 
 .video-container iframe {
   min-height: 315px;
-  min-width: 560px;
+  min-width: 90%;
 
   border: 2px solid #5663ed;
   border-radius: 0.625rem;
@@ -36,9 +36,6 @@ i {
   -moz-box-shadow: 1px 0px 7px 0px rgba(255, 255, 255, 0.75);
 }
 
-@media(max-width: 899px){
-
-}
 
 @media(max-width: 489px){
     .video-container{

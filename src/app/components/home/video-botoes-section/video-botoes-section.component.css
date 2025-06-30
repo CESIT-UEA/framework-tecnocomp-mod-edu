@@ -20,6 +20,7 @@
 }
 .container-esquerdo {
   height: 100%;
+  width: 100%;
 }
 .container-esquerdo p {
   text-align: center;
@@ -41,7 +42,7 @@
   border-left: 3px solid #9256ed;
   width: 70%;
   margin: 0 auto;
-  padding-right: 30px;
+  /* padding-right: 30px; */
   margin-bottom: 30px;
   text-align: left;
 }
@@ -88,3 +89,35 @@
   align-items: flex-start;
   align-self: stretch;
 }
+
+@media(max-width: 998px){
+  .container-section{
+    display: flex;
+    flex-direction: column;
+    align-items: initial;
+  }
+  .container-esquerdo{
+    width: 100%;
+  }
+  .container-direito{
+    padding-top: 40px;
+  }
+  .container-esquerdo h1 {
+    text-align: center;
+  }
+  .container-esquerdo h1 {
+    width: 60%;
+    font-size: 23px;
+  }
+}
+
+@media(max-width: 487px){
+  .progresso {
+    width: 90%;
+  }
+  .container-esquerdo h1 {
+    width: 90%;
+    font-size: 23px;
+  }
+}
+

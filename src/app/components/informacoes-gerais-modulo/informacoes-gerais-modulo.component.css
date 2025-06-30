@@ -75,3 +75,26 @@
 .colorido{
   color: #FFC978;
 }
+
+
+@media(max-width: 853px){
+  .container {
+    grid-template-columns: initial;
+  }
+  .av {
+    margin-top: 0;
+  }
+}
+
+@media(max-width: 413px){
+    .box-estrelas-conteudo{
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: flex-start;
+    }
+    .box-avaliacao hr{
+      margin: 10px 0;
+    }
+    
+}

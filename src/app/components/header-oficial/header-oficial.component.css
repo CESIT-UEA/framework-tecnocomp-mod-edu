@@ -8,6 +8,7 @@
   border-bottom: 1px solid var(--22, #1c1c1c);
   position: fixed;
   background: #000;
+  z-index: 1;
 }
 .header {
   display: flex;
@@ -77,4 +78,17 @@
 /* Responsivo */
 /* Começa a quebrar com 900px de width, implementar o menu hamburguer */
 @media (max-width: 900px) {
+  .header nav {
+    display: none;
+  }
+}
+
+@media(max-width: 528px){
+  .header img {
+    width: 150px;
+    height: 50px;
+  }
+  .end-navbar {
+    gap: 10px;
+  }
 }
