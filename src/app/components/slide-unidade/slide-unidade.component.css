@@ -52,15 +52,6 @@
   padding: 0px 10px;
   flex-direction: column;
   justify-content: center;
-  border-radius: 100%;
-  width: 25px;
-  height: 25px;
-  font-weight: 600;
-  line-height: normal;
-  color: #fff;
-  cursor: pointer;
-  border: 1px solid var(--primaria);
-  position: relative; /* Permite posicionamento relativo */
   align-items: center;
   gap: 10px;
   border-radius: 100px;
@@ -109,7 +100,7 @@
   background-color: #2e2e2e;
 }
 .active {
-  background-color: var(--terciaria);
+  background-color: #9665df;
   border: none !important;
 }
 
@@ -300,7 +291,7 @@
 /* A partir daqui */
 .rolagem{
   overflow-x: auto;
-
+  
 }
 /* fim */
 
@@ -329,9 +320,9 @@
 
 
 @media (max-width: 512px) {
-
+  
   .box-navigate-right {
-    gap: 30px;
+    gap: 30px; 
   }
   .video-container{
     width: 100%;
@@ -346,7 +337,7 @@
   .navigation-button ul {
     gap: 20px;
   }
-}
+} 
 
 @media (max-width: 384px){
   .navigation-button{
