@@ -43,11 +43,10 @@
     </div>
   </div>
 
-  <div class="botoes">
+  <!-- <div class="botoes">
     <p class="title">Recursos Complementares</p>
     <section class="section-texto">
-      <!-- Todo: Fazer o NG template dos-->
-      <!-- Botão que quando clicado vai para o componente saiba-mais -->
+    
       <div class="botoes-cima">
         <button class="textoApoio" (click)="textoApoioClick.emit()">
           <img
@@ -81,7 +80,7 @@
             >check</mat-icon
           >
         </button>
-        <!-- Botão que quando clicado vai para o componente referências -->
+       
       </div>
       <div class="botoes-baixo">
         <button class="referencias" (click)="referenciasClick.emit()">
@@ -101,12 +100,12 @@
           >
         </button>
       </div>
-      <!-- Botão que quando clicado vai para o componente texto de apoio -->
+    
     </section>
 
     <div class="position">
       <section class="buttons-final">
-        <!-- Botão que quando clicado vai para o componente de atividade -->
+        
         <button
           *ngIf="
             this.ltiService.verificarTodosVideosCompletos(this.videos) &&
@@ -184,7 +183,7 @@
           ATIVIDADE
         </button>
 
-        <!-- Botão para download do e-book do tópico -->
+       
         <a
           href="{{
             this.ltiService.dados_completos.topicos?.[this.moduloService.controll_topico]?.ebookUrlGeral
@@ -206,4 +205,4 @@
       </section>
     </div>
   </div>
-</div>
+</div> -->
