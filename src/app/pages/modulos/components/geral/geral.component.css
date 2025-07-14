@@ -11,77 +11,15 @@
 }
 .container {
   width: 100%;
-}
-.titulo-topico ul li {
-  list-style: none;
-  text-align: center;
-  color: #f0e5ff;
-  padding: 30px 0 0 0;
-  font-family: minhaFonte;
-  font-size: 25px;
-  margin-bottom: 10px;
-}
-
-.titulo-topico ul li:before {
-  content: "\2022";
-  margin: 0 10px;
-  color: var(--terciaria);
-}
-
-.titulo-topico hr {
-  width: 87%;
-  height: 2px;
-  margin: auto;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  background-color: var(--quintenaria);
-  border: none;
-}
-
-.botoes {
-  padding: 30px;
-  display: grid;
-  align-items: center;
-  border-radius: 15px;
-  background: rgba(28, 28, 28, 0.7);
   height: 100%;
-  align-self: flex-start;
-  width: 100%;
-  max-width: 300px;
-}
-.title {
-  color: #fff;
-  text-align: center;
-  text-shadow: -5px 5px 5px rgba(0, 0, 0, 0.25);
-  font-family: Arial;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  padding-bottom: 5px;
-  border-bottom: 2px solid var(--terciaria);
+  padding-top: 17px;
 }
 
-.section-texto {
-  width: 100%;
+/* Sub Header */
+.sub-header {
   display: flex;
-  flex-direction: column;
-  gap: 22px;
-  justify-content: center;
-}
-.botoes-cima {
-  display: flex;
-  justify-content: space-around;
-}
-.saibaMais,
-.referencias,
-.textoApoio {
-  display: flex;
-  width: 6rem;
-  height: 70px;
-  padding: 8px;
-  flex-direction: column;
-  justify-content: center;
+  min-height: 60px;
+  justify-content: space-between;
   align-items: center;
   background: #272729;
 }
@@ -115,33 +53,11 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin-bottom: 22px;
-  width: 95%;
-  height: 40px;
-  cursor: pointer;
-
-}
-.active {
-  background: var(--2, var(--primaria));
-}
-.disabled {
-  box-shadow: -5.574px 5.574px 5.574px 0px rgba(0, 0, 0, 0.25);
-  opacity: 0.5;
-  background: var(--2, var(--primaria));
-}
-.active-incorreto {
-  background-color: #de3535;
-}
-.active-correto {
-  background-color: #58DB43;
 }
 
-.container-main-conteudo-link {
-  width: 95%;
+.sub-header .final-sub-header {
   display: flex;
-  justify-content: right;
-  padding-bottom: 20px;
-
+  gap: 12px;
 }
 
 .sub-header .final-sub-header button {
@@ -241,7 +157,7 @@
 @media(max-width: 1045px){
   .sub-header{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); 
   }
   .final-sub-header {
     justify-self: end;
@@ -253,13 +169,13 @@
     display: flex;
     flex-direction: column;
     row-gap: 12px
-  };
+  }; 
 
   .final-sub-header {
     display: flex;
     gap: 12px;
   }
-
+    
   .sub-header .voltar p {
     padding-left: 0;
   }
@@ -268,78 +184,18 @@
   .sub-menu{
     display: block;
   }
-}
-
-
-@media(max-width: 489px){
-  :host{
-    display: flex;
-    flex-direction: column;
-    height: initial;
-    min-height: 80vh;
+  .sub-header .final-sub-header .sub-menu {
+    display: none;
   }
-  .container-main-conteudo {
+  .sub-header .final-sub-header button {
+    margin-bottom: 10px;
+  }
+   .voltar {
     width: 100%;
-    flex-grow: 1;
-  }
-  .div-slide{
-    width: 90%;
-    height: 40vh;
-  }
-
-  .botoes-cima {
-    width: 67%;
-    margin: 5px 0;
-  }
-  .botoes-baixo{
-    width: 33%;
-    margin: 5px 0;
-  }
-
-  .botoes{
-    max-width: none;
-    width: 90%;
-    padding: 1.2rem 1rem;
-  }
-  .section-texto{
-      flex-direction: row;
-      gap: 0;
-      margin-bottom: .5rem;
-  }
-  .saibaMais{
-    margin: 0 0.2rem;
-  }
-  .buttons-final{
+    justify-content: space-between;
+    align-self: start;
     align-items: center;
+    padding-top: 5px;
+   }
+   
   }
-  a {
-    display: block;
-    width: 100%;
-    text-align: center;
-  }
-}
-
-@media(max-width: 389px){
-  .saibaMais,
-  .referencias,
-  .textoApoio{
-    width: 80px;
-  }
-
-  /* .container-main-conteudo-links-voltar{
-    margin-top: calc(4% - 5px);
-  } */
-}
-
-@media(max-width: 350px){
-  .saibaMais, .referencias, .textoApoio{
-    width: 75px;
-  }
-  .container-main-conteudo{
-    row-gap: 1.5rem;
-  }
-
-  .link-proximo{
-    font-size: 13px;
-  }
-}
