@@ -67,6 +67,7 @@ import {MatInputModule} from '@angular/material/input';
 import { QuestaoAbertasComponent } from './components/questao-abertas/questao-abertas.component';
 import { ChatN8nComponent } from './components/chat-n8n/chat-n8n.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { LinksNavegacaoTopicosComponent } from './components/links-navegacao-topicos/links-navegacao-topicos.component';
 
 @NgModule({
   declarations: [
@@ -116,6 +117,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     BotaoDownloadPwaComponent,
     QuestaoAbertasComponent,
     ChatN8nComponent,
+    LinksNavegacaoTopicosComponent,
   ],
   imports: [
     BrowserModule,

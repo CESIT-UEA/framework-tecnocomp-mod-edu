@@ -306,13 +306,16 @@ button.atividade-botao {
   }
 }
 
+.container-main-conteudo-links-voltar {
+  display: none;
+}
 
 @media(max-width: 489px){
   :host{
     display: flex;
     flex-direction: column;
     height: initial;
-    min-height: 80vh;
+    min-height: 90vh;
   }
   .container-main-conteudo {
     width: 100%;
@@ -353,6 +356,10 @@ button.atividade-botao {
     width: 100%;
     text-align: center;
   }
+  .container-main-conteudo-links-voltar {
+    display: initial;
+}
+
 }
 
 @media(max-width: 389px){

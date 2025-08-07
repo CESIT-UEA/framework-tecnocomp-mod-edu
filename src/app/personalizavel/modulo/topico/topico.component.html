@@ -105,8 +105,8 @@
               (atividadeClick)="atividadeClick()"
               [liberado]="this.moduloService.bloqueio?.[this.moduloService.controll_topico]?.encerrado"
             ></app-geral>
-
-            <div
+            <app-links-navegacao-topicos class="links"></app-links-navegacao-topicos>
+            <!-- <div
               class="container-main-conteudo-links-voltar"
               [ngClass]="{
                 'container-links':
@@ -195,7 +195,7 @@
                 <mat-icon>check</mat-icon>
                 <p>Concluir Módulo</p>
               </div>
-            </div>
+            </div> -->
           </mat-sidenav-content>
         </mat-sidenav-container>
       </div>
