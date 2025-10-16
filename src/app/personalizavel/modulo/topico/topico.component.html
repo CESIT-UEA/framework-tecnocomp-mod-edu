@@ -1,4 +1,4 @@
-<!-- <div *ngIf="this.ltiService?.dados_completos" style="height: 100%">
+<div *ngIf="this.ltiService?.dados_completos" style="height: 100%">
   <div
     class="container-geral"
     [ngSwitch]="controllerSwitch"
@@ -105,8 +105,8 @@
               (atividadeClick)="atividadeClick()"
               [liberado]="this.moduloService.bloqueio?.[this.moduloService.controll_topico]?.encerrado"
             ></app-geral>
-
-            <div
+            <app-links-navegacao-topicos class="links"></app-links-navegacao-topicos>
+            <!-- <div
               class="container-main-conteudo-links-voltar"
               [ngClass]="{
                 'container-links':
@@ -195,38 +195,10 @@
                 <mat-icon>check</mat-icon>
                 <p>Concluir Módulo</p>
               </div>
-            </div>
+            </div> -->
           </mat-sidenav-content>
         </mat-sidenav-container>
       </div>
     </div>
   </div>
 </div>
- -->
-<app-header-oficial></app-header-oficial>
-
-<mat-sidenav-container class="sidenav-container" autosize>
-  <mat-sidenav
-    #sidenav
-    mode="side"
-    position="end"
-    [fixedInViewport]="true"
-    fixedTopGap="60"
-    [(opened)]="menuAberto"
-    class="custom-sidenav"
-  >
-    <app-menu-com-barra-progresso-teste
-      (fecharMenu)="fecharMenuClick()"
-      (navegarModulo)="navegarModulo($event)"
-    ></app-menu-com-barra-progresso-teste>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-    <app-geral
-      [nome]="this.ltiService.dados_completos.topicos?.[this.moduloService.controll_topico]?.nome_topico"
-      [videos]="this.ltiService.dados_completos.topicos?.[this.moduloService.controll_topico]?.VideoUrls"
-      [liberado]="this.moduloService.bloqueio?.[this.moduloService.controll_topico]?.encerrado"
-      (abrirMenu)="menuAberto = true"
-    ></app-geral>
-  </mat-sidenav-content>
-</mat-sidenav-container>

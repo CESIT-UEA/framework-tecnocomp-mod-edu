@@ -59,6 +59,7 @@
   color: #fff;
 }
 
+
 .button-section .button-group .download-button:hover {
   background-position: left bottom;
   color: black;
@@ -69,7 +70,7 @@
 
 .button-section .button-group .start-button {
   border-radius: 0.49963rem;
-  background: var(--primaria);
+  background: #793CD4;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--Terciaria, #fff);
   text-align: center;
@@ -79,8 +80,8 @@
   line-height: normal;
   cursor: pointer;
 }
-.concluido {
-  background: #44a834;
+.concluido{
+  background: #44A834;
   border-radius: 0.49963rem;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--Terciaria, #fff);
@@ -95,31 +96,11 @@
   justify-content: center;
   margin: 0 auto;
   gap: 10px;
+
 }
-.link {
+.link{
   text-decoration: none;
 }
-.voltar-ava {
-  display: flex;
-  height: 44px;
-  padding: 6px 15px;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  border-radius: 8px;
-  background: linear-gradient(0deg, #2a2a2a 0%, #2a2a2a 100%), #202024;
-  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.25);
-  margin: 0 auto;
-  margin-top: 25px;
-  color: var(--Terciaria, #fff);
-  font-family: Arial;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  cursor: pointer;
-}
-
 @media (max-width: 899px) {
   .button-section::before {
     display: none;
@@ -137,7 +118,7 @@
     width: 100%;
   }
 
-  .link {
+  .link{
     display: block;
     width: 100%;
   }
@@ -148,5 +129,5 @@
   .button-section .button-group button{
     width: 80%;
   }
-
 }
+

@@ -1,7 +1,7 @@
 {
   "name": "Tecnocomp+",
   "short_name": "Tecnocomp+",
-  "theme_color": "var(--primaria)",
+  "theme_color": "#793CD4",
   "background_color": "#000000",
   "display": "standalone",
   "scope": "./",

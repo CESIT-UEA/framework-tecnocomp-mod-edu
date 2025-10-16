@@ -12,7 +12,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModuloService } from '../../modulo.service';
 import { config } from 'rxjs';
-import { MatDrawerContainer, MatSidenavContainer } from '@angular/material/sidenav';
+import { MatSidenavContainer } from '@angular/material/sidenav';
 import { DownloadPlataformaService } from 'src/app/download-plataforma.service';
 
 @Component({
@@ -21,14 +21,11 @@ import { DownloadPlataformaService } from 'src/app/download-plataforma.service';
   styleUrls: ['./topico.component.css'],
 })
 export class TopicoComponent implements OnInit {
-  showFiller = false;
   nomeModulo: string = '';
   nomeTopico!: string;
   teste: any;
   controllerSwitch = 'default'; // Inicialmente exibe o componente default
   @ViewChild(MatSidenavContainer) sidenavContainer!: MatSidenavContainer;
-  @ViewChild(MatDrawerContainer) drawerContainer!: MatDrawerContainer;
-
   menu = false;
 
   constructor(
@@ -179,14 +176,6 @@ export class TopicoComponent implements OnInit {
     this.sidenavContainer.close();
   }
 
-  fecharMenuClick2() {
-    this.drawerContainer.close()
-  }
-
-  abrirMenuClick(){
-    this.drawerContainer.open()
-  }
-
   navegarModulo(topicoId: number) {
     console.log(topicoId);
     this.moduloService.controll_topico = topicoId;
@@ -234,6 +223,4 @@ export class TopicoComponent implements OnInit {
 
     return false;
   }
-  menuAberto = false;
-
 }

@@ -55,7 +55,7 @@
 .bloco h2{
   width: 100%;
   font-size: 15px;
-  border-bottom: 1px solid var(--terciaria);
+  border-bottom: 1px solid #9665DF;
 }
 
 @media (max-width: 1100px){

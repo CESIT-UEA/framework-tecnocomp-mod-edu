@@ -16,11 +16,6 @@ import { ServiceAppService } from 'src/app/service-app.service';
 export class SlideUnidadeComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input({ required: true }) videos!: any[];
   isLoading = false;
-  panelOpenState = false;
-
-  // variaveis para controle da paginação dos botões dos vídeos dos tópicos
-  pageSize = 3
-  currentPage = 0
 
   constructor(
     public ltiService: ServiceAppService,
@@ -38,7 +33,7 @@ export class SlideUnidadeComponent implements OnInit, AfterViewInit, OnDestroy {
         ].UsuarioTopicos[0].indice_video;
     }
     this.ltiService.loadYouTubeAPI();
-  } 
+  }
 
   ngAfterViewInit(): void {
     this.ltiService.recreatePlayer();
@@ -79,24 +74,4 @@ export class SlideUnidadeComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.videos.filter((video) => video.UsuarioVideos[0].completo).length;
   }
 
-
-  get totalPages(): number {
-    return Math.ceil(this.videos.length / this.pageSize)
-  }
-
-  get paginatedVideos() {
-    const start = this.currentPage * this.pageSize;
-    return this.videos.slice(start, start + this.pageSize);
-  }
-  nextPage() {
-    if (this.currentPage < this.totalPages - 1) {
-      this.currentPage++;
-    }
-  }
-  
-  prevPage() {
-    if (this.currentPage > 0) {
-      this.currentPage--;
-    }
-  }
 }

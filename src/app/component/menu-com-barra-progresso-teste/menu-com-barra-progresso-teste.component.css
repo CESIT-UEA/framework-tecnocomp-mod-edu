@@ -1,13 +1,11 @@
 :host {
   height: 100%;
   display: block;
-  background: #161617;
 }
 .header-menu {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
+  color: white;
+  width: 100%;
+  text-align: end;
 }
 .parte-cima {
   background-color: #232324;
@@ -15,16 +13,14 @@
   height: 25%;
 }
 .titulo-topico {
-  color: var(--Terciaria, #fff);
-  font-size: 16px;
+  font-size: 18px;
+  font-family: Arial;
   font-style: normal;
   font-weight: 700;
   line-height: 150%;
   width: 80%;
-  color: var(--quartenaria);
+  color: #b4a1e5;
   margin-left: 20px;
-  line-height: normal;
-  padding: 0 15px;
 }
 .close {
   font-size: 30px;
@@ -39,19 +35,18 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 10px 15px;
+  padding: 10px 25px;
   padding-bottom: 0;
   gap: 5px;
 }
 .p-progresso {
   background-color: #232324;
-  color: var(--quartenaria);
+  color: #b4a1e5;
   text-align: center;
   padding-bottom: 10px;
   font-size: 14px;
   font-weight: 400;
   font-family: Arial;
-  padding: 15px;
 }
 input[type="checkbox"] {
   background-color: transparent;
@@ -89,10 +84,12 @@ input[type="checkbox"] {
   border-radius: 35px;
 }
 .topico-container {
-  width: 100%;
+  border-radius: 8px;
+  width: 95%;
   max-width: 300px;
   height: 70px;
   color: #fff;
+  margin: 15px auto;
   padding: 16px 10px;
   font-family: Arial;
   gap: 10px;
@@ -104,7 +101,6 @@ input[type="checkbox"] {
   outline: none;
   background-color: #232324;
   cursor: auto;
-  border-bottom: 1px solid #4f4f4f;
 }
 
 .hover:hover {
@@ -112,10 +108,9 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 .active-topico-container {
-  border: 2px solid var(--Primaria, var(--terciaria));
+  border: 2px solid var(--Primaria, #9665df);
   background: #232324;
   box-shadow: -3px 3px 3px 0px rgba(0, 0, 0, 0.25);
-
   font-weight: bold;
 }
 .caixa {
@@ -139,7 +134,7 @@ input[type="checkbox"] {
 }
 .btn-forum {
   background-color: #262626;
-  color: var(--terciaria);
+  color: #9665df;
   width: 80%;
   border-radius: 5px;
   padding: 10px;
@@ -167,20 +162,14 @@ input[type="checkbox"] {
   height: 25%;
 }
 .outros-links h3 {
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 5px;
   width: 90%;
   margin: 0 auto;
-  color: #fff;
-  font-family: Arial;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
 }
 .moodle {
   display: flex;
   height: 34px;
+  justify-content: center;
   align-items: center;
   gap: 8px;
   align-self: stretch;
@@ -194,7 +183,7 @@ input[type="checkbox"] {
   margin-bottom: 15px;
 }
 .moodle a {
-  color: var(--quartenaria);
+  color: #c3a1f5;
   margin-left: 5px;
   outline: none;
 }

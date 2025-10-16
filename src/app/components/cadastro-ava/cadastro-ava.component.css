@@ -5,7 +5,7 @@
 
 .header img {
    min-height: 10vh;
-   max-height: 10vh;
+   max-height: 10vh; 
    margin-left: 1rem;
  }
 
@@ -74,11 +74,11 @@
 
 
 .buttons > .button-enable {
-    background-color: var(--primaria);
-}
+    background-color: #793CD4;
+} 
 
 .button-disabled {
-   background-color:var(--primaria);
+   background-color:#793CD4;
    opacity: 0.5;
 }
 
@@ -93,6 +93,12 @@
    .main-section-form{
      width: 65%;
    }
+    .main-section-form-campo {
+    padding: 16px 20px;
+  }
+  .buttons {
+   padding: 40px 20px;
+  }
  }
 
  @media(max-width: 596px) {

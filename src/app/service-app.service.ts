@@ -444,7 +444,7 @@ export class ServiceAppService {
     if (
       this.currentVideoIndex <
       this.dados_completos.topicos?.[this.moduloService.controll_topico]
-        ?.VideoUrls.length - 1
+        ?.VideoUrls.length
     ) {
       console.log('Entrei');
       this.currentVideoIndex++;
@@ -543,14 +543,4 @@ export class ServiceAppService {
   });
 }
 
-
-  getTopicosFinalizados(): number{
-    let contador = 0;
-    this.dados_completos.userTopico.map( (topico: any) => {
-      if (topico.UsuarioTopicos[0].encerrado) {
-        contador = contador + 1
-      }
-    })
-    return contador
-  }
 }

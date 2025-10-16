@@ -15,12 +15,12 @@
     </div>
     <!-- ícone que quando clicado volta para a página geral da unidade -->
     <img
-      routerLink="../"
+      (click)="textoApoioClick.emit()"
       src="assets/icons/close.svg"
       alt="Icone para ir para a atividade da unidade"
       width="30px"
       height="30px"
-      style="cursor: pointer"
+      style="cursor: pointer;"
     />
   </div>
 

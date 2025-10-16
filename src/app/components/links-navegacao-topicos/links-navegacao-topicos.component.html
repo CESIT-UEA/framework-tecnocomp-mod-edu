@@ -1,0 +1,87 @@
+<div
+    class="container-main-conteudo-links-voltar"
+    [ngClass]="{
+      'container-links':
+      (this.verificaVoltar() && this.verificaProximo()) ||
+       this.verificaProximo() == false
+    }"
+>
+    <div
+        *ngIf="this.verificaVoltar()"
+        class="link-voltar"
+        (click)="voltar()"
+        [ngClass]="{
+          sozinho:
+            this.verificaVoltar() == true &&
+            this.verificaProximo() == false
+        }"
+    >
+     <img
+        *ngIf="this.moduloService.controll_topico != 0"
+        src="../../../../assets/icons//voltarUnidadeCorreto.svg"
+        alt="Icone para voltar unidade"
+        width="30px"
+        height="30px"
+    />
+        Tópico Anterior
+    </div>
+    <div
+        *ngIf="verificaProximo()"
+        class="link-proximo"
+        (click)="proximo()"
+        [ngClass]="{
+          'sozinho-proximo':
+            this.verificaVoltar() == false &&
+            this.verificaProximo() == true,
+            'opactiy-active':
+            this.ltiService.dados_completos.userTopico[
+            this.moduloService.controll_topico].UsuarioTopicos[0].encerrado == false
+        }"
+    >
+        Próximo Tópico
+     <img
+        src="a../../../../../../assets/icons/avancarUnidade.svg"
+        alt="Icone para avançar unidade"
+        width="30px"
+        height="30px"
+     />
+    </div>
+        <div
+          class="button-finalizar-box"
+          *ngIf="
+          !verificaProximo() &&
+          this.ltiService.dados_completos.userTopico[
+          this.moduloService.controll_topico
+         ].UsuarioTopicos[0].encerrado == true"
+          routerLink="../../../avaliar"
+          [ngClass]="{
+           'button-finalizar-avaliado':
+            !this.ltiService.verificaAvaliacaoNaoFoiFeitaEstrelas(),
+            'button-finalizar-nao-avaliado':
+            this.ltiService.verificaAvaliacaoNaoFoiFeitaEstrelas() &&
+            this.ltiService.dados_completos.userTopico[
+            this.moduloService.controll_topico].UsuarioTopicos[0].encerrado == true
+        }"
+      >
+        <mat-icon>check</mat-icon>
+        <p>
+            {{
+            this.ltiService.verificaAvaliacaoNaoFoiFeitaEstrelas()
+              ? "Concluir Módulo"
+              : "Módulo concluído"
+            }}
+        </p>
+        </div>
+            <div
+               class="button-finalizar-box button-finalizar-desabilitado"
+               *ngIf="
+                !verificaProximo() &&
+                this.ltiService.dados_completos.userTopico[
+                this.moduloService.controll_topico
+                ].UsuarioTopicos[0].encerrado == false
+                "
+              >
+            <mat-icon>check</mat-icon>
+            <p>Concluir Módulo</p>
+            </div>
+        </div>

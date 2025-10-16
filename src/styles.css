@@ -6,34 +6,10 @@
   user-select: none;
 }
 
-:root {
-  /* Paleta de cores - Variaveis */
-  --primaria: #793cd4;
-  --secundaria: #5e17eb;
-  --terciaria: #9665df;
-  --quartenaria: #c3a1f5;
-  --quintenaria: #3c2859;
-
-  /*   --primaria: #ff0000;
-  --secundaria: #0051ff;
-  --terciaria: #616600;
-  --quartenaria: #006d2a;
-  --quintenaria: #3cff00; */
-
-  --chat--window--bottom: 10%;
-  --chat--toggle--background: var(--primaria) !important;
-  --chat--toggle--hover--background: var(--primaria) !important;
-  --chat--toggle--active--background: var(--primaria) !important;
-  --chat--header--background: var(--secundaria) !important;
-  --chat--message--user--background: var(--secundaria) !important;
-  --chat--window--right: 2%;
-}
-
 html,
 body {
+  height: 100vh;
   background-color: #000000;
-  --mat-menu-container-color: #0a080f;
-  --mat-menu-item-label-text-color: white;
 }
 
 body {
@@ -61,13 +37,13 @@ body {
 }
 
 .testando {
-  --mat-snack-bar-button-color: var(--quartenaria);
+  --mat-snack-bar-button-color: #c3a1f5;
 }
 
 .mat-mdc-snack-bar-container .mdc-snackbar__action {
   --mdc-snackbar-container-color: #2e2e2e;
   border-radius: 5px;
-  color: var(--primaria) !important;
+  color: #793cd4 !important;
 }
 
 .mat-mdc-dialog__title {
@@ -87,3 +63,38 @@ body {
   margin-bottom: 10px !important;
   color: white !important;
 }
+
+
+:root{
+  --chat--window--bottom: 10%;
+  --chat--toggle--background: #793cd4 !important;
+  --chat--toggle--hover--background: #793cd4 !important;
+  --chat--toggle--active--background: #793cd4 !important;
+  --chat--header--background:#5e17eb !important;
+  --chat--message--user--background:#5e17eb !important;
+  --chat--window--right:2%;
+}
+
+.n8n-chat-button, .chat-window-wrapper {
+    margin-bottom: 3% !important;
+}
+
+.chat-window {
+  height: 500px !important;
+  max-height: 70vh !important;
+}
+
+@media(max-width: 496px) {
+ .n8n-chat-button, .chat-window-wrapper {
+    margin-bottom: 0% !important;
+
+ }
+
+ .chat-window {
+  height: 70vh !important;
+  /* min-height:  calc(100% - var(--chat--window--bottom, var(--chat--spacing)) * 300) !important; */
+  max-height: calc(100% - var(--chat--window--bottom, var(--chat--spacing)) * 2) !important;
+ }
+
+} 
+

@@ -159,7 +159,8 @@
   .content-container-ficha-tecnica-equipe {
     height: 90%;
     width: 100%;
-    background: var(--quintenaria);
+    background: rgb(101,49,176);
+    background: linear-gradient(180deg, rgba(101,49,176,1) 4%, rgba(108,54,188,1) 8%);
     display: flex;
   }
 
@@ -173,7 +174,7 @@
     width: 100%;
   }
   .content-container-ficha-tecnica-equipe-caixa-teste h1{
-    background-color: var(--terciaria);
+    background-color: #9665DF;
     color: white;
     border-radius: 10px;
     width: 40%;

@@ -1,6 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ModuloService } from 'src/app/personalizavel/modulo.service';
-import { ServiceAppService } from 'src/app/service-app.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 /**
  * Componente reutilizavel Saiba Mais, o qual deve, geralmente, ser chamado nas paginas gerais de vizualização dos vídeos, ficará no menu
@@ -10,12 +8,9 @@ import { ServiceAppService } from 'src/app/service-app.service';
   templateUrl: './saiba-mais.component.html',
   styleUrls: ['./saiba-mais.component.css'],
 })
-export class SaibaMaisComponent implements OnInit {
-  constructor(
-    public moduloService: ModuloService,
-    public ltiService: ServiceAppService
-  ) {}
 
+
+export class SaibaMaisComponent {
   /**
    * Variavel que receberá os links que serão inseridos pelo usuário
    */
@@ -25,11 +20,24 @@ export class SaibaMaisComponent implements OnInit {
    * Variavel faz a interligação entre os eventos
    */
   @Output() linksClick = new EventEmitter<void>();
-  ngOnInit(): void {
-    this.ltiService.getDadosCompletos();
-    this.links =
-      this.ltiService.dados_completos.topicos?.[
-        this.moduloService.controll_topico
-      ]?.SaibaMais;
-  }
+
+  /**
+   * Vetor de objeto com descrição e links de informações adicionais sobre um determinado tópico
+   */
+  saibaMais: any = [
+    {
+      descricao:
+        'O que é Behaviorismo? Entenda um pouco da Psicologia Comportamental',
+      url: 'https://br.search.yahoo.com/search?fr=mcafee&type=E210BR714G91805&p=interroga%C3%A7%C3%A3o',
+    },
+    {
+      descricao: 'Behaviorismo - o ser humano é realmente livre?',
+      url: 'https://br.search.yahoo.com/search?fr=mcafee&type=E210BR714G91805&p=interroga%C3%A7%C3%A3o',
+    },
+    {
+      descricao:
+        'O que é Behaviorismo? Entenda um pouco da Psicologia Comportamental',
+      url: 'https://br.search.yahoo.com/search?fr=mcafee&type=E210BR714G91805&p=interroga%C3%A7%C3%A3o',
+    },
+  ];
 }

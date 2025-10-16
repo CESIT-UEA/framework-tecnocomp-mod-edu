@@ -67,9 +67,7 @@ import {MatInputModule} from '@angular/material/input';
 import { QuestaoAbertasComponent } from './components/questao-abertas/questao-abertas.component';
 import { ChatN8nComponent } from './components/chat-n8n/chat-n8n.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { HeaderOficialComponent } from './components/header-oficial/header-oficial.component';
-import { VideoBotoesSectionComponent } from './components/home/video-botoes-section/video-botoes-section.component';
-import { InformacoesGeraisModuloComponent } from './components/informacoes-gerais-modulo/informacoes-gerais-modulo.component';
+import { LinksNavegacaoTopicosComponent } from './components/links-navegacao-topicos/links-navegacao-topicos.component';
 
 @NgModule({
   declarations: [
@@ -119,9 +117,7 @@ import { InformacoesGeraisModuloComponent } from './components/informacoes-gerai
     BotaoDownloadPwaComponent,
     QuestaoAbertasComponent,
     ChatN8nComponent,
-    HeaderOficialComponent,
-    VideoBotoesSectionComponent,
-    InformacoesGeraisModuloComponent
+    LinksNavegacaoTopicosComponent,
   ],
   imports: [
     BrowserModule,

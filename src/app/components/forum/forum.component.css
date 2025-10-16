@@ -9,13 +9,13 @@
   padding: 10px;
 }
 .icon-forum{
-  background-color: var(--terciaria);
+  background-color: #9665DF;
 }
 .center-header {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--quartenaria);
+  color: #C3A1F5;
   column-gap: 15px;
   font-size: 20px;
 }
@@ -36,7 +36,7 @@
   height: 150px;
   margin-bottom: 25px;
   border: none;
-  border-top: 3px solid var(--terciaria);
+  border-top: 3px solid #9665df;
   border-radius: 5px;
   background-color: #27252b;
   margin: 20px auto;
