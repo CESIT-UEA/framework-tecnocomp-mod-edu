@@ -151,4 +151,7 @@
   .cards{
     grid-template-columns: repeat(1, 99%);
   }
+  .bloco-dois {
+    align-self: flex-start;
+  }
 }
