@@ -13,7 +13,6 @@ export class ChatN8nComponent implements OnInit {
   constructor(private renderer: Renderer2, private apiService: ServiceAppService) {}
 
   ngOnInit(): void {
-    this.apiService.removeDadosCompletos()
     this.apiService.getDadosCompletos()
     
     if (this.apiService.dados_completos.length !== 0) {
