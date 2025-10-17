@@ -42,6 +42,7 @@ export class HomeComponent {
   tokenData: any;
 
   ngOnInit(): void {
+    this.appService.removeDadosCompletos()
     const ltik = this.route.snapshot.queryParamMap.get('ltik');
     if (ltik) {
       this.moduloService.getUserInfo(ltik).subscribe(
