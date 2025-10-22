@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { DadosModulo } from '../interfaces/info-modulo';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,9 @@ export class ModuloService {
   private nomeTopicoSource = new BehaviorSubject<string>('');
   nomeTopico$ = this.nomeTopicoSource.asObservable();
   id_modulo!:string
+
+  public dados_modulo!: DadosModulo;  
+  storageKey = "dados_modulo"
 
   urlInicio!: string;
   topicos: any;
@@ -26,11 +30,30 @@ export class ModuloService {
     return this.http.get<any>(`${this.baseUrlLTI}/userInfo?ltik=${ltik}`);
   }
 
+  getModuloInfo(ltik: string): Observable<DadosModulo> {
+    console.log(`Requisição LTI sendo feita para: ${this.baseUrlLTI}/moduloInfo?ltik=${ltik}`)
+    return this.http.get<any>(`${this.baseUrlLTI}/moduloInfo?ltik=${ltik}`)
+  }
+
   getModuloPorNome(nomeModulo: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrlLTI}/modulos?nome_modulo=${nomeModulo}`);
   }
 
   setNomeTopico(nomeTopico: string) {
     this.nomeTopicoSource.next(nomeTopico);
+  }
+
+  setDadosModulo(dados: DadosModulo){
+    localStorage.setItem(this.storageKey, JSON.stringify(dados));
+    this.getDadosModulo()
+  }
+
+  getDadosModulo(): void {
+    const dados = localStorage.getItem(this.storageKey)
+    if (dados){
+      this.dados_modulo = JSON.parse(dados)
+      this.notaTotal = this.dados_modulo?.userModulo?.nota;
+      console.log('Dados módulo ', this.dados_modulo);
+    }
   }
 }

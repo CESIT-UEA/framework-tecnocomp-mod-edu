@@ -12,9 +12,9 @@
       mode="determinate"
       color="warn"
       this.teste
-      [value]="this.ltiService.dados_completos?.userModulo?.nota"
+      [value]="this.moduloService.dados_modulo.userModulo.nota"
     ></mat-progress-bar>
-    <p>{{ this.ltiService.dados_completos?.userModulo?.nota }}%</p>
+    <p>{{ this.moduloService.dados_modulo.userModulo.nota }}%</p>
   </div>
   <p class="p-progresso">
     {{ getQuantidadeVideosConcluidos() }} /

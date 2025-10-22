@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatSidenavContainer } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { DownloadPlataformaService } from 'src/app/download-plataforma.service';
+import { DadosModulo } from 'src/app/interfaces/info-modulo';
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
 import { ServiceAppService } from 'src/app/service-app.service';
 
@@ -44,51 +46,40 @@ export class HomeComponent {
   ngOnInit(): void {
     const ltik = this.route.snapshot.queryParamMap.get('ltik');
     if (ltik) {
+      this.getModuloInfo(ltik)
+
       this.moduloService.getUserInfo(ltik).subscribe(
         (data) => {
-          this.tokenData = data;
-          console.log(data);
-
-          this.moduloService.urlInicio =
-            this.tokenData.modulo.nome_modulo + 'Home';
-
-            localStorage.setItem(
-            'bloqueio',
-            JSON.stringify(this.tokenData.userTopico)
-          );
-
           this.appService.setDadosCompletos(data);
-
-
-          let teste2 = localStorage.getItem('token');
-          if (teste2) {
-            localStorage.removeItem('token')
-          }
-
-          localStorage.setItem('token', this.tokenData.user.ltik);
-
-          localStorage.setItem('url_retorno', this.tokenData.user.return_url);
-          localStorage.setItem(
-            'topicos',
-            JSON.stringify(this.tokenData.topicos)
-          );
-
-          let bloqueio = localStorage.getItem('bloqueio');
-          this.moduloService.topicos = this.tokenData.topicos;
-
-          this.moduloService.bloqueio = bloqueio
-            ? JSON.parse(bloqueio)
-            : this.tokenData.userTopico;
         },
         (error) => {
           console.error('Error:', error);
         }
       );
+    } else {
+      const token = JSON.parse(localStorage.getItem('token') as string)
+      if (token){
+        this.getModuloInfo(token)
+      }
     }
 
-    this.appService.getDadosCompletos();
-
   }
+
+  getModuloInfo(ltik: string){
+    if (ltik){
+      this.moduloService.getModuloInfo(ltik).subscribe({
+      next: (data: DadosModulo) => {
+        this.moduloService.setDadosModulo(data);
+        const token = data.user.ltik
+        localStorage.setItem('token', JSON.stringify(token))
+      },
+      error: (err) => {
+        console.error("Erro ao buscar dados do módulo", err);
+      }
+    });
+    }
+  }
+
 
   /**
    * @method

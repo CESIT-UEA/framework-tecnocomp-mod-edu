@@ -60,7 +60,7 @@
               class="container-foto-header"
             >
               <div class="foto-header">
-                {{ this.appService.dados_completos.user.nome[0] }}
+                {{ this.moduloService.dados_modulo.user.nome[0] }}
               </div>
               <mat-icon
                 style="color: white; cursor: pointer"
@@ -104,13 +104,13 @@
             <div class="container-esquerdo">
               <h1 class="title">
                 <span class="text-unidade">{{
-                  this.appService.dados_completos.modulo.nome_modulo
+                  this.moduloService.dados_modulo.modulo.nome_modulo
                 }}</span>
               </h1>
 
               <app-video-section
                 [videoUrl]="
-                  this.appService.dados_completos?.modulo?.video_inicial
+                  this.moduloService.dados_modulo.modulo.video_inicial
                 "
               ></app-video-section>
             </div>
