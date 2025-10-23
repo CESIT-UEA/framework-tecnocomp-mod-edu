@@ -14,6 +14,7 @@ import { ModuloService } from '../../modulo.service';
 import { config } from 'rxjs';
 import { MatSidenavContainer } from '@angular/material/sidenav';
 import { DownloadPlataformaService } from 'src/app/download-plataforma.service';
+import { TopicoService } from '../../topico.service';
 
 @Component({
   selector: 'app-topico',
@@ -33,73 +34,20 @@ export class TopicoComponent implements OnInit {
     public moduloService: ModuloService,
     private router: Router,
     public ltiService: ServiceAppService,
-    public downloadService: DownloadPlataformaService
+    public downloadService: DownloadPlataformaService,
+    public topicoService: TopicoService
   ) {}
 
   ngOnInit(): void {
-    this.ltiService.getDadosCompletos();
+    this.moduloService.dados_modulo = JSON.parse(localStorage.getItem('dados_modulo')!)
+    this.topicoService.dados_topico = JSON.parse(localStorage.getItem('userTopico')!)
+    // this.ltiService.getDadosCompletos();
+    // localStorage.getItem('userTopico')
     this.ltiService.loadYouTubeAPI();
     this.downloadService.initEventInstall()
+
   }
-
-  proximo(): void {
-    this.ltiService.currentVideoIndex = 0;
-    if (
-      this.moduloService.controll_topico <
-      this.ltiService.dados_completos.topicos.length - 1
-    ) {
-      if (
-        this.ltiService.dados_completos.userTopico[
-          this.moduloService.controll_topico
-        ]?.UsuarioTopicos[0].encerrado
-      ) {
-        this.moduloService.controll_topico += 1;
-      } else {
-        this.ltiService.mensagem('Você precisa responder à atividade antes!');
-      }
-    }
-
-    if (
-      this.ltiService.dados_completos.userTopico[
-        this.moduloService.controll_topico
-      ].UsuarioTopicos[0].indice_video != null
-    ) {
-      this.ltiService.currentVideoIndex =
-        this.ltiService.dados_completos.userTopico[
-          this.moduloService.controll_topico
-        ].UsuarioTopicos[0].indice_video;
-      console.log('Video retornado salvo já');
-    }
-
-    this.ltiService.recreatePlayer();
-  }
-  voltarCss() {
-    if (this.moduloService.controll_topico == 0) {
-      return 'display:none';
-    }
-
-    return;
-  }
-  voltar(): void {
-    if (this.moduloService.controll_topico > 0) {
-      this.moduloService.controll_topico -= 1;
-      this.ltiService.currentVideoIndex = 0;
-    }
-
-    if (
-      this.ltiService.dados_completos.userTopico[
-        this.moduloService.controll_topico
-      ].UsuarioTopicos[0].indice_video != null
-    ) {
-      this.ltiService.currentVideoIndex =
-        this.ltiService.dados_completos.userTopico[
-          this.moduloService.controll_topico
-        ].UsuarioTopicos[0].indice_video;
-      console.log('Video retornado salvo já');
-    }
-    this.ltiService.recreatePlayer();
-  }
-
+  
   atividadeClick() {
     this.controllerSwitch =
       this.controllerSwitch == 'default' ? '1' : 'default';
@@ -109,15 +57,12 @@ export class TopicoComponent implements OnInit {
     this.controllerSwitch =
       this.controllerSwitch == 'default' ? '3' : 'default';
 
-    if (
-      this.ltiService.dados_completos.userTopico[
-        this.moduloService.controll_topico
-      ].UsuarioTopicos[0].isReferencias == false
+    if (this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isReferencias == false
     ) {
       this.ltiService.enviarVistoReferencias().subscribe(
         (response) => {
-          this.ltiService.removeDadosCompletos();
-          this.ltiService.setDadosCompletos(response);
+          this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isReferencias = true
+
           this.ltiService.loadYouTubeAPI();
         },
         (error) => {
@@ -132,15 +77,12 @@ export class TopicoComponent implements OnInit {
   linksClick() {
     this.controllerSwitch =
       this.controllerSwitch == 'default' ? '2' : 'default';
-    if (
-      this.ltiService.dados_completos.userTopico[
-        this.moduloService.controll_topico
-      ].UsuarioTopicos[0].isSaibaMais == false
-    ) {
+    if (this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isSaibaMais == false) {
       this.ltiService.enviarVistoSaibaMais().subscribe(
         (response) => {
-          this.ltiService.removeDadosCompletos();
-          this.ltiService.setDadosCompletos(response);
+          // this.ltiService.removeDadosCompletos();
+          // this.ltiService.setDadosCompletos(response);
+          this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isSaibaMais = true
         },
         (error) => {
           console.log(error);
@@ -155,14 +97,13 @@ export class TopicoComponent implements OnInit {
       this.controllerSwitch == 'default' ? '4' : 'default';
 
     if (
-      this.ltiService.dados_completos.userTopico[
-        this.moduloService.controll_topico
-      ].UsuarioTopicos[0].isTextoApoio == false
+      this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isTextoApoio == false
     ) {
       this.ltiService.enviarVistoTextoApoio().subscribe(
         (response) => {
-          this.ltiService.removeDadosCompletos();
-          this.ltiService.setDadosCompletos(response);
+          // this.ltiService.removeDadosCompletos();
+          // this.ltiService.setDadosCompletos(response);
+          this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isTextoApoio = true
         },
         (error) => {
           console.log(error);
@@ -180,15 +121,10 @@ export class TopicoComponent implements OnInit {
     console.log(topicoId);
     this.moduloService.controll_topico = topicoId;
     this.sidenavContainer.close();
-    if (
-      this.ltiService.dados_completos.userTopico[
-        this.moduloService.controll_topico
-      ].UsuarioTopicos[0].indice_video != null
-    ) {
-      this.ltiService.currentVideoIndex =
-        this.ltiService.dados_completos.userTopico[
-          this.moduloService.controll_topico
-        ].UsuarioTopicos[0].indice_video;
+    const indice_video = this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].indice_video
+
+    if (indice_video != null ) {
+      this.ltiService.currentVideoIndex = indice_video
       console.log('Video retornado salvo já');
     } else {
       this.ltiService.currentVideoIndex = 0;
@@ -197,30 +133,5 @@ export class TopicoComponent implements OnInit {
   }
   resetaHome(){
     this.ltiService.controllerSwitchHome = 0;
-  }
-
-  verificaProximo() {
-    let topicos: any[] = this.ltiService.dados_completos.topicos;
-
-    if (
-      this.moduloService.controll_topico >= 0 &&
-      this.moduloService.controll_topico < topicos.length - 1
-    ) {
-      return true;
-    }
-
-    return false;
-  }
-  verificaVoltar() {
-    let topicos: any[] = this.ltiService.dados_completos.topicos;
-
-    if (
-      this.moduloService.controll_topico > 0 &&
-      this.moduloService.controll_topico <= topicos.length
-    ) {
-      return true;
-    }
-
-    return false;
   }
 }

@@ -1,32 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Topico } from 'src/app/interfaces/topico';
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
+import { TopicoService } from 'src/app/personalizavel/topico.service';
 import { ServiceAppService } from 'src/app/service-app.service';
+
 
 @Component({
   selector: 'app-links-navegacao-topicos',
   templateUrl: './links-navegacao-topicos.component.html',
   styleUrls: ['./links-navegacao-topicos.component.css']
 })
-export class LinksNavegacaoTopicosComponent {
+export class LinksNavegacaoTopicosComponent implements OnInit {
     constructor(
       public moduloService: ModuloService,
-      public ltiService: ServiceAppService
+      public ltiService: ServiceAppService,
+      public topicoService: TopicoService
     ){}
 
-    verificaProximo() {
-    let topicos: any[] = this.ltiService.dados_completos.topicos;
-
-    if (
-      this.moduloService.controll_topico >= 0 &&
-      this.moduloService.controll_topico < topicos.length - 1
-    ) {
-      return true;
+    ngOnInit(): void {
+        
     }
 
-    return false;
+
+
+    verificaProximo() {
+      let topicos: Topico[] = this.topicoService.dados_topico;
+      if (
+        this.moduloService.controll_topico >= 0 &&
+        this.moduloService.controll_topico < topicos.length - 1
+      ) {
+        return true;
+      }
+
+      return false;
   }
   verificaVoltar() {
-    let topicos: any[] = this.ltiService.dados_completos.topicos;
+    let topicos: Topico[] = this.topicoService.dados_topico;
 
     if (
       this.moduloService.controll_topico > 0 &&
@@ -41,13 +50,10 @@ export class LinksNavegacaoTopicosComponent {
   proximo(): void {
     this.ltiService.currentVideoIndex = 0;
     if (
-      this.moduloService.controll_topico <
-      this.ltiService.dados_completos.topicos.length - 1
+      this.moduloService.controll_topico < this.topicoService.dados_topico.length - 1
     ) {
       if (
-        this.ltiService.dados_completos.userTopico[
-          this.moduloService.controll_topico
-        ]?.UsuarioTopicos[0].encerrado
+        this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].encerrado
       ) {
         this.moduloService.controll_topico += 1;
       } else {
@@ -55,15 +61,10 @@ export class LinksNavegacaoTopicosComponent {
       }
     }
 
-    if (
-      this.ltiService.dados_completos.userTopico[
-        this.moduloService.controll_topico
-      ].UsuarioTopicos[0].indice_video != null
-    ) {
-      this.ltiService.currentVideoIndex =
-        this.ltiService.dados_completos.userTopico[
-          this.moduloService.controll_topico
-        ].UsuarioTopicos[0].indice_video;
+    const indice_video = this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].indice_video
+
+    if (indice_video != null) {
+      this.ltiService.currentVideoIndex = indice_video
       console.log('Video retornado salvo já');
     }
 
@@ -83,15 +84,10 @@ export class LinksNavegacaoTopicosComponent {
       this.ltiService.currentVideoIndex = 0;
     }
 
-    if (
-      this.ltiService.dados_completos.userTopico[
-        this.moduloService.controll_topico
-      ].UsuarioTopicos[0].indice_video != null
-    ) {
-      this.ltiService.currentVideoIndex =
-        this.ltiService.dados_completos.userTopico[
-          this.moduloService.controll_topico
-        ].UsuarioTopicos[0].indice_video;
+    const indice_video = this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].indice_video
+
+    if (indice_video != null) {
+      this.ltiService.currentVideoIndex = indice_video
       console.log('Video retornado salvo já');
     }
     this.ltiService.recreatePlayer();

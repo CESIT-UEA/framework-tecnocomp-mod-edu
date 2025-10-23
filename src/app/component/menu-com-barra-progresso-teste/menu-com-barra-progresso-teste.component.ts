@@ -6,8 +6,10 @@ import {
   Output,
   signal,
 } from '@angular/core';
+import { Topico } from 'src/app/interfaces/topico';
 import { AprendizagemEInformaticaService } from 'src/app/pages/modulos/aprendizagem-e-informatica/aprendizagem-e-informatica.service';
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
+import { TopicoService } from 'src/app/personalizavel/topico.service';
 import { ServiceAppService } from 'src/app/service-app.service';
 
 /**
@@ -43,44 +45,56 @@ export class MenuComBarraProgressoTesteComponent implements OnInit {
      * Variavel que instancia o service ServiceAppService, que contém as configurações LTI
      */
     public ltiService: ServiceAppService,
-    public moduloService: ModuloService
+    public moduloService: ModuloService,
+    public topicoService: TopicoService
   ) {}
 
   ngOnInit(): void {}
 
   verificarConcluido(i: number) {
     if (
-      this.ltiService.dados_completos?.userTopico[i]?.UsuarioTopicos[0]
-        .encerrado
+      this.topicoService.dados_topico[i].UsuarioTopicos[0].encerrado
     ) {
       return true;
     }
 
     if (
-      this.ltiService.dados_completos?.userTopico[i - 1]?.UsuarioTopicos[0]
-        .encerrado == true &&
-      this.ltiService.dados_completos?.userTopico[i]?.UsuarioTopicos[0]
-        .encerrado == false && i != 0
+      this.topicoService.dados_topico[i - 1].UsuarioTopicos[0].encerrado == true &&
+      this.topicoService.dados_topico[i].UsuarioTopicos[0].encerrado == false && i != 0
     ) {
       return true;
     }
 
-    if (this.ltiService.dados_completos?.userTopico[i]?.UsuarioTopicos[0]
-      .encerrado == false && i == 0) {
+    if (this.topicoService.dados_topico[i].UsuarioTopicos[0].encerrado && i == 0) {
       return true
     }
 
     return false;
   }
 
-  getQuantidadeVideosConcluidos() {
+  getQuantidadeTopicosConcluidos() {
     let cont = 0;
-    this.ltiService.dados_completos.userTopico.map((topico: any) => {
+    
+    this.topicoService.dados_topico.map((topico: Topico) => {
       if (topico.UsuarioTopicos[0].encerrado == true) {
         cont += 1;
       }
-    });
+    })
 
     return cont;
+  }
+
+  getDadosUserInfo(){
+    let ltik = localStorage.getItem('token');
+    if (ltik){
+      this.moduloService.getUserInfo(JSON.parse(ltik)).subscribe(
+         (data) => {
+           this.ltiService.setDadosCompletos(data);
+         },
+         (error) => {
+           console.error('Error:', error);
+         }
+       );
+    }
   }
 }

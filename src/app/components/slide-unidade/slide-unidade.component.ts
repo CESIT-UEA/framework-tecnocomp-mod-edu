@@ -6,6 +6,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
+import { TopicoService } from 'src/app/personalizavel/topico.service';
 import { ServiceAppService } from 'src/app/service-app.service';
 
 @Component({
@@ -19,18 +20,14 @@ export class SlideUnidadeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     public ltiService: ServiceAppService,
-    public moduloService: ModuloService
+    public moduloService: ModuloService,
+    public topicoService: TopicoService
   ) {}
 
   ngOnInit(): void {
-    if (
-      this.ltiService.dados_completos.userTopico[this.moduloService.controll_topico]
-        .UsuarioTopicos[0].indice_video != null
-    ) {
-      this.ltiService.currentVideoIndex =
-        this.ltiService.dados_completos.userTopico[
-          this.moduloService.controll_topico
-        ].UsuarioTopicos[0].indice_video;
+    const indice_video = this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].indice_video
+    if (indice_video != null) {
+      this.ltiService.currentVideoIndex = indice_video
     }
     this.ltiService.loadYouTubeAPI();
   }

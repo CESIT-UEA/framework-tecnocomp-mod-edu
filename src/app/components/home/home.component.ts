@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { DownloadPlataformaService } from 'src/app/download-plataforma.service';
 import { DadosModulo } from 'src/app/interfaces/info-modulo';
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
+import { TopicoService } from 'src/app/personalizavel/topico.service';
 import { ServiceAppService } from 'src/app/service-app.service';
 
 /**
@@ -35,7 +36,7 @@ export class HomeComponent {
     private http: HttpClient,
     private route: ActivatedRoute,
     public downloadService: DownloadPlataformaService,
-    private renderer: Renderer2
+    private topicoService: TopicoService
   ) {}
 
   /**
@@ -44,18 +45,21 @@ export class HomeComponent {
   tokenData: any;
 
   ngOnInit(): void {
+    
     const ltik = this.route.snapshot.queryParamMap.get('ltik');
     if (ltik) {
       this.getModuloInfo(ltik)
 
-      this.moduloService.getUserInfo(ltik).subscribe(
-        (data) => {
-          this.appService.setDadosCompletos(data);
-        },
-        (error) => {
-          console.error('Error:', error);
-        }
-      );
+      
+
+      // this.moduloService.getUserInfo(ltik).subscribe(
+      //   (data) => {
+      //     this.appService.setDadosCompletos(data);
+      //   },
+      //   (error) => {
+      //     console.error('Error:', error);
+      //   }
+      // );
     } else {
       const token = JSON.parse(localStorage.getItem('token') as string)
       if (token){
@@ -72,12 +76,27 @@ export class HomeComponent {
         this.moduloService.setDadosModulo(data);
         const token = data.user.ltik
         localStorage.setItem('token', JSON.stringify(token))
+
+        // busca userTopico
+        this.getUserTopicoInfo(
+        this.moduloService.dados_modulo.modulo.id,
+        this.moduloService.dados_modulo.user.id_aluno,
+        token
+      )
       },
       error: (err) => {
         console.error("Erro ao buscar dados do módulo", err);
       }
     });
     }
+  }
+
+  getUserTopicoInfo(id_modulo: number, id_aluno: number, ltik: string){
+    this.topicoService.getUserTopicoInfo(id_modulo, id_aluno, ltik).subscribe(
+      (data) => {
+        localStorage.setItem('userTopico', JSON.stringify(data))
+      }
+    )
   }
 
 
@@ -100,8 +119,11 @@ export class HomeComponent {
     console.log(topicoId)
     this.moduloService.controll_topico = topicoId
     this.sidenavContainer.close();
-    if (this.appService.dados_completos.userTopico[this.moduloService.controll_topico].UsuarioTopicos[0].indice_video != null) {
-      this.appService.currentVideoIndex = this.appService.dados_completos.userTopico[this.moduloService.controll_topico].UsuarioTopicos[0].indice_video
+
+    const indice_video = this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].indice_video
+
+    if (indice_video != null) {
+      this.appService.currentVideoIndex = indice_video
       console.log("Video retornado salvo já")
     }else{
       this.appService.currentVideoIndex = 0

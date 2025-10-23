@@ -3,7 +3,7 @@
     <mat-icon class="close" (click)="fecharMenu.emit()">close</mat-icon>
   </div>
   <p class="titulo-topico center">
-    {{ this.ltiService.dados_completos.modulo.nome_modulo }}
+    {{ moduloService.dados_modulo.modulo.nome_modulo }}
   </p>
   <div class="progresso center">
     <p class="texto-progresso">Progresso:</p>
@@ -12,13 +12,13 @@
       mode="determinate"
       color="warn"
       this.teste
-      [value]="this.moduloService.dados_modulo.userModulo.nota"
+      [value]="moduloService.dados_modulo.userModulo.nota"
     ></mat-progress-bar>
-    <p>{{ this.moduloService.dados_modulo.userModulo.nota }}%</p>
+    <p>{{ moduloService.dados_modulo.userModulo.nota }}%</p>
   </div>
   <p class="p-progresso">
-    {{ getQuantidadeVideosConcluidos() }} /
-    {{ this.ltiService.dados_completos.topicos.length }} Tópicos Concluídos
+    {{ getQuantidadeTopicosConcluidos() }} /
+    {{ topicoService.dados_topico.length }} Tópicos Concluídos
   </p>
 </div>
 
@@ -27,7 +27,7 @@
     <div
       class="topico-container"
       *ngFor="
-        let topico of this.ltiService.dados_completos?.topicos;
+        let topico of topicoService.dados_topico;
         index as i
       "
       [ngClass]="{
@@ -43,12 +43,14 @@
       <p
         *ngIf="verificarConcluido(i) == true && verificaMenuHome == false"
         (click)="navegarModulo.emit(i)"
+        
       >
         {{ i + 1 }}. {{ topico.nome_topico }}
       </p>
       <p
         *ngIf="verificarConcluido(i) == true && verificaMenuHome == true"
         (click)="navegarModulo.emit(i)"
+        (click)="getDadosUserInfo()"
         routerLink="topicos"
       >
         {{ i + 1 }}. {{ topico.nome_topico }}
@@ -56,8 +58,7 @@
       <div class="caixa">
         <mat-icon
           *ngIf="
-            this.ltiService.dados_completos?.userTopico[i]?.UsuarioTopicos[0]
-              .encerrado
+            topicoService.dados_topico[i].UsuarioTopicos[0].encerrado
           "
           >check</mat-icon
         >

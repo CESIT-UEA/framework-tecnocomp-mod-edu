@@ -3,6 +3,8 @@ import { AprendizagemEInformaticaService } from '../../aprendizagem-e-informatic
 import { Router } from '@angular/router';
 import { ServiceAppService } from 'src/app/service-app.service';
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
+import { TopicoService } from 'src/app/personalizavel/topico.service';
+import { Topico } from 'src/app/interfaces/topico';
 
 @Component({
   selector: 'app-geral',
@@ -15,7 +17,7 @@ export class GeralComponent implements OnInit {
     private router: Router,
     public ltiService: ServiceAppService,
     public moduloService: ModuloService,
-
+    public topicoService: TopicoService
   ) {}
   @Input() nome!: string;
   @Input() videos!: string[];
@@ -33,11 +35,11 @@ export class GeralComponent implements OnInit {
     if (this.ltiService.controlAtividade >= this.videos.length) {
       this.ltiService.controlAtividade = 1;
     }
-    console.log(this.ltiService.dados_completos.userTopico[
-      this.moduloService.controll_topico
-    ].UsuarioTopicos[0].resposta_errada);
-
+    
   }
+
+ 
+
   navigation() {
     this.router.navigate([this.proximo]);
   }

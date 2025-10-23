@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { DadosModulo } from '../interfaces/info-modulo';
+import { Topico } from '../interfaces/topico';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class ModuloService {
 
   public dados_modulo!: DadosModulo;  
   storageKey = "dados_modulo"
+  tokenStorage = localStorage.getItem('token')
 
   urlInicio!: string;
   topicos: any;
@@ -34,6 +36,7 @@ export class ModuloService {
     console.log(`Requisição LTI sendo feita para: ${this.baseUrlLTI}/moduloInfo?ltik=${ltik}`)
     return this.http.get<any>(`${this.baseUrlLTI}/moduloInfo?ltik=${ltik}`)
   }
+
 
   getModuloPorNome(nomeModulo: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrlLTI}/modulos?nome_modulo=${nomeModulo}`);

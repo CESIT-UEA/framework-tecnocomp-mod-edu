@@ -1,5 +1,8 @@
 import { Component, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Topico } from 'src/app/interfaces/topico';
+import { ModuloService } from 'src/app/personalizavel/modulo.service';
+import { TopicoService } from 'src/app/personalizavel/topico.service';
 import { ServiceAppService } from 'src/app/service-app.service';
 
 /**
@@ -26,20 +29,36 @@ export class BotoesSectionComponent {
    */
   @Input() caminho_ebook!: string;
 
+  dados_topico!: Topico[];
+
   /**
    * @method
    * Constructor do componente de Botões, que utiliza o Router
    */
-  constructor(private router: Router,public ltiService: ServiceAppService) {}
+  constructor(private topicoService: TopicoService, public moduloService: ModuloService, private appService: ServiceAppService) {}
 
   getVerificaCompleto() {
-    for (let userTopico of this.ltiService.dados_completos.userTopico) {
-      if (!userTopico.UsuarioTopicos[0]?.encerrado) {
-        return false; // Retorna falso assim que encontrar um "encerrado" diferente de true
+    this.dados_topico = this.topicoService.getDadosUserTopico();
+    for (let userTopico of this.dados_topico){
+      if (!userTopico.UsuarioTopicos[0].encerrado){
+        return false;  // Retorna falso assim que encontrar um "encerrado" diferente de true
       }
-    }
-    return true; // Retorna verdadeiro se todos os itens passarem na verificação
+      } 
+    return true // Retorna verdadeiro se todos os itens passarem na verificação
   }
 
+  getDadosUserInfo(){
+    let ltik = localStorage.getItem('token');
+    if (ltik){
+      this.moduloService.getUserInfo(JSON.parse(ltik)).subscribe(
+         (data) => {
+           this.appService.setDadosCompletos(data);
+         },
+         (error) => {
+           console.error('Error:', error);
+         }
+       );
+    }
+  }
 
 }

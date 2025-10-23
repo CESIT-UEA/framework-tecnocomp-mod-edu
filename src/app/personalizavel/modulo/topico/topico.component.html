@@ -96,8 +96,9 @@
                 </div>
               </nav>
             </mat-toolbar>
+            <!-- this.ltiService.dados_completos.topicos?.[this.moduloService.controll_topico]?.nome_topico -->
             <app-geral
-              [nome]="this.ltiService.dados_completos.topicos?.[this.moduloService.controll_topico]?.nome_topico"
+              [nome]="this.topicoService.dados_topico[this.moduloService.controll_topico].nome_topico"
               [videos]="this.ltiService.dados_completos.topicos?.[this.moduloService.controll_topico]?.VideoUrls"
               (referenciasClick)="referenciasClick()"
               (linksClick)="linksClick()"

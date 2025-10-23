@@ -34,9 +34,7 @@
           <mat-icon
             class="concluido"
             *ngIf="
-              this.ltiService.dados_completos.userTopico[
-                this.moduloService.controll_topico
-              ].UsuarioTopicos[0].isTextoApoio == true
+              this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isTextoApoio == true
             "
             >check</mat-icon
           >
@@ -50,9 +48,7 @@
           <mat-icon
             class="concluido"
             *ngIf="
-              this.ltiService.dados_completos.userTopico[
-                this.moduloService.controll_topico
-              ].UsuarioTopicos[0].isSaibaMais == true
+            this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isSaibaMais == true
             "
             >check</mat-icon
           >
@@ -69,9 +65,7 @@
           <mat-icon
             class="concluido"
             *ngIf="
-              this.ltiService.dados_completos.userTopico[
-                this.moduloService.controll_topico
-              ].UsuarioTopicos[0].isReferencias == true
+              this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isReferencias == true
             "
             >check</mat-icon
           >
@@ -86,12 +80,9 @@
         <button
           *ngIf="
             this.ltiService.verificarTodosVideosCompletos(this.videos) &&
-            this.ltiService.dados_completos.userTopico[
-              this.moduloService.controll_topico
-            ].UsuarioTopicos[0].resposta_errada == null &&
-            this.ltiService.dados_completos.userTopico[
-              this.moduloService.controll_topico
-            ].UsuarioTopicos[0].encerrado != true
+            this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].resposta_errada == null
+            &&
+            this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].encerrado != true
           "
           class="atividade-botao active"
           (click)="atividadeClick.emit()"
@@ -108,12 +99,9 @@
         <button
           *ngIf="
             this.ltiService.verificarTodosVideosCompletos(this.videos) &&
-            this.ltiService.dados_completos.userTopico[
-              this.moduloService.controll_topico
-            ].UsuarioTopicos[0].resposta_errada != null &&
-            this.ltiService.dados_completos.userTopico[
-              this.moduloService.controll_topico
-            ].UsuarioTopicos[0].encerrado == false
+            this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].resposta_errada != null
+            &&
+            this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].encerrado == false
           "
           class="atividade-botao active-incorreto"
           (click)="atividadeClick.emit()"
@@ -130,9 +118,7 @@
         <button
           *ngIf="
             this.ltiService.verificarTodosVideosCompletos(this.videos) &&
-            this.ltiService.dados_completos.userTopico[
-              this.moduloService.controll_topico
-            ].UsuarioTopicos[0].encerrado == true
+            this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].encerrado == true
           "
           class="atividade-botao active-correto"
           (click)="atividadeClick.emit()"
@@ -163,7 +149,7 @@
         <!-- Botão para download do e-book do tópico -->
         <a
           href="{{
-            this.ltiService.dados_completos.topicos?.[this.moduloService.controll_topico]?.ebookUrlGeral
+            this.topicoService.dados_topico[this.moduloService.controll_topico].ebookUrlGeral
           }}"
           target="_blank"
         >
