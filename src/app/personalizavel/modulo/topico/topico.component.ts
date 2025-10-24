@@ -15,6 +15,7 @@ import { config } from 'rxjs';
 import { MatSidenavContainer } from '@angular/material/sidenav';
 import { DownloadPlataformaService } from 'src/app/download-plataforma.service';
 import { TopicoService } from '../../topico.service';
+import { VideoService } from '../../video.service';
 
 @Component({
   selector: 'app-topico',
@@ -30,22 +31,29 @@ export class TopicoComponent implements OnInit {
   menu = false;
 
   constructor(
-    private route: ActivatedRoute,
     public moduloService: ModuloService,
-    private router: Router,
     public ltiService: ServiceAppService,
     public downloadService: DownloadPlataformaService,
-    public topicoService: TopicoService
+    public topicoService: TopicoService,
+    public videoService: VideoService
   ) {}
 
   ngOnInit(): void {
-    this.moduloService.dados_modulo = JSON.parse(localStorage.getItem('dados_modulo')!)
-    this.topicoService.dados_topico = JSON.parse(localStorage.getItem('userTopico')!)
-    // this.ltiService.getDadosCompletos();
-    // localStorage.getItem('userTopico')
+    this.carregaInfoModuloAndUserTopicos()
+    this.carregaVideosUrl()
     this.ltiService.loadYouTubeAPI();
     this.downloadService.initEventInstall()
+  console.log('teste ',this.videoService.dados_video)
+  }
 
+  carregaInfoModuloAndUserTopicos(){
+    this.moduloService.dados_modulo = JSON.parse(localStorage.getItem('dados_modulo')!)
+    this.topicoService.dados_topico = JSON.parse(localStorage.getItem('userTopico')!)
+  }
+
+
+  carregaVideosUrl(){
+    this.videoService.dados_video = JSON.parse(localStorage.getItem('videosUrl')!)
   }
   
   atividadeClick() {

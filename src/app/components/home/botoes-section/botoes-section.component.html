@@ -5,9 +5,8 @@
       <button 
         *ngIf="getVerificaCompleto() == false" 
         class="start-button" 
-        (click)="getVerificaCompleto()" 
+        (click)="getVerificaCompleto(); getDadosUserInfo(); carregaVideosUrl()" 
         [routerLink]="urlInicio"
-        (click)="getDadosUserInfo()"
         >
         {{ dados_topico[0].UsuarioTopicos[0].encerrado == true ? "CONTINUAR" :"INICIAR"}}
       </button>

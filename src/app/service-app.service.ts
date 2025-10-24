@@ -7,6 +7,7 @@ import { TopicoF } from './components/forum/topico-forum/topico-forum.interface'
 import { environment } from 'src/environments/environment.development';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { ModuloService } from './personalizavel/modulo.service';
+import { VideoUrl } from './interfaces/video-url';
 
 /**
  * Service a qual guarda as operações essenciais, como o envio de notas, as informações do usuario, etc
@@ -248,7 +249,7 @@ export class ServiceAppService {
     });
   }
 
-  public verificarTodosVideosCompletos(videos: any[]): boolean {
+  public verificarTodosVideosCompletos(videos: VideoUrl[]): boolean {
     // Itera sobre todos os vídeos
     for (const video of videos) {
       // Para cada vídeo, verifica os dados de UsuarioVideos

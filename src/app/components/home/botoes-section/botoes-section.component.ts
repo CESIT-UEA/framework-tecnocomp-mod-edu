@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Topico } from 'src/app/interfaces/topico';
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
 import { TopicoService } from 'src/app/personalizavel/topico.service';
+import { VideoService } from 'src/app/personalizavel/video.service';
 import { ServiceAppService } from 'src/app/service-app.service';
 
 /**
@@ -35,7 +36,12 @@ export class BotoesSectionComponent {
    * @method
    * Constructor do componente de Botões, que utiliza o Router
    */
-  constructor(private topicoService: TopicoService, public moduloService: ModuloService, private appService: ServiceAppService) {}
+  constructor(
+    private topicoService: TopicoService, 
+    public moduloService: ModuloService, 
+    private appService: ServiceAppService,
+    private videoService: VideoService
+  ) {}
 
   getVerificaCompleto() {
     this.dados_topico = this.topicoService.getDadosUserTopico();
@@ -59,6 +65,16 @@ export class BotoesSectionComponent {
          }
        );
     }
+  }
+
+   carregaVideosUrl(){
+    this.videoService.getVideosUrlByModuloId(
+      this.moduloService.dados_modulo.modulo.id, 
+      this.moduloService.dados_modulo.user.ltik
+    ).subscribe(dados => {
+      localStorage.setItem('videosUrl', JSON.stringify(dados))
+      this.videoService.dados_video = dados
+    })
   }
 
 }

@@ -5,8 +5,10 @@ import {
   AfterViewInit,
   OnDestroy,
 } from '@angular/core';
+import { VideoUrl } from 'src/app/interfaces/video-url';
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
 import { TopicoService } from 'src/app/personalizavel/topico.service';
+import { VideoService } from 'src/app/personalizavel/video.service';
 import { ServiceAppService } from 'src/app/service-app.service';
 
 @Component({
@@ -15,21 +17,34 @@ import { ServiceAppService } from 'src/app/service-app.service';
   styleUrls: ['./slide-unidade.component.css'],
 })
 export class SlideUnidadeComponent implements OnInit, AfterViewInit, OnDestroy {
-  @Input({ required: true }) videos!: any[];
+  @Input({ required: true }) videos!: VideoUrl[];
   isLoading = false;
 
   constructor(
     public ltiService: ServiceAppService,
     public moduloService: ModuloService,
-    public topicoService: TopicoService
+    public topicoService: TopicoService,
+    public videoService: VideoService
   ) {}
 
   ngOnInit(): void {
+    this.carregaInfoModuloAndUserTopicos()
+    this.carregaVideosUrl()
     const indice_video = this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].indice_video
     if (indice_video != null) {
       this.ltiService.currentVideoIndex = indice_video
     }
     this.ltiService.loadYouTubeAPI();
+    console.log('aqui videos ',this.videos)
+  }
+
+  carregaInfoModuloAndUserTopicos(){
+    this.moduloService.dados_modulo = JSON.parse(localStorage.getItem('dados_modulo')!)
+    this.topicoService.dados_topico = JSON.parse(localStorage.getItem('userTopico')!)
+  }
+
+  carregaVideosUrl(){
+    this.videoService.dados_video = JSON.parse(localStorage.getItem('videosUrl')!)
   }
 
   ngAfterViewInit(): void {

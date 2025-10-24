@@ -3,6 +3,7 @@ import { Topico } from '../interfaces/topico';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { HttpClient } from '@angular/common/http';
+import { VideoUrl } from '../interfaces/video-url';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,6 @@ export class TopicoService {
     }
     return this.dados_topico
   }
+
 
 }

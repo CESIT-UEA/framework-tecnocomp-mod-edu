@@ -21,8 +21,7 @@ export class LinksNavegacaoTopicosComponent implements OnInit {
         
     }
 
-
-
+    
     verificaProximo() {
       let topicos: Topico[] = this.topicoService.dados_topico;
       if (

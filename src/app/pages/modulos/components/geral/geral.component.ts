@@ -5,6 +5,8 @@ import { ServiceAppService } from 'src/app/service-app.service';
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
 import { TopicoService } from 'src/app/personalizavel/topico.service';
 import { Topico } from 'src/app/interfaces/topico';
+import { VideoUrl } from 'src/app/interfaces/video-url';
+import { VideoService } from 'src/app/personalizavel/video.service';
 
 @Component({
   selector: 'app-geral',
@@ -17,10 +19,11 @@ export class GeralComponent implements OnInit {
     private router: Router,
     public ltiService: ServiceAppService,
     public moduloService: ModuloService,
-    public topicoService: TopicoService
+    public topicoService: TopicoService,
+    public videoService: VideoService
   ) {}
   @Input() nome!: string;
-  @Input() videos!: string[];
+  @Input() videos!: VideoUrl[];
   @Output() referenciasClick = new EventEmitter<void>();
   @Output() linksClick = new EventEmitter<void>();
   @Output() textoApoioClick = new EventEmitter<void>();
@@ -35,10 +38,15 @@ export class GeralComponent implements OnInit {
     if (this.ltiService.controlAtividade >= this.videos.length) {
       this.ltiService.controlAtividade = 1;
     }
-    
+
+    this.carregaVideosUrl()
+    this.videos = this.videoService.dados_video[this.moduloService.controll_topico].VideoUrls
   }
 
- 
+  carregaVideosUrl(){
+    this.videoService.dados_video = JSON.parse(localStorage.getItem('videosUrl')!)
+  }
+
 
   navigation() {
     this.router.navigate([this.proximo]);

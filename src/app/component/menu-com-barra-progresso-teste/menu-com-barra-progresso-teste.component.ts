@@ -49,7 +49,9 @@ export class MenuComBarraProgressoTesteComponent implements OnInit {
     public topicoService: TopicoService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.topicoService.dados_topico)
+  }
 
   verificarConcluido(i: number) {
     if (
