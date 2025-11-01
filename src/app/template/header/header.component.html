@@ -1,42 +1,92 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="over" fixedInViewport="Fixed" position="end">
-    <app-menu-com-barra-progresso-teste></app-menu-com-barra-progresso-teste>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-    <mat-toolbar class="header">
-      <img src="assets/Tecnocomp+.jpeg" alt="Tecnocom+ LOGO" />
-      <nav>
-        <div class="links">
-          <span
-            (click)="clickHeader()"
-            *ngIf="appService.controllerSwitchHome == 0"
-            class="btn-ficha"
-          >
-            Ficha Tecnica
-          </span>
-        </div>
-        <div class="end-navbar">
-            <mat-icon
-              style="color: #fff;"
-              (click)="clickHeader()"
-              *ngIf="appService.controllerSwitchHome == 1"
-              >home</mat-icon
+    <mat-sidenav #sidenav mode="over" fixedInViewport="Fixed" position="end">
+      <app-menu-com-barra-progresso-teste
+        (navegarModulo)="navegarModulo($event)"
+        (fecharMenu)="fecharMenuClick()"
+        [verificaMenuHome]="true"
+      ></app-menu-com-barra-progresso-teste>
+    </mat-sidenav>
+    <mat-toolbar
+        class="header"
+      >
+        <img
+          src="assets/tecnocomp.png"
+          alt="Tecnocom+ LOGO"
+          routerLink="./"
+          (click)="clickHeader(0)"
+        />
+        <nav>
+          <div class="links">
+            <!-- botão de navegação início -->
+            <span
+              class="btn-ficha"
+              (click)="clickHeader(0)"
+              [ngClass]="{
+                'active-topico-container':
+                  this.appService.controllerSwitchHome == 0
+              }"
+              [routerLink]="['/modulo' , moduloService.dados_modulo.modulo.nome_url]"
             >
-          <mat-icon (click)="sidenav.open()" id="icon" *ngIf="appService.controllerSwitchHome == 0">menu</mat-icon>
-        </div>
-      </nav>
-    </mat-toolbar>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
-<section>
-  <div class="position" *ngIf="appService.controllerSwitchHome == 0">
-    <div class="text">
-      <!-- Título da página inicial HOME -->
-      <p>
-        <span class="text-unidade">{{ nome }}</span>
-      </p>
+              Início
+            </span>
+            <!-- botão de navegação ficha técnica -->
+            <span
+              (click)="clickHeader(1)"
+              class="btn-ficha"
+              [ngClass]="{
+                'active-topico-container':
+                  this.appService.controllerSwitchHome == 1
+              }"
+              [routerLink]="['/modulo', moduloService.dados_modulo.modulo.nome_url ,'ficha-tecnica']"
+            >
+              Ficha Técnica
+            </span>
+            <!-- botão de navegação sobre -->
+            <span
+              class="btn-ficha"
+              (click)="clickHeader(2)"
+              [ngClass]="{
+                'active-topico-container':
+                  this.appService.controllerSwitchHome == 2
+              }"
+            >
+              Sobre
+            </span>
+          </div>
+          <div class="end-navbar">
+            <div
+              *ngIf="this.appService.perfilUser == false"
+              class="container-foto-header"
+            >
+              <div class="foto-header">
+                {{ moduloService.dados_modulo.user.nome[0] }}
+              </div>
+              <mat-icon
+                style="color: white; cursor: pointer"
+                (click)="
+                  this.appService.abreMenuUser(); $event.stopPropagation()
+                "
+              >
+                keyboard_arrow_down
+              </mat-icon>
+            </div>
+            <app-perfil-user
+              *ngIf="this.appService.perfilUser == true"
+            ></app-perfil-user>
+            <mat-icon (click)="sidenav.open()" id="icon">menu</mat-icon>
+          </div>
+        </nav>
+      </mat-toolbar>
+    <mat-sidenav-content>
+      
+      <div
+        [ngClass]="{
+          'content-container-condition':
+            this.appService.controllerSwitchHome == 1,
+          'container-pai': this.appService.controllerSwitchHome == 0
+        }"
+      >      
+        
     </div>
-  </div>
-</section>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

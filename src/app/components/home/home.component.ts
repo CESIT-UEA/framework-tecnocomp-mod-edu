@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatSidenavContainer } from '@angular/material/sidenav';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DownloadPlataformaService } from 'src/app/download-plataforma.service';
 import { DadosModulo } from 'src/app/interfaces/info-modulo';
@@ -27,7 +27,7 @@ export class HomeComponent {
   @Input() urlVideoInicial: any;
 
   renderizarMenuNavegacao: boolean = false;
-
+  currentUrl: string = '';
   /**
    * @constructor
    * Um método feito para testar caso seja clicado
@@ -48,7 +48,7 @@ export class HomeComponent {
   tokenData: any;
 
   ngOnInit(): void {
-    
+
     const ltik = this.route.snapshot.queryParamMap.get('ltik');
     if (ltik) {
       this.getModuloInfo(ltik)
@@ -105,6 +105,7 @@ export class HomeComponent {
   navigation() {
     this.router.navigate(['/teorias-da-aprendizagem']);
   }
+
 
   clickHeader(controller: number) {
     return (this.appService.controllerSwitchHome = controller)

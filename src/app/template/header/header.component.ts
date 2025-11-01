@@ -1,4 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatSidenavContainer } from '@angular/material/sidenav';
+import { ModuloService } from 'src/app/personalizavel/modulo.service';
+import { TopicoService } from 'src/app/personalizavel/topico.service';
 import { ServiceAppService } from 'src/app/service-app.service';
 
 /**
@@ -10,81 +13,42 @@ import { ServiceAppService } from 'src/app/service-app.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  @Input() nome!:string;
 
-  /**
-   * @method
-   * Constructor do componente Header, ele importa o ServiceAppService para utiliza-lo
-   */
-  constructor(public appService: ServiceAppService) {}
+  @ViewChild(MatSidenavContainer) sidenavContainer!: MatSidenavContainer;
+
+  constructor(
+    public appService: ServiceAppService,
+    public moduloService: ModuloService,
+    public topicoService: TopicoService
+  ) {}
   ngOnInit(): void {
-    if (this.nome) {
-      let words = this.nome.split('-');
-      let capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
-      let result = capitalizedWords.join(' ');
-      this.nome = result
+   
+  }
+
+  navegarModulo(topicoId:number){
+    console.log(topicoId)
+    this.moduloService.controll_topico = topicoId
+    this.sidenavContainer.close();
+
+    const indice_video = this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].indice_video
+
+    // video retorna salvo
+    if (indice_video != null) {
+      this.appService.currentVideoIndex = indice_video
+    }else{
+      this.appService.currentVideoIndex = 0
     }
+    this.appService.recreatePlayer()
   }
 
-  /**
-   * @method
-   * Controla a navegação da página HOME com a ficha técnica
-   */
-  clickHeader() {
-    if (this.appService.controllerSwitchHome == 0) {
-      return (this.appService.controllerSwitchHome = 1);
-    } else {
-      return (this.appService.controllerSwitchHome = 0);
-    }
+  fecharMenuClick() {
+    this.sidenavContainer.close();
   }
 
-  /**
-   * Vetor que guarda os tópicos do modulo
-   */
-  unidades: string[] = [
-    'Teorias da Aprendizagem',
-    'TDICs',
-    'EDUCAÇÃO  4.0',
-    'Projeto Aprendizagem e Informatica',
-  ];
-
-  /**
-   * Vetor que guarda os links dos tópicos do modulo
-   */
-  unidadesLinks: string[] = [
-    '/teorias-da-aprendizagem',
-    'TDICs',
-    'EDUCAÇÃO  4.0',
-    'Projeto Aprendizagem e Informatica',
-  ];
-
-  /**
-   * Variavel de controle sobre o menu
-   */
-  isOpen = false;
-
-  /**
-   * @method
-   * Controla a alternância da barra de lateral
-   */
-  toggleSidebar() {
-    this.isOpen = !this.isOpen;
+  clickHeader(controller: number) {
+    return (this.appService.controllerSwitchHome = controller)
   }
-
-  /**
-   * @method
-   * Controla a alternância do icone de menu, para aberto e fechado
-   */
-  menuClick() {
-    if (this.menuHeader == 'menu') {
-      this.menuHeader = 'close';
-    } else {
-      this.menuHeader = 'menu';
-    }
-  }
-
-  /**
-   * Inicialização da variavel que guarda o nome do icon
-   */
-  menuHeader = 'menu';
 }
+
+  
+  

@@ -78,31 +78,26 @@
     "
   />
   <h3>Links Úteis</h3>
-  <div class="moodle">
+  <div class="moodle" [routerLink]="['/modulo', moduloService.dados_modulo.modulo.nome_url ,'ficha-tecnica']" (click)="fecharMenu.emit()">
     <img
       src="../../../assets/icons/ficha.svg"
       alt="Icone para download do ebook"
       width="22px"
       height="24px"
     />
-    <a (click)="this.ltiService.fichaTecnica()" *ngIf="verificaMenuHome == false" routerLink="../"
+    <a  
       >Ficha Técnica</a
     >
-    <a (click)="this.ltiService.fichaTecnica()" *ngIf="verificaMenuHome == true"
-      >Ficha Técnica</a
-    >
+  
   </div>
-  <div class="moodle">
+  <div class="moodle" [routerLink]="['/modulo', moduloService.dados_modulo.modulo.nome_url ,'sobre']" (click)="fecharMenu.emit()">
     <img
       src="../../../assets/icons/sobre.svg"
       alt="Icone para download do ebook"
       width="22px"
       height="24px"
     />
-    <a (click)="this.ltiService.sobre()" *ngIf="verificaMenuHome == false" routerLink="../"
-      >Sobre</a
-    >
-    <a (click)="this.ltiService.sobre()" *ngIf="verificaMenuHome == true"
+    <a 
       >Sobre</a
     >
   </div>

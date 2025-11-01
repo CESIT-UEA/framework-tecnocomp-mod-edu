@@ -14,6 +14,7 @@ export class FichaTecnicaComponent implements OnInit {
 
   ngOnInit(): void {
     this.ltiService.getDadosCompletos();
+    this.ltiService.controllerSwitchHome = 1
   }
 
   /**
@@ -145,4 +146,6 @@ export class FichaTecnicaComponent implements OnInit {
   selectVideo(index: number) {
     this.currentVideoIndex = index;
   }
+
+  
 }

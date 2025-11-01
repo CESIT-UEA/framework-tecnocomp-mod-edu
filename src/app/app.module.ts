@@ -68,6 +68,7 @@ import { QuestaoAbertasComponent } from './components/questao-abertas/questao-ab
 import { ChatN8nComponent } from './components/chat-n8n/chat-n8n.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { LinksNavegacaoTopicosComponent } from './components/links-navegacao-topicos/links-navegacao-topicos.component';
+import { ModuloInicialComponent } from './components/modulo-inicial/modulo-inicial.component';
 
 @NgModule({
   declarations: [
@@ -118,6 +119,7 @@ import { LinksNavegacaoTopicosComponent } from './components/links-navegacao-top
     QuestaoAbertasComponent,
     ChatN8nComponent,
     LinksNavegacaoTopicosComponent,
+    ModuloInicialComponent,
   ],
   imports: [
     BrowserModule,

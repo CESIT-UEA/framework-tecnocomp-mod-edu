@@ -15,6 +15,10 @@ import { TopicoComponent } from './personalizavel/modulo/topico/topico.component
 import { PaginaInicialComponent } from './components/pagina-inicial/pagina-inicial.component';
 import { CadastroAvaComponent } from './components/cadastro-ava/cadastro-ava.component';
 import { ModuloConcluidoComponent } from './components/modulo-concluido/modulo-concluido.component';
+import { FichaTecnicaComponent } from './components/home/ficha-tecnica/ficha-tecnica.component';
+import { HeaderComponent } from './template/header/header.component';
+import { ModuloInicialComponent } from './components/modulo-inicial/modulo-inicial.component';
+import { SobreComponent } from './components/home/sobre/sobre.component';
 
 const routes: Routes = [
   { path: '', component: PaginaInicialComponent },
@@ -43,7 +47,14 @@ const routes: Routes = [
     component: HomeComponent,
   },
 
-  { path: 'modulo/:nome_modulo', component: ModuloComponent },
+  { 
+    path: 'modulo/:nome_modulo', 
+    component: ModuloComponent, 
+    children: [
+      { path: '', component: ModuloInicialComponent}, 
+      { path: 'ficha-tecnica', component: FichaTecnicaComponent},
+      { path: 'sobre', component: SobreComponent }
+  ] },
   { path: 'modulo/:nome_modulo/topicos', component: TopicoComponent },
   { path: '**', component: ErrorComponent },
 ];

@@ -4,10 +4,6 @@
   src: url("../../../assets/fonteProjeto.ttf");
 }
 
-/* teste */
-
-/* ate aqui */
-
 .main-container {
   background: url("../../../assets/fundo-alternativo.png"),
     lightgray -283px -148.75px / 134.172% 160.539%;
@@ -24,6 +20,7 @@
   justify-content: center;
 }
 
+
 .content-container {
   width: 100%;
   height: 80vh;
@@ -31,34 +28,6 @@
   grid-template-columns: 60% 40%;
   padding: 0 40px;
   align-items: center;
-}
-.voltar-ava {
-  height: 10vh;
-  color: white;
-  text-align: center;
-}
-.voltar-ava .button {
-  border-radius: 8px;
-  background: linear-gradient(
-      90deg,
-      rgba(92, 51, 153, 0.75) 0%,
-      rgba(71, 42, 125, 0.61) 14.78%,
-      rgba(57, 36, 107, 0.53) 24.39%,
-      rgba(29, 38, 92, 0.45) 57.95%,
-      rgba(40, 53, 122, 0.6) 85.46%,
-      rgba(51, 68, 153, 0.75) 100%
-    ),
-    #0f0f0f;
-  width: fit-content;
-  padding: 6px 15px;
-  margin: 0 auto;
-  cursor: pointer;
-}
-/* Mat-Sidenav */
-mat-sidenav {
-  height: 100vh;
-  background-color: transparent;
-  width: 320px;
 }
 
 
@@ -68,9 +37,7 @@ mat-sidenav {
   margin-bottom: 70px;
 }
 
-section.content-container-ficha-tecnica {
-  height: 100%;
-}
+
 
 /* Responsividade do iframe do YouTube */
 app-video-section iframe {
@@ -79,97 +46,7 @@ app-video-section iframe {
   aspect-ratio: 16 / 9; /* Mantém proporção padrão de vídeos */
 }
 
-.links {
-  display: flex;
-  gap: 40px;
-}
 
-.btn-ficha, .btn-home, .btn-sobre {
-  color: #fff;
-  font-size: 16px;
-  font-weight: normal;
-  cursor: pointer;
-  display: inline-block;
-}
-.btn-ficha:hover, .btn-home:hover, .btn-sobre:hover {
-  border-bottom: 3px solid #793cd4;
-  padding-bottom: 3px;
-  width: fit-content;
-}
-
-.active-topico-container {
-  border-bottom: 3px solid #793cd4;
-  padding-bottom: 3px;
-  width: fit-content;
-}
-
-/* Header e navegação */
-.header nav {
-  width: 60%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.end-navbar {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  margin-right: 35px;
-}
-.mat-drawer-container {
-  background-color: transparent;
-  height: 100%;
-}
-.header {
-  display: flex;
-  align-items: center;
-  background-color: transparent;
-  justify-content: space-between;
-  border-bottom: 2px solid #1c1c1c;
-  height: 10vh;
-  padding: 5px 0;
-}
-.header-fixed{
-  /* position: fixed; */
-  background-color: black;
-  /* margin-bottom: 40px;  */
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-}
-.header img {
-  max-height: 80px;
-  padding: 5px 0;
-  margin-left: 1rem;
-  cursor: pointer;
-}
-#icon {
-  color: #fff;
-  cursor: pointer;
-  font-size: 35px;
-  width: 30px;
-  height: 30px;
-}
-.container-foto-header {
-  display: flex;
-  padding: 2px;
-  align-items: center;
-  gap: 5px;
-  border-radius: 20px;
-  background: #131313;
-}
-.foto-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 28px;
-  height: 28px;
-  color: black;
-  background-color: white;
-  border-radius: 28px;
-  border: 1px solid var(--Primaria, #9665df);
-}
 /* Grid geral */
 .content-container-section {
   display: grid;

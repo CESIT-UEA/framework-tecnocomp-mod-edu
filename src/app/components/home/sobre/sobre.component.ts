@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ModuloService } from 'src/app/personalizavel/modulo.service';
 import { ServiceAppService } from 'src/app/service-app.service';
 
 @Component({
@@ -6,7 +7,14 @@ import { ServiceAppService } from 'src/app/service-app.service';
   templateUrl: './sobre.component.html',
   styleUrls: ['./sobre.component.css'],
 })
-export class SobreComponent {
+export class SobreComponent implements OnInit{
+
+  constructor(private ltiService: ServiceAppService, public moduloService: ModuloService){}
+
+  ngOnInit(): void {
+      this.ltiService.controllerSwitchHome = 2
+  }
+
   cards = [
     {
       titulo: 'Objetivo',

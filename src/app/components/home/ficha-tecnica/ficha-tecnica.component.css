@@ -33,6 +33,12 @@
   font-weight: 700;
   line-height: normal;
 }
+
+.content-container-condition {
+  height: 90vh;
+}
+
+
 .container-cima p {
   margin: 40px 0;
 }
