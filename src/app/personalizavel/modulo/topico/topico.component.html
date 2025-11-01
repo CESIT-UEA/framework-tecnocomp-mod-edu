@@ -25,12 +25,12 @@
       ></app-saiba-mais>
     </div>
 
-    <div *ngSwitchCase="'4'" style="height: 100%">
+    <!-- <div *ngSwitchCase="'4'" style="height: 100%">
       <app-slide
         (textoApoioClick)="textoApoioClick()"
         [caminhoSlide]="this.topicoService.dados_topico[moduloService.controll_topico].textoApoio"
       ></app-slide>
-    </div>
+    </div> -->
 
     <div class="container" *ngSwitchDefault>
       <div
@@ -102,7 +102,7 @@
               [videos]="this.videoService.dados_video[this.moduloService.controll_topico].VideoUrls"
               (referenciasClick)="referenciasClick()"
               (linksClick)="linksClick()"
-              (textoApoioClick)="textoApoioClick()"
+              
               (atividadeClick)="atividadeClick()"
               [liberado]="this.moduloService.bloqueio?.[this.moduloService.controll_topico]?.encerrado"
             ></app-geral>

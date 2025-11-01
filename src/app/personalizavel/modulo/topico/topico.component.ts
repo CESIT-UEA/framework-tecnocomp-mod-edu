@@ -88,21 +88,21 @@ export class TopicoComponent implements OnInit {
     }
   }
 
-  textoApoioClick() {
-    this.controllerSwitch =
-      this.controllerSwitch == 'default' ? '4' : 'default';
+  // textoApoioClick() {
+  //   this.controllerSwitch =
+  //     this.controllerSwitch == 'default' ? '4' : 'default';
 
-    if (
-      this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isTextoApoio == false
-    ) {
-      this.ltiService.enviarVistoTextoApoio().subscribe({
-        next: (userTopico) => {
-          this.topicoService.setDadosTopico(userTopico)
-          this.carregaInfoModuloAndUserTopicos()
-        }
-      })
-    }
-  }
+  //   if (
+  //     this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isTextoApoio == false
+  //   ) {
+  //     this.ltiService.enviarVistoTextoApoio().subscribe({
+  //       next: (userTopico) => {
+  //         this.topicoService.setDadosTopico(userTopico)
+  //         this.carregaInfoModuloAndUserTopicos()
+  //       }
+  //     })
+  //   }
+  // }
   
 
   fecharMenuClick() {

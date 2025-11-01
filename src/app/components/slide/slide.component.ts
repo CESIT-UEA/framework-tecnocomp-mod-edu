@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ModuloService } from 'src/app/personalizavel/modulo.service';
+import { TopicoService } from 'src/app/personalizavel/topico.service';
+import { ServiceAppService } from 'src/app/service-app.service';
 
 /**
  * Componente depreciado, era responsavel por ser o slide do texto de apoio. É um componente reutilizavel
@@ -10,13 +13,22 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./slide.component.css'],
 })
 export class  SlideComponent implements OnInit {
-  @Input() caminhoSlide!: any;
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(
+    private sanitizer: DomSanitizer,
+    private moduloService: ModuloService, 
+    private topicoService: TopicoService,
+    private ltiService: ServiceAppService,
+  ) {}
   teste:any;
 
-  @Output() textoApoioClick = new EventEmitter<void>();
+  // @Output() textoApoioClick = new EventEmitter<void>();
 
+  
   ngOnInit(): void {
+ 
+    this.atualizarDados()
+    this.enviarVisto()
+
     this.teste = `<div style="
     display:flex;
     flex-direction:collumn;
@@ -31,5 +43,27 @@ export class  SlideComponent implements OnInit {
    </div>
    `;
     this.teste = this.sanitizer.bypassSecurityTrustHtml(this.teste);
+  }
+
+  get caminhoSlide(){
+    return this.topicoService.dados_topico[this.moduloService.controll_topico].textoApoio
+  }
+
+  enviarVisto(){
+      if (
+      this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isTextoApoio == false
+    ) {
+      this.ltiService.enviarVistoTextoApoio().subscribe({
+        next: (userTopico) => {
+          this.topicoService.setDadosTopico(userTopico)
+          this.atualizarDados()
+        }
+      })
+    }
+  }
+
+  atualizarDados(){
+    this.moduloService.getDadosModuloStorage()
+    this.topicoService.getDadosTopicosStorage()
   }
 }

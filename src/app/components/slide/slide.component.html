@@ -15,7 +15,7 @@
     </div>
     <!-- ícone que quando clicado volta para a página geral da unidade -->
     <img
-      (click)="textoApoioClick.emit()"
+      [routerLink]="['../']"
       src="assets/icons/close.svg"
       alt="Icone para ir para a atividade da unidade"
       width="30px"

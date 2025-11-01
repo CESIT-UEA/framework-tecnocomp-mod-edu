@@ -19,14 +19,15 @@
           src="assets/tecnocomp.png"
           alt="Tecnocom+ LOGO"
           routerLink="./"
-          (click)="clickHeader(0)"
         />
         <nav>
           <div class="links">
             <!-- botão de navegação início -->
             <span
               class="btn-ficha"
-              (click)="clickHeader(0)"
+              [ngClass]="{
+          'active-topico-container': this.appService.controllerSwitchHome == 0
+            }"
               routerLinkActive="active-topico-container"
               [routerLinkActiveOptions]="{exact: true}"
               [routerLink]="['/modulo',  moduloService.dados_modulo.modulo.nome_url ]"
@@ -35,7 +36,6 @@
             </span>
             <!-- botão de navegação ficha técnica -->
             <span
-              (click)="clickHeader(1)"
               class="btn-ficha"
               routerLinkActive="active-topico-container"
               [routerLinkActiveOptions]="{exact: true}"
@@ -46,7 +46,6 @@
             <!-- botão de navegação sobre -->
             <span
               class="btn-ficha"
-              (click)="clickHeader(2)"
               routerLinkActive="active-topico-container"
               [routerLinkActiveOptions]="{exact: true}"
               [routerLink]="['/modulo', moduloService.dados_modulo.modulo.nome_url ,'sobre']"

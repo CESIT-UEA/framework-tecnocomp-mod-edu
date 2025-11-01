@@ -40,4 +40,11 @@ export class TopicoService {
     get dadosTopico(): Topico[] | null {
       return this.dadosTopicoSubject.value;
     }
+
+    getDadosTopicosStorage(): void {
+      const dados = localStorage.getItem('userTopico')
+      if (dados){
+        this.dados_topico = JSON.parse(dados)
+      }
+  }
 }

@@ -25,7 +25,7 @@
       <!-- Todo: Fazer o NG template dos-->
       <!-- Botão que quando clicado vai para o componente saiba-mais -->
       <div class="botoes-cima">
-        <button class="textoApoio" (click)="textoApoioClick.emit()">
+        <button class="textoApoio" [routerLink]="['/modulo', moduloService.dados_modulo.modulo.nome_url, 'topicos', 'texto_de_apoio']">
           <img
             src="../../../../../assets/icons/texto-de-apoio.svg"
             alt="Icone para download do ebook"

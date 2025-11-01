@@ -56,7 +56,7 @@ export class HomeComponent {
     } else {
       const token = JSON.parse(localStorage.getItem('token') as string)
       if (token){
-        this.moduloService.getDadosModulo();
+        this.moduloService.getDadosModuloStorage();
         const userTopico = localStorage.getItem('userTopico')
         if (userTopico) {
           this.topicoService.setDadosTopico(JSON.parse(userTopico))

@@ -19,6 +19,7 @@ import { FichaTecnicaComponent } from './components/home/ficha-tecnica/ficha-tec
 import { HeaderComponent } from './template/header/header.component';
 import { ModuloInicialComponent } from './components/modulo-inicial/modulo-inicial.component';
 import { SobreComponent } from './components/home/sobre/sobre.component';
+import { SlideComponent } from './components/slide/slide.component';
 
 const routes: Routes = [
   { path: '', component: PaginaInicialComponent },
@@ -56,6 +57,7 @@ const routes: Routes = [
       { path: 'sobre', component: SobreComponent }
   ] },
   { path: 'modulo/:nome_modulo/topicos', component: TopicoComponent },
+  { path: 'modulo/:nome_modulo/topicos/texto_de_apoio', component: SlideComponent},
   { path: '**', component: ErrorComponent },
 ];
 

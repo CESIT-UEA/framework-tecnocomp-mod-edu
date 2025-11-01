@@ -46,10 +46,10 @@ export class ModuloService {
 
   setDadosModulo(dados: DadosModulo){
     localStorage.setItem(this.storageKey, JSON.stringify(dados));
-    this.getDadosModulo()
+    this.getDadosModuloStorage()
   }
 
-  getDadosModulo(): void {
+  getDadosModuloStorage(): void {
     const dados = localStorage.getItem(this.storageKey)
     if (dados){
       this.dados_modulo = JSON.parse(dados)
