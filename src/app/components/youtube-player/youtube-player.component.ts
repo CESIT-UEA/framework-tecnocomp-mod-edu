@@ -1,5 +1,5 @@
 import { SafeResourceUrl, DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { Component, Input, OnInit, Sanitizer } from '@angular/core';
+import { Component, Input, OnInit, Sanitizer, NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-youtube-player',
@@ -14,7 +14,7 @@ export class YoutubePlayerComponent implements OnInit {
 
   // Inicializa a API do YouTube quando o componente é carregado
   ngOnInit(): void {
-    console.log(this.idVideo);
+    
   }
 
   // Carrega o script da API do YouTube dinamicamente
@@ -44,11 +44,11 @@ export class YoutubePlayerComponent implements OnInit {
   }
 
   onPlayerReady(event: any): void {
-    console.log('Player está pronto!');
+    // console.log('Player está pronto!');
   }
 
   onPlayerStateChange(event: any): void {
-    console.log('Estado do player:', event.data);
+    // console.log('Estado do player:', event.data);
     if (event.data == 0) {
       console.log('Video terminou');
     }
@@ -60,8 +60,8 @@ export class YoutubePlayerComponent implements OnInit {
 
   pauseVideo(): void {
     this.player.pauseVideo();
-    console.log(this.player.getPlayerState());
-        console.log(    this.player.getIframe())
+    // console.log(this.player.getPlayerState());
+        // console.log(    this.player.getIframe())
   }
 
   stopVideo(): void {
@@ -71,7 +71,7 @@ export class YoutubePlayerComponent implements OnInit {
   seekTo(seconds: number): void {
     this.player.seekTo(seconds, true);
 
-    console.log(this.player.getVideoLoadedFraction());
+    // console.log(this.player.getVideoLoadedFraction());
   }
 
   muteVideo(): void {

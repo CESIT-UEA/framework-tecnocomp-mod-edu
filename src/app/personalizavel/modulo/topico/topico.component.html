@@ -28,7 +28,7 @@
     <div *ngSwitchCase="'4'" style="height: 100%">
       <app-slide
         (textoApoioClick)="textoApoioClick()"
-        [caminhoSlide]="this.ltiService.dados_completos.topicos?.[this.moduloService.controll_topico]?.textoApoio"
+        [caminhoSlide]="this.topicoService.dados_topico[moduloService.controll_topico].textoApoio"
       ></app-slide>
     </div>
 

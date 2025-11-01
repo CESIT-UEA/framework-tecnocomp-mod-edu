@@ -121,6 +121,7 @@
 .disabled {
   opacity: 0;
   cursor: auto;
+  pointer-events: none;
 }
 .proximo {
   justify-self: start;

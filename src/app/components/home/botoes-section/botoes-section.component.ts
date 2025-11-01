@@ -30,26 +30,31 @@ export class BotoesSectionComponent {
    */
   @Input() caminho_ebook!: string;
 
-  dados_topico!: Topico[];
+  carregandoBotao: boolean = true;
 
+  dados_topico!: Topico[];
   /**
    * @method
    * Constructor do componente de Botões, que utiliza o Router
    */
   constructor(
-    private topicoService: TopicoService, 
+    public topicoService: TopicoService, 
     public moduloService: ModuloService, 
     private appService: ServiceAppService,
     private videoService: VideoService
   ) {}
 
   getVerificaCompleto() {
-    this.dados_topico = this.topicoService.getDadosUserTopico();
-    for (let userTopico of this.dados_topico){
+    if (!this.topicoService.dadosTopico) return null
+
+
+    for (let userTopico of this.topicoService.dadosTopico){
       if (!userTopico.UsuarioTopicos[0].encerrado){
+        this.carregandoBotao = false
         return false;  // Retorna falso assim que encontrar um "encerrado" diferente de true
       }
       } 
+    this.carregandoBotao = false
     return true // Retorna verdadeiro se todos os itens passarem na verificação
   }
 

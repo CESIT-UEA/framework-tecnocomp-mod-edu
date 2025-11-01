@@ -6,6 +6,7 @@ import {
   Output,
   signal,
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Topico } from 'src/app/interfaces/topico';
 import { AprendizagemEInformaticaService } from 'src/app/pages/modulos/aprendizagem-e-informatica/aprendizagem-e-informatica.service';
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
@@ -31,6 +32,7 @@ export class MenuComBarraProgressoTesteComponent implements OnInit {
   @Output() navegarModulo = new EventEmitter<number>();
 
   @Input() verificaMenuHome = false;
+
   ola(i: number) {
     console.log(i);
     console.log(this.verificarConcluido(i))
@@ -46,37 +48,42 @@ export class MenuComBarraProgressoTesteComponent implements OnInit {
      */
     public ltiService: ServiceAppService,
     public moduloService: ModuloService,
-    public topicoService: TopicoService
+    public topicoService: TopicoService,
+    public route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    console.log(this.topicoService.dados_topico)
+    this.topicoService.dadosTopico$.subscribe(data => {
+      if (data){
+        this.topicoService.dados_topico = data
+      }
+    })
   }
 
   verificarConcluido(i: number) {
     if (
-      this.topicoService.dados_topico[i].UsuarioTopicos[0].encerrado
+      this.topicoService.dados_topico[i]?.UsuarioTopicos[0]?.encerrado
     ) {
       return true;
     }
-
     if (
-      this.topicoService.dados_topico[i - 1].UsuarioTopicos[0].encerrado == true &&
-      this.topicoService.dados_topico[i].UsuarioTopicos[0].encerrado == false && i != 0
+      this.topicoService.dados_topico[i - 1]?.UsuarioTopicos[0]?.encerrado == true &&
+      this.topicoService.dados_topico[i]?.UsuarioTopicos[0]?.encerrado == false && i != 0
     ) {
       return true;
     }
 
-    if (this.topicoService.dados_topico[i].UsuarioTopicos[0].encerrado && i == 0) {
+    if (this.topicoService.dados_topico[i]?.UsuarioTopicos[0]?.encerrado == false && i == 0) {
       return true
     }
+
+
 
     return false;
   }
 
   getQuantidadeTopicosConcluidos() {
     let cont = 0;
-    
     this.topicoService.dados_topico.map((topico: Topico) => {
       if (topico.UsuarioTopicos[0].encerrado == true) {
         cont += 1;

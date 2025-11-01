@@ -28,12 +28,10 @@ export class ModuloService {
 
   constructor(private http: HttpClient) {}
   getUserInfo(ltik: string): Observable<any> {
-    console.log(`Requisição LTI sendo feita para: ${this.baseUrlLTI}/userInfo?ltik=${ltik}`)
     return this.http.get<any>(`${this.baseUrlLTI}/userInfo?ltik=${ltik}`);
   }
 
   getModuloInfo(ltik: string): Observable<DadosModulo> {
-    console.log(`Requisição LTI sendo feita para: ${this.baseUrlLTI}/moduloInfo?ltik=${ltik}`)
     return this.http.get<any>(`${this.baseUrlLTI}/moduloInfo?ltik=${ltik}`)
   }
 
@@ -56,7 +54,6 @@ export class ModuloService {
     if (dados){
       this.dados_modulo = JSON.parse(dados)
       this.notaTotal = this.dados_modulo?.userModulo?.nota;
-      console.log('Dados módulo ', this.dados_modulo);
     }
   }
 }

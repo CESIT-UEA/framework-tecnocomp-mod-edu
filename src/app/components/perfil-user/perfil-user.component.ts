@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
+import { ModuloService } from 'src/app/personalizavel/modulo.service';
 import { ServiceAppService } from 'src/app/service-app.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { ServiceAppService } from 'src/app/service-app.service';
   styleUrls: ['./perfil-user.component.css'],
 })
 export class PerfilUserComponent{
-  constructor(private eRef: ElementRef,    public ltiService: ServiceAppService) {}
+  constructor(private eRef: ElementRef,    public ltiService: ServiceAppService, public moduloService: ModuloService) {}
 
 
   @HostListener('document:click', ['$event'])

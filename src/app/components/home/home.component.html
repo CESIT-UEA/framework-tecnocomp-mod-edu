@@ -23,6 +23,7 @@
         />
         <nav>
           <div class="links">
+            <!-- botão de navegação início -->
             <span
               class="btn-ficha"
               (click)="clickHeader(0)"
@@ -33,6 +34,7 @@
             >
               Início
             </span>
+            <!-- botão de navegação ficha técnica -->
             <span
               (click)="clickHeader(1)"
               class="btn-ficha"
@@ -43,6 +45,7 @@
             >
               Ficha Técnica
             </span>
+            <!-- botão de navegação sobre -->
             <span
               class="btn-ficha"
               (click)="clickHeader(2)"
@@ -60,7 +63,7 @@
               class="container-foto-header"
             >
               <div class="foto-header">
-                {{ this.moduloService.dados_modulo.user.nome[0] }}
+                {{ moduloService.dados_modulo.user.nome[0] }}
               </div>
               <mat-icon
                 style="color: white; cursor: pointer"

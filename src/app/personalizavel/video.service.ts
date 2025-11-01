@@ -19,4 +19,16 @@ export class VideoService {
     console.log(`requisição videos: ${this.baseUrlLTI}/videosUrl?ltik=${ltik}&id_modulo=${id_modulo}`)
     return this.http.get<TopicoVideos[]>(`${this.baseUrlLTI}/videosUrl?ltik=${ltik}&id_modulo=${id_modulo}`)
   }
+
+  setDadosVideo(dados: TopicoVideos[]){
+    localStorage.setItem('videosUrl', JSON.stringify(dados))
+  }
+
+  getDadosVideo(){
+    const dados_video = localStorage.getItem('videosUrl');
+    if(dados_video){
+      this.dados_video = JSON.parse(dados_video)
+    }
+  }
+
 }

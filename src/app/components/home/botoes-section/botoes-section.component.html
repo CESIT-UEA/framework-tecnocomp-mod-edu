@@ -2,16 +2,19 @@
 <div class="container">
   <section class="button-section">
     <div class="button-group">
+      <button class="start-button" [ngStyle]="{'display': carregandoBotao ? 'initial' : 'none'}">
+           carregando...
+      </button>
       <button 
         *ngIf="getVerificaCompleto() == false" 
         class="start-button" 
-        (click)="getVerificaCompleto(); getDadosUserInfo(); carregaVideosUrl()" 
+        (click)="getDadosUserInfo(); carregaVideosUrl()" 
         [routerLink]="urlInicio"
         >
-        {{ dados_topico[0].UsuarioTopicos[0].encerrado == true ? "CONTINUAR" :"INICIAR"}}
+        {{ this.topicoService.dados_topico[0].UsuarioTopicos[0].encerrado == true ? "CONTINUAR" :"INICIAR"}}
       </button>
       <button
-       *ngIf="getVerificaCompleto() == true" class="concluido" (click)="getVerificaCompleto()" [routerLink]="urlInicio">
+       *ngIf="getVerificaCompleto() == true" class="concluido"  [routerLink]="urlInicio">
         Módulo Concluído
         <mat-icon>check</mat-icon>
       </button>

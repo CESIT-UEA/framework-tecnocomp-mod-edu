@@ -43,7 +43,6 @@ export class TopicoComponent implements OnInit {
     this.carregaVideosUrl()
     this.ltiService.loadYouTubeAPI();
     this.downloadService.initEventInstall()
-  console.log('teste ',this.videoService.dados_video)
   }
 
   carregaInfoModuloAndUserTopicos(){
@@ -67,37 +66,26 @@ export class TopicoComponent implements OnInit {
 
     if (this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isReferencias == false
     ) {
-      this.ltiService.enviarVistoReferencias().subscribe(
-        (response) => {
-          this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isReferencias = true
-
-          this.ltiService.loadYouTubeAPI();
-        },
-        (error) => {
-          console.log(error);
+      this.ltiService.enviarVistoReferencias().subscribe({
+        next: (userTopico) => {
+          this.topicoService.setDadosTopico(userTopico)
+          this.carregaInfoModuloAndUserTopicos()
         }
-      );
+      });
     }
-    console.log("Fechei referencias")
-
   }
 
   linksClick() {
     this.controllerSwitch =
       this.controllerSwitch == 'default' ? '2' : 'default';
     if (this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isSaibaMais == false) {
-      this.ltiService.enviarVistoSaibaMais().subscribe(
-        (response) => {
-          // this.ltiService.removeDadosCompletos();
-          // this.ltiService.setDadosCompletos(response);
-          this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isSaibaMais = true
-        },
-        (error) => {
-          console.log(error);
+      this.ltiService.enviarVistoSaibaMais().subscribe({
+        next: (userTopico) => {
+          this.topicoService.setDadosTopico(userTopico)
+          this.carregaInfoModuloAndUserTopicos()
         }
-      );
+      })
     }
-    console.log("Fechei links")
   }
 
   textoApoioClick() {
@@ -107,33 +95,28 @@ export class TopicoComponent implements OnInit {
     if (
       this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isTextoApoio == false
     ) {
-      this.ltiService.enviarVistoTextoApoio().subscribe(
-        (response) => {
-          // this.ltiService.removeDadosCompletos();
-          // this.ltiService.setDadosCompletos(response);
-          this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].isTextoApoio = true
-        },
-        (error) => {
-          console.log(error);
+      this.ltiService.enviarVistoTextoApoio().subscribe({
+        next: (userTopico) => {
+          this.topicoService.setDadosTopico(userTopico)
+          this.carregaInfoModuloAndUserTopicos()
         }
-      );
+      })
     }
-    console.log("Fechei texto apoio")
   }
+  
 
   fecharMenuClick() {
     this.sidenavContainer.close();
   }
 
   navegarModulo(topicoId: number) {
-    console.log(topicoId);
     this.moduloService.controll_topico = topicoId;
     this.sidenavContainer.close();
     const indice_video = this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].indice_video
 
+    // video retorna salvo
     if (indice_video != null ) {
       this.ltiService.currentVideoIndex = indice_video
-      console.log('Video retornado salvo já');
     } else {
       this.ltiService.currentVideoIndex = 0;
     }

@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit, NgZone } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Bloqueio } from './bloqueioInterface';
 import { Topico } from './components/forum/topico.interface';
@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment.development';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { ModuloService } from './personalizavel/modulo.service';
 import { VideoUrl } from './interfaces/video-url';
+import { VideoService } from './personalizavel/video.service';
 
 /**
  * Service a qual guarda as operações essenciais, como o envio de notas, as informações do usuario, etc
@@ -18,6 +19,7 @@ import { VideoUrl } from './interfaces/video-url';
 export class ServiceAppService {
   player: any; // Armazena o player do YouTube
   controlAtividade: number = 1;
+
   /**
    * url da API
    */
@@ -46,7 +48,9 @@ export class ServiceAppService {
   constructor(
     private http: HttpClient,
     private _snackBar: MatSnackBar,
-    public moduloService: ModuloService
+    public moduloService: ModuloService,
+    private videoService: VideoService,
+    private ngZone: NgZone
   ) {}
 
   /**
@@ -89,7 +93,6 @@ export class ServiceAppService {
   liberar(idTopico: number): Observable<any> {
     this.tokenStorage = localStorage.getItem('token');
     const grade = { token: this.tokenStorage, idTopico: idTopico };
-    console.log(grade);
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -106,8 +109,6 @@ export class ServiceAppService {
     if (this.dados_completos) {
       this.dados_completos = JSON.parse(this.dados_completos);
       this.notaTotal = this.dados_completos?.userModulo?.nota;
-
-      console.log('Service data 3: ', this.dados_completos);
     }
   }
 
@@ -186,10 +187,8 @@ export class ServiceAppService {
   controllerSwitchHome: number = 0;
 
   criarPostagemTopico(postagem: any) /* : Observable<any> */ {
-    console.log(postagem);
     this.tokenStorage = localStorage.getItem('token');
     const grade = { postagem };
-    console.log(grade);
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -202,10 +201,8 @@ export class ServiceAppService {
   }
 
   criarComentario(comentario: any) /* : Observable<any> */ {
-    console.log(comentario);
     this.tokenStorage = localStorage.getItem('token');
     const grade = { comentario };
-    console.log(grade);
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -314,6 +311,7 @@ export class ServiceAppService {
       idTopico:
         this.dados_completos.topicos?.[this.moduloService.controll_topico].id,
       ltik: this.dados_completos.user.ltik,
+      id_modulo: this.moduloService.dados_modulo.modulo.id
     };
 
     const headers = new HttpHeaders({
@@ -331,6 +329,7 @@ export class ServiceAppService {
       idTopico:
         this.dados_completos.topicos?.[this.moduloService.controll_topico].id,
       ltik: this.dados_completos.user.ltik,
+      id_modulo: this.moduloService.dados_modulo.modulo.id
     };
     console.log(
       this.dados_completos.topicos?.[this.moduloService.controll_topico].id
@@ -350,6 +349,7 @@ export class ServiceAppService {
       idTopico:
         this.dados_completos.topicos?.[this.moduloService.controll_topico].id,
       ltik: this.dados_completos.user.ltik,
+      id_modulo: this.moduloService.dados_modulo.modulo.id
     };
 
     const headers = new HttpHeaders({
@@ -369,7 +369,7 @@ export class ServiceAppService {
 
   recreatePlayer(): void {
     if (this.player) {
-      console.log('Caiu aqui');
+      // console.log('Caiu aqui');
       this.player.destroy(); // Destroi o player existente
     }
 
@@ -391,7 +391,7 @@ export class ServiceAppService {
         onStateChange: this.onPlayerStateChange.bind(this),
       },
     });
-    console.log(this.player);
+    // console.log(this.player);
   }
 
   loadYouTubeAPI(): void {
@@ -414,11 +414,11 @@ export class ServiceAppService {
   }
 
   onPlayerReady(event: any): void {
-    console.log('Player está pronto!');
+    // console.log('Player está pronto!');
   }
 
   onPlayerStateChange(event: any): void {
-    console.log('Estado do player:', event.data);
+    this.ngZone.run(()=> {console.log('Estado do player:', event.data)
     if (event.data == 0) {
       if (
         this.dados_completos.topicos?.[this.moduloService.controll_topico]
@@ -430,7 +430,14 @@ export class ServiceAppService {
             ?.VideoUrls[this.currentVideoIndex].id,
           this.dados_completos.user.ltik
         ).subscribe((response) => {
-          console.log('Vídeo finalizado:', response);
+          // console.log('Vídeo finalizado:', response);
+          this.videoService.getVideosUrlByModuloId(
+            this.moduloService.dados_modulo.modulo.id, 
+            this.moduloService.dados_modulo.user.ltik
+          ).subscribe(data => {
+            this.videoService.setDadosVideo(data)
+            this.videoService.getDadosVideo()
+          })
           this.removeDadosCompletos();
           this.setDadosCompletos(response);
         });
@@ -439,21 +446,19 @@ export class ServiceAppService {
         this.proximo();
       }, 3000); */
     }
-  }
+  })}
 
   proximo(): void {
-    console.log(this.currentVideoIndex);
+    // console.log(this.currentVideoIndex);
     if (
       this.currentVideoIndex <
       this.dados_completos.topicos?.[this.moduloService.controll_topico]
         ?.VideoUrls.length
     ) {
-      console.log('Entrei');
       this.currentVideoIndex++;
       this.recreatePlayer();
     }
     this.salvarProgressoVideos().subscribe((response) => {
-      console.log('Progresso salvo:', response);
       this.removeDadosCompletos();
       this.setDadosCompletos(response);
     });
@@ -461,13 +466,11 @@ export class ServiceAppService {
 
   voltar(): void {
     if (this.currentVideoIndex - 1 >= 0) {
-      console.log(this.currentVideoIndex);
       this.currentVideoIndex = this.currentVideoIndex - 1;
       this.recreatePlayer();
     }
 
     this.salvarProgressoVideos().subscribe((response) => {
-      console.log('Progresso salvo:', response);
       this.removeDadosCompletos();
       this.setDadosCompletos(response);
     });

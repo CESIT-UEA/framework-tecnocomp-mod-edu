@@ -25,6 +25,9 @@ export class HomeComponent {
   @ViewChild(MatSidenavContainer) sidenavContainer!: MatSidenavContainer;
 
   @Input() urlVideoInicial: any;
+
+  renderizarMenuNavegacao: boolean = false;
+
   /**
    * @constructor
    * Um método feito para testar caso seja clicado
@@ -36,7 +39,7 @@ export class HomeComponent {
     private http: HttpClient,
     private route: ActivatedRoute,
     public downloadService: DownloadPlataformaService,
-    private topicoService: TopicoService
+    public topicoService: TopicoService
   ) {}
 
   /**
@@ -50,20 +53,15 @@ export class HomeComponent {
     if (ltik) {
       this.getModuloInfo(ltik)
 
-      
-
-      // this.moduloService.getUserInfo(ltik).subscribe(
-      //   (data) => {
-      //     this.appService.setDadosCompletos(data);
-      //   },
-      //   (error) => {
-      //     console.error('Error:', error);
-      //   }
-      // );
     } else {
       const token = JSON.parse(localStorage.getItem('token') as string)
       if (token){
-        this.getModuloInfo(token)
+        this.moduloService.getDadosModulo();
+        const userTopico = localStorage.getItem('userTopico')
+        if (userTopico) {
+          this.topicoService.setDadosTopico(JSON.parse(userTopico))
+        }
+        
       }
     }
 
@@ -95,6 +93,7 @@ export class HomeComponent {
     this.topicoService.getUserTopicoInfo(id_modulo, id_aluno, ltik).subscribe(
       (data) => {
         localStorage.setItem('userTopico', JSON.stringify(data))
+        this.topicoService.setDadosTopico(data)
       }
     )
   }
@@ -122,9 +121,9 @@ export class HomeComponent {
 
     const indice_video = this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].indice_video
 
+    // video retorna salvo
     if (indice_video != null) {
       this.appService.currentVideoIndex = indice_video
-      console.log("Video retornado salvo já")
     }else{
       this.appService.currentVideoIndex = 0
     }

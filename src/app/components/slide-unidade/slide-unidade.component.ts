@@ -35,7 +35,6 @@ export class SlideUnidadeComponent implements OnInit, AfterViewInit, OnDestroy {
       this.ltiService.currentVideoIndex = indice_video
     }
     this.ltiService.loadYouTubeAPI();
-    console.log('aqui videos ',this.videos)
   }
 
   carregaInfoModuloAndUserTopicos(){
@@ -44,7 +43,7 @@ export class SlideUnidadeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   carregaVideosUrl(){
-    this.videoService.dados_video = JSON.parse(localStorage.getItem('videosUrl')!)
+    this.videoService.getDadosVideo()
   }
 
   ngAfterViewInit(): void {
