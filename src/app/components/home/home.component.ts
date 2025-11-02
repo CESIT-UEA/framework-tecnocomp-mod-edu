@@ -5,6 +5,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DownloadPlataformaService } from 'src/app/download-plataforma.service';
 import { DadosModulo } from 'src/app/interfaces/info-modulo';
+import { InfoTopico } from 'src/app/interfaces/info-topico';
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
 import { TopicoService } from 'src/app/personalizavel/topico.service';
 import { ServiceAppService } from 'src/app/service-app.service';
@@ -27,7 +28,10 @@ export class HomeComponent {
   @Input() urlVideoInicial: any;
 
   renderizarMenuNavegacao: boolean = false;
-  currentUrl: string = '';
+  
+  infoTopicos: InfoTopico[] = [];
+  infoTopicoCarregada: boolean = false;
+
   /**
    * @constructor
    * Um método feito para testar caso seja clicado
@@ -48,12 +52,14 @@ export class HomeComponent {
   tokenData: any;
 
   ngOnInit(): void {
-
     const ltik = this.route.snapshot.queryParamMap.get('ltik');
-    if (ltik) {
+    const control_req = localStorage.getItem(`control_req_${ltik}`);
+    if (ltik && control_req !== "1") {
+      console.log('Requisição para o back')
       this.getModuloInfo(ltik)
 
     } else {
+      console.log('Requisição para o storage')
       const token = JSON.parse(localStorage.getItem('token') as string)
       if (token){
         this.moduloService.getDadosModuloStorage();
@@ -61,9 +67,21 @@ export class HomeComponent {
         if (userTopico) {
           this.topicoService.setDadosTopico(JSON.parse(userTopico))
         }
+          // infoTopicos
+          this.topicoService.getInfoTopicos(
+          this.moduloService.dados_modulo.modulo.id,
+          this.moduloService.dados_modulo.user.id_aluno,
+          this.moduloService.dados_modulo.user.ltik
+        ).subscribe({
+          next: (infoTopicos: InfoTopico[]) => {
+            this.topicoService.setInfoTopicos(infoTopicos)
+          }
+        })
         
       }
     }
+
+    
 
   }
 
@@ -75,11 +93,28 @@ export class HomeComponent {
         const token = data.user.ltik
         localStorage.setItem('token', JSON.stringify(token))
 
-        // busca userTopico
-        this.getUserTopicoInfo(
-        this.moduloService.dados_modulo.modulo.id,
-        this.moduloService.dados_modulo.user.id_aluno,
-        token
+        // controle de requisição
+        localStorage.setItem(`control_req_${ltik}`, '1');
+
+        this.moduloService.getDadosModuloStorage()
+  
+        // infoTopicos
+      this.topicoService.getInfoTopicos(
+      this.moduloService.dados_modulo.modulo.id,
+      this.moduloService.dados_modulo.user.id_aluno,
+      this.moduloService.dados_modulo.user.ltik
+    ).subscribe({
+      next: (infoTopicos: InfoTopico[]) => {
+        this.topicoService.setInfoTopicos(infoTopicos)
+      }
+    })
+
+
+      // busca userTopico
+      this.getUserTopicoInfo(
+      this.moduloService.dados_modulo.modulo.id,
+      this.moduloService.dados_modulo.user.id_aluno,
+      token
       )
       },
       error: (err) => {

@@ -7,6 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { InfoTopico } from 'src/app/interfaces/info-topico';
 import { Topico } from 'src/app/interfaces/topico';
 import { AprendizagemEInformaticaService } from 'src/app/pages/modulos/aprendizagem-e-informatica/aprendizagem-e-informatica.service';
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
@@ -26,6 +27,8 @@ export class MenuComBarraProgressoTesteComponent implements OnInit {
   /**
    * @constructor
    */
+
+  infoTopicos: InfoTopico[] = []; 
 
   @Output() fecharMenu = new EventEmitter<void>();
 
@@ -58,52 +61,52 @@ export class MenuComBarraProgressoTesteComponent implements OnInit {
         this.topicoService.dados_topico = data
       }
     })
+
+    this.topicoService.infoTopicos$.subscribe(data => {
+      if (data){
+        this.infoTopicos = data
+        localStorage.setItem('infoTopicos', JSON.stringify(data))
+      }
+    })
   }
 
-  verificarConcluido(i: number) {
-    if (
-      this.topicoService.dados_topico[i]?.UsuarioTopicos[0]?.encerrado
-    ) {
-      return true;
-    }
-    if (
-      this.topicoService.dados_topico[i - 1]?.UsuarioTopicos[0]?.encerrado == true &&
-      this.topicoService.dados_topico[i]?.UsuarioTopicos[0]?.encerrado == false && i != 0
-    ) {
-      return true;
-    }
+  verificarConcluido(i: number){
+    const topico = this.infoTopicos[i];
+    const anterior = this.infoTopicos[i - 1];
 
-    if (this.topicoService.dados_topico[i]?.UsuarioTopicos[0]?.encerrado == false && i == 0) {
-      return true
-    }
+    const encerradoAtual = topico?.encerrado?.[0] ?? false;
+    const encerradoAnterior = anterior?.encerrado?.[0] ?? false;
 
+    if (encerradoAtual) return true;
+    if (!encerradoAtual && encerradoAnterior && i !== 0) return true;
+    if (!encerradoAtual && i === 0) return true
 
-
-    return false;
+    return false
   }
 
   getQuantidadeTopicosConcluidos() {
     let cont = 0;
-    this.topicoService.dados_topico.map((topico: Topico) => {
-      if (topico.UsuarioTopicos[0].encerrado == true) {
-        cont += 1;
+
+    this.infoTopicos.map((topico: InfoTopico) => {
+      if (topico.encerrado[0] === true){
+        cont += 1
       }
     })
 
     return cont;
   }
 
-  getDadosUserInfo(){
-    let ltik = localStorage.getItem('token');
-    if (ltik){
-      this.moduloService.getUserInfo(JSON.parse(ltik)).subscribe(
-         (data) => {
-           this.ltiService.setDadosCompletos(data);
-         },
-         (error) => {
-           console.error('Error:', error);
-         }
-       );
-    }
-  }
+  // getDadosUserInfo(){
+  //   let ltik = localStorage.getItem('token');
+  //   if (ltik){
+  //     this.moduloService.getUserInfo(JSON.parse(ltik)).subscribe(
+  //        (data) => {
+  //          this.ltiService.setDadosCompletos(data);
+  //        },
+  //        (error) => {
+  //          console.error('Error:', error);
+  //        }
+  //      );
+  //   }
+  // }
 }

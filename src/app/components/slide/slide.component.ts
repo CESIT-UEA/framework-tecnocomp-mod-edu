@@ -20,9 +20,6 @@ export class  SlideComponent implements OnInit {
     private ltiService: ServiceAppService,
   ) {}
   teste:any;
-
-  // @Output() textoApoioClick = new EventEmitter<void>();
-
   
   ngOnInit(): void {
  

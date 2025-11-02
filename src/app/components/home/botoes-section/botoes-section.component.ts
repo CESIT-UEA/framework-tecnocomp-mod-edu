@@ -1,5 +1,6 @@
 import { Component, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { InfoTopico } from 'src/app/interfaces/info-topico';
 import { Topico } from 'src/app/interfaces/topico';
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
 import { TopicoService } from 'src/app/personalizavel/topico.service';
@@ -31,8 +32,8 @@ export class BotoesSectionComponent {
   @Input() caminho_ebook!: string;
 
   carregandoBotao: boolean = true;
+  infoTopicos: InfoTopico[] = [];
 
-  dados_topico!: Topico[];
   /**
    * @method
    * Constructor do componente de Botões, que utiliza o Router
@@ -45,11 +46,13 @@ export class BotoesSectionComponent {
   ) {}
 
   getVerificaCompleto() {
-    if (!this.topicoService.dadosTopico) return null
+    const topicosInfo = localStorage.getItem('infoTopicos');
+    
+    if (topicosInfo) this.infoTopicos = JSON.parse(topicosInfo);
+    if (this.infoTopicos.length === 0) return null
 
-
-    for (let userTopico of this.topicoService.dadosTopico){
-      if (!userTopico.UsuarioTopicos[0].encerrado){
+    for (let topico of this.infoTopicos){
+      if (!topico.encerrado[0]){
         this.carregandoBotao = false
         return false;  // Retorna falso assim que encontrar um "encerrado" diferente de true
       }

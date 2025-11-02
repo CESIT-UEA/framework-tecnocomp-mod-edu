@@ -18,7 +18,7 @@
   </div>
   <p class="p-progresso">
     {{ getQuantidadeTopicosConcluidos() }} /
-    {{ topicoService.dados_topico.length }} Tópicos Concluídos
+    {{ infoTopicos.length }} Tópicos Concluídos
   </p>
 </div>
 
@@ -27,7 +27,7 @@
     <div
       class="topico-container"
       *ngFor="
-        let topico of topicoService.dados_topico;
+        let topico of infoTopicos;
         index as i
       "
       [ngClass]="{
@@ -50,22 +50,18 @@
       <p
         *ngIf="verificarConcluido(i) == true && verificaMenuHome == true"
         (click)="navegarModulo.emit(i)"
-        (click)="getDadosUserInfo()"
         routerLink="topicos"
       >
         {{ i + 1 }}. {{ topico.nome_topico }}
       </p>
       <div class="caixa">
-        <mat-icon
-          *ngIf="
-            topicoService.dados_topico[i].UsuarioTopicos[0].encerrado
-          "
-          >check</mat-icon
-        >
+        <mat-icon *ngIf="topico.encerrado?.[0]">check</mat-icon>
       </div>
     </div>
   </div>
 </div>
+
+ <!-- topicoService.dados_topico[i].UsuarioTopicos[0].encerrado -->
 
 <div class="outros-links">
   <hr

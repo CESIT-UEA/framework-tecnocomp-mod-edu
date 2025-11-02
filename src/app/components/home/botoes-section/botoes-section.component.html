@@ -11,7 +11,7 @@
         (click)="getDadosUserInfo(); carregaVideosUrl()" 
         [routerLink]="urlInicio"
         >
-        {{ this.topicoService.dados_topico[0].UsuarioTopicos[0].encerrado == true ? "CONTINUAR" :"INICIAR"}}
+        {{ this.infoTopicos[0].encerrado[0] == true ? "CONTINUAR" :"INICIAR"}}
       </button>
       <button
        *ngIf="getVerificaCompleto() == true" class="concluido"  [routerLink]="urlInicio">
