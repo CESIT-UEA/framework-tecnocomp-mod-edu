@@ -18,7 +18,11 @@ export class LinksNavegacaoTopicosComponent implements OnInit {
     ){}
 
     ngOnInit(): void {
-        
+      this.topicoService.dadosTopico$.subscribe(data => {
+      if (data){
+        this.topicoService.dados_topico = data
+      }
+    })
     }
 
     
@@ -26,7 +30,7 @@ export class LinksNavegacaoTopicosComponent implements OnInit {
       let topicos: Topico[] = this.topicoService.dados_topico;
       if (
         this.moduloService.controll_topico >= 0 &&
-        this.moduloService.controll_topico < topicos.length - 1
+        this.moduloService.controll_topico < topicos?.length - 1
       ) {
         return true;
       }
@@ -38,7 +42,7 @@ export class LinksNavegacaoTopicosComponent implements OnInit {
 
     if (
       this.moduloService.controll_topico > 0 &&
-      this.moduloService.controll_topico <= topicos.length
+      this.moduloService.controll_topico <= topicos?.length
     ) {
       return true;
     }
@@ -49,10 +53,10 @@ export class LinksNavegacaoTopicosComponent implements OnInit {
   proximo(): void {
     this.ltiService.currentVideoIndex = 0;
     if (
-      this.moduloService.controll_topico < this.topicoService.dados_topico.length - 1
+      this.moduloService.controll_topico < this.topicoService.dados_topico?.length - 1
     ) {
       if (
-        this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].encerrado
+        this.topicoService.dados_topico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0]?.encerrado
       ) {
         this.moduloService.controll_topico += 1;
       } else {
@@ -60,7 +64,7 @@ export class LinksNavegacaoTopicosComponent implements OnInit {
       }
     }
 
-    const indice_video = this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].indice_video
+    const indice_video = this.topicoService.dados_topico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0]?.indice_video
 
     if (indice_video != null) {
       this.ltiService.currentVideoIndex = indice_video
@@ -83,7 +87,7 @@ export class LinksNavegacaoTopicosComponent implements OnInit {
       this.ltiService.currentVideoIndex = 0;
     }
 
-    const indice_video = this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].indice_video
+    const indice_video = this.topicoService.dados_topico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0]?.indice_video
 
     if (indice_video != null) {
       this.ltiService.currentVideoIndex = indice_video

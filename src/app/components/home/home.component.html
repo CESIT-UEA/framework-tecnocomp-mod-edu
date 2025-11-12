@@ -21,7 +21,7 @@
           routerLink="./"
         />
         <nav>
-          <div class="links">
+          <div class="links" *ngIf="moduloService.dados_modulo">
             <!-- botão de navegação início -->
             <span
               class="btn-ficha"
@@ -53,7 +53,7 @@
               Sobre
             </span>
           </div>
-          <div class="end-navbar">
+          <div class="end-navbar" *ngIf="moduloService.dados_modulo">
             <div
               *ngIf="this.appService.perfilUser == false"
               class="container-foto-header"

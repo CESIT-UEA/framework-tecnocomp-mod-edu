@@ -20,6 +20,8 @@ import { HeaderComponent } from './template/header/header.component';
 import { ModuloInicialComponent } from './components/modulo-inicial/modulo-inicial.component';
 import { SobreComponent } from './components/home/sobre/sobre.component';
 import { SlideComponent } from './components/slide/slide.component';
+import { SaibaMaisComponent } from './pages/modulos/components/saiba-mais/saiba-mais.component';
+import { ReferenciasComponent } from './pages/modulos/components/referencias/referencias.component';
 
 const routes: Routes = [
   { path: '', component: PaginaInicialComponent },
@@ -58,6 +60,8 @@ const routes: Routes = [
   ] },
   { path: 'modulo/:nome_modulo/topicos', component: TopicoComponent },
   { path: 'modulo/:nome_modulo/topicos/texto_de_apoio', component: SlideComponent},
+  { path: 'modulo/:nome_modulo/topicos/saiba_mais', component: SaibaMaisComponent},
+  { path: 'modulo/:nome_modulo/topicos/referencias', component: ReferenciasComponent},
   { path: '**', component: ErrorComponent },
 ];
 

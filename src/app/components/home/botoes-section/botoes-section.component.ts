@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input, Output, ChangeDetectorRef, OnInit, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { InfoTopico } from 'src/app/interfaces/info-topico';
 import { Topico } from 'src/app/interfaces/topico';
@@ -6,6 +6,7 @@ import { ModuloService } from 'src/app/personalizavel/modulo.service';
 import { TopicoService } from 'src/app/personalizavel/topico.service';
 import { VideoService } from 'src/app/personalizavel/video.service';
 import { ServiceAppService } from 'src/app/service-app.service';
+import { Subscription } from 'rxjs';
 
 /**
  * Componente dos botões que ficam na pagina inicial do modulo
@@ -15,7 +16,7 @@ import { ServiceAppService } from 'src/app/service-app.service';
   templateUrl: './botoes-section.component.html',
   styleUrls: ['./botoes-section.component.css'],
 })
-export class BotoesSectionComponent {
+export class BotoesSectionComponent implements OnInit, OnDestroy{
   /**
    * Variáveis filha que guarda a url da unidade inicial do modulo
    */
@@ -31,8 +32,10 @@ export class BotoesSectionComponent {
    */
   @Input() caminho_ebook!: string;
 
-  carregandoBotao: boolean = true;
   infoTopicos: InfoTopico[] = [];
+  carregandoBotao: boolean = true;
+  verificaCompleto: boolean | null = null;
+  private subscriptions = new Subscription();
 
   /**
    * @method
@@ -41,24 +44,28 @@ export class BotoesSectionComponent {
   constructor(
     public topicoService: TopicoService, 
     public moduloService: ModuloService, 
-    private appService: ServiceAppService,
-    private videoService: VideoService
+    private appService: ServiceAppService
   ) {}
 
-  getVerificaCompleto() {
-    const topicosInfo = localStorage.getItem('infoTopicos');
-    
-    if (topicosInfo) this.infoTopicos = JSON.parse(topicosInfo);
-    if (this.infoTopicos.length === 0) return null
+  ngOnInit(): void {
+    const sub = this.topicoService.infoTopicos$.subscribe(data => {
+    if (data?.length) {
+      this.infoTopicos = data;
+      this.verificaCompleto = this.getVerificaCompleto();
+      this.carregandoBotao = false;
+    }
+    });
+    this.subscriptions.add(sub)
+  }
 
-    for (let topico of this.infoTopicos){
-      if (!topico.encerrado[0]){
-        this.carregandoBotao = false
-        return false;  // Retorna falso assim que encontrar um "encerrado" diferente de true
-      }
-      } 
-    this.carregandoBotao = false
-    return true // Retorna verdadeiro se todos os itens passarem na verificação
+  ngOnDestroy(): void {
+      this.subscriptions.unsubscribe()
+  }
+
+  getVerificaCompleto() {
+    if (this.infoTopicos.length === 0) return null
+    console.log("Passei do null")
+    return this.infoTopicos.every(t => t.encerrado[0])
   }
 
   getDadosUserInfo(){
@@ -75,14 +82,6 @@ export class BotoesSectionComponent {
     }
   }
 
-   carregaVideosUrl(){
-    this.videoService.getVideosUrlByModuloId(
-      this.moduloService.dados_modulo.modulo.id, 
-      this.moduloService.dados_modulo.user.ltik
-    ).subscribe(dados => {
-      localStorage.setItem('videosUrl', JSON.stringify(dados))
-      this.videoService.dados_video = dados
-    })
-  }
+   
 
 }

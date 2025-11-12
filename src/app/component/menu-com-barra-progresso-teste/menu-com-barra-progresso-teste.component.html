@@ -1,4 +1,4 @@
-<div class="parte-cima">
+<div class="parte-cima" *ngIf="moduloService.dados_modulo">
   <div class="header-menu">
     <mat-icon class="close" (click)="fecharMenu.emit()">close</mat-icon>
   </div>
@@ -22,7 +22,7 @@
   </p>
 </div>
 
-<div class="container-topicos">
+<div class="container-topicos" *ngIf="moduloService.dados_modulo">
   <div class="container-topico">
     <div
       class="topico-container"
@@ -46,16 +46,17 @@
         
       >
         {{ i + 1 }}. {{ topico.nome_topico }}
-      </p>
+      </p> 
+     
       <p
-        *ngIf="verificarConcluido(i) == true && verificaMenuHome == true"
+        *ngIf="verificarConcluido(i) == true  && verificaMenuHome == true"
         (click)="navegarModulo.emit(i)"
-        routerLink="topicos"
+        [routerLink]="['topicos']"
       >
         {{ i + 1 }}. {{ topico.nome_topico }}
       </p>
       <div class="caixa">
-        <mat-icon *ngIf="topico.encerrado?.[0]">check</mat-icon>
+        <mat-icon *ngIf="topico.encerrado[0]">check</mat-icon>
       </div>
     </div>
   </div>
@@ -63,7 +64,7 @@
 
  <!-- topicoService.dados_topico[i].UsuarioTopicos[0].encerrado -->
 
-<div class="outros-links">
+<div class="outros-links" *ngIf="moduloService.dados_modulo">
   <hr
     style="
       width: 90%;

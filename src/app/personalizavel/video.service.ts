@@ -31,4 +31,8 @@ export class VideoService {
     }
   }
 
+  limparCacheVideos(){
+    localStorage.removeItem('videosUrl')
+  }
+
 }

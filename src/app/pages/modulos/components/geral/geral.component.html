@@ -1,5 +1,5 @@
 <!-- chamada do componente do cabeçalho da unidade geral -->
-<div class="titulo-topico">
+<div class="titulo-topico" *ngIf="topicoService.dados_topico">
   <ul>
     <!-- Nome do tópico da unidade -->
     <li>{{ this.moduloService.controll_topico + 1 }}. {{ this.nome }}</li>
@@ -7,7 +7,7 @@
   <hr />
 </div>
 <app-links-navegacao-topicos class="container-main-conteudo-links-voltar"></app-links-navegacao-topicos>
-<div class="container-main-conteudo">
+<div class="container-main-conteudo" *ngIf="topicoService.dados_topico">
   
   <div class="div-slide">
     <div class="container-video">
@@ -39,7 +39,7 @@
             >check</mat-icon
           >
         </button>
-        <button class="saibaMais" (click)="linksClick.emit()">
+        <button class="saibaMais" [routerLink]="['/modulo', moduloService.dados_modulo.modulo.nome_url, 'topicos', 'saiba_mais']">
           <img
             src="../../../../../assets/icons/saibaMais.svg"
             alt="Icone para download do ebook"
@@ -56,7 +56,7 @@
         <!-- Botão que quando clicado vai para o componente referências -->
       </div>
       <div class="botoes-baixo">
-        <button class="referencias" (click)="referenciasClick.emit()">
+        <button class="referencias" [routerLink]="['/modulo', moduloService.dados_modulo.modulo.nome_url, 'topicos', 'referencias']">
           <img
             src="../../../../../assets/icons/referencias.svg"
             alt="Icone para download do ebook"

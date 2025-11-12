@@ -1,4 +1,4 @@
-<div *ngIf="this.ltiService?.dados_completos" style="height: 100%">
+<div *ngIf="topicoService.dados_topico && videoService.dados_video" style="height: 100%">
   <div
     class="container-geral"
     [ngSwitch]="controllerSwitch"
@@ -11,19 +11,19 @@
       ></app-atividade>
     </div>
 
-    <div *ngSwitchCase="'3'" style="height: 100%">
+    <!-- <div *ngSwitchCase="'3'" style="height: 100%">
       <app-referencias
         [referencias]="this.ltiService.dados_completos.topicos?.[this.moduloService.controll_topico]?.Referencias"
         (referenciasClick)="referenciasClick()"
       ></app-referencias>
-    </div>
+    </div> -->
 
-    <div *ngSwitchCase="'2'" style="height: 100%">
+    <!-- <div *ngSwitchCase="'2'" style="height: 100%">
       <app-saiba-mais
         [links]="this.ltiService.dados_completos.topicos?.[this.moduloService.controll_topico]?.SaibaMais"
         (linksClick)="linksClick()"
       ></app-saiba-mais>
-    </div>
+    </div> -->
 
     <!-- <div *ngSwitchCase="'4'" style="height: 100%">
       <app-slide
@@ -100,9 +100,6 @@
             <app-geral
               [nome]="this.topicoService.dados_topico[this.moduloService.controll_topico].nome_topico"
               [videos]="this.videoService.dados_video[this.moduloService.controll_topico].VideoUrls"
-              (referenciasClick)="referenciasClick()"
-              (linksClick)="linksClick()"
-              
               (atividadeClick)="atividadeClick()"
               [liberado]="this.moduloService.bloqueio?.[this.moduloService.controll_topico]?.encerrado"
             ></app-geral>

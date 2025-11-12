@@ -1,20 +1,20 @@
 <!--Seção de botões da página inicial HOME-->
-<div class="container">
+<div class="container" *ngIf="infoTopicos.length > 0">
   <section class="button-section">
     <div class="button-group">
       <button class="start-button" [ngStyle]="{'display': carregandoBotao ? 'initial' : 'none'}">
            carregando...
       </button>
       <button 
-        *ngIf="getVerificaCompleto() == false" 
+        *ngIf="verificaCompleto == false" 
         class="start-button" 
-        (click)="getDadosUserInfo(); carregaVideosUrl()" 
+        (click)="getDadosUserInfo()" 
         [routerLink]="urlInicio"
         >
-        {{ this.infoTopicos[0].encerrado[0] == true ? "CONTINUAR" :"INICIAR"}}
+        {{ infoTopicos[0].encerrado[0] == true ? "CONTINUAR" :"INICIAR"}}
       </button>
       <button
-       *ngIf="getVerificaCompleto() == true" class="concluido"  [routerLink]="urlInicio">
+       *ngIf="verificaCompleto == true" class="concluido"  [routerLink]="urlInicio">
         Módulo Concluído
         <mat-icon>check</mat-icon>
       </button>

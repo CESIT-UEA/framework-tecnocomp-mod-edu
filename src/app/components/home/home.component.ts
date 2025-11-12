@@ -39,8 +39,6 @@ export class HomeComponent {
   constructor(
     public appService: ServiceAppService,
     public moduloService: ModuloService,
-    private router: Router,
-    private http: HttpClient,
     private route: ActivatedRoute,
     public downloadService: DownloadPlataformaService,
     public topicoService: TopicoService
@@ -53,36 +51,24 @@ export class HomeComponent {
 
   ngOnInit(): void {
     const ltik = this.route.snapshot.queryParamMap.get('ltik');
-    const control_req = localStorage.getItem(`control_req_${ltik}`);
-    if (ltik && control_req !== "1") {
+    let token = localStorage.getItem('token')
+    if (token){
+      token = JSON.parse(token) as string
+    }
+    if (ltik && ltik !== token) {
+      this.topicoService.limparCacheTopico()
       console.log('Requisição para o back')
       this.getModuloInfo(ltik)
-
+      
     } else {
       console.log('Requisição para o storage')
       const token = JSON.parse(localStorage.getItem('token') as string)
       if (token){
         this.moduloService.getDadosModuloStorage();
-        const userTopico = localStorage.getItem('userTopico')
-        if (userTopico) {
-          this.topicoService.setDadosTopico(JSON.parse(userTopico))
-        }
-          // infoTopicos
-          this.topicoService.getInfoTopicos(
-          this.moduloService.dados_modulo.modulo.id,
-          this.moduloService.dados_modulo.user.id_aluno,
-          this.moduloService.dados_modulo.user.ltik
-        ).subscribe({
-          next: (infoTopicos: InfoTopico[]) => {
-            this.topicoService.setInfoTopicos(infoTopicos)
-          }
-        })
-        
+        this.topicoService.getDadosInfoTopicosStorage()
+        this.topicoService.setInfoTopicos(this.topicoService.info_topicos)
       }
     }
-
-    
-
   }
 
   getModuloInfo(ltik: string){
@@ -94,51 +80,26 @@ export class HomeComponent {
         localStorage.setItem('token', JSON.stringify(token))
 
         // controle de requisição
-        localStorage.setItem(`control_req_${ltik}`, '1');
+        // localStorage.setItem(`control_req_${ltik}`, '1');
 
         this.moduloService.getDadosModuloStorage()
   
         // infoTopicos
-      this.topicoService.getInfoTopicos(
-      this.moduloService.dados_modulo.modulo.id,
-      this.moduloService.dados_modulo.user.id_aluno,
-      this.moduloService.dados_modulo.user.ltik
+        this.topicoService.getInfoTopicos(
+        this.moduloService.dados_modulo.modulo.id,
+        this.moduloService.dados_modulo.user.id_aluno,
+        this.moduloService.dados_modulo.user.ltik
     ).subscribe({
       next: (infoTopicos: InfoTopico[]) => {
         this.topicoService.setInfoTopicos(infoTopicos)
       }
     })
-
-
-      // busca userTopico
-      this.getUserTopicoInfo(
-      this.moduloService.dados_modulo.modulo.id,
-      this.moduloService.dados_modulo.user.id_aluno,
-      token
-      )
       },
       error: (err) => {
         console.error("Erro ao buscar dados do módulo", err);
       }
     });
     }
-  }
-
-  getUserTopicoInfo(id_modulo: number, id_aluno: number, ltik: string){
-    this.topicoService.getUserTopicoInfo(id_modulo, id_aluno, ltik).subscribe(
-      (data) => {
-        localStorage.setItem('userTopico', JSON.stringify(data))
-        this.topicoService.setDadosTopico(data)
-      }
-    )
-  }
-
-
-  /**
-   * @method
-   */
-  navigation() {
-    this.router.navigate(['/teorias-da-aprendizagem']);
   }
 
 
@@ -155,7 +116,7 @@ export class HomeComponent {
     this.moduloService.controll_topico = topicoId
     this.sidenavContainer.close();
 
-    const indice_video = this.topicoService.dados_topico[this.moduloService.controll_topico].UsuarioTopicos[0].indice_video
+    const indice_video = this.topicoService.dados_topico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0]?.indice_video
 
     // video retorna salvo
     if (indice_video != null) {

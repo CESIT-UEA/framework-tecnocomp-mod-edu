@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   signal,
@@ -13,6 +14,9 @@ import { AprendizagemEInformaticaService } from 'src/app/pages/modulos/aprendiza
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
 import { TopicoService } from 'src/app/personalizavel/topico.service';
 import { ServiceAppService } from 'src/app/service-app.service';
+import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+
 
 /**
  * Componente que contem a barra de progresso
@@ -22,13 +26,16 @@ import { ServiceAppService } from 'src/app/service-app.service';
   templateUrl: './menu-com-barra-progresso-teste.component.html',
   styleUrls: ['./menu-com-barra-progresso-teste.component.css'],
 })
-export class MenuComBarraProgressoTesteComponent implements OnInit {
+export class MenuComBarraProgressoTesteComponent implements OnInit, OnDestroy {
   teste: any;
   /**
    * @constructor
    */
 
   infoTopicos: InfoTopico[] = []; 
+  
+  subscription: Subscription = new Subscription();
+  private destroy$ = new Subject<void>();
 
   @Output() fecharMenu = new EventEmitter<void>();
 
@@ -56,18 +63,26 @@ export class MenuComBarraProgressoTesteComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.topicoService.dadosTopico$.subscribe(data => {
+    this.topicoService.dadosTopico$.pipe(takeUntil(this.destroy$)).subscribe(data => {
       if (data){
         this.topicoService.dados_topico = data
       }
     })
 
-    this.topicoService.infoTopicos$.subscribe(data => {
+    this.topicoService.infoTopicos$.pipe(takeUntil(this.destroy$)).subscribe(data => {
       if (data){
         this.infoTopicos = data
-        localStorage.setItem('infoTopicos', JSON.stringify(data))
+        this.topicoService.info_topicos = data
+        console.log('teste')
       }
     })
+
+    // this.subscription.add(sub)
+  }
+
+  ngOnDestroy(): void {
+      this.destroy$.next();
+      this.destroy$.complete()
   }
 
   verificarConcluido(i: number){

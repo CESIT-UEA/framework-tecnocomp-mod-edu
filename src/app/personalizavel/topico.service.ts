@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Topico } from '../interfaces/topico';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { VideoUrl } from '../interfaces/video-url';
 import { InfoTopico } from '../interfaces/info-topico';
+import { ModuloService } from './modulo.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +22,36 @@ export class TopicoService {
   dadosTopico$ = this.dadosTopicoSubject.asObservable();
   infoTopicos$ = this.infoTopicosSubject.asObservable()
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient, 
+    private moduloService: ModuloService
+  ) { }
 
-  getUserTopicoInfo(id_modulo: number, id_aluno: number, ltik: string): Observable<Topico[]>{
+  inicializarTopico(): Observable<void>{
+    this.moduloService.getDadosModuloStorage()
+    
+    const topicoStorage = localStorage.getItem('userTopico');
+    if (topicoStorage){
+      this.setDadosTopico(JSON.parse(topicoStorage))
+      return of(void 0);
+    } else {
+      const modulo_id = this.moduloService.dados_modulo?.modulo?.id;
+      const aluno_id = this.moduloService.dados_modulo?.user?.id_aluno;
+      const ltik =  this.moduloService.dados_modulo?.user?.ltik
+
+      return this.getUserTopicoInfo(modulo_id, aluno_id, ltik, 1).pipe(
+        tap((topico: Topico[]) => {
+          this.setDadosTopico(topico) 
+        }),
+        map(() => void 0)
+      )
+    }
+  }
+
+  getUserTopicoInfo(id_modulo: number, id_aluno: number, ltik: string, control_topico: number): Observable<Topico[]>{
     console.log(`requisição sendo feita para ${this.baseUrlLTI}/userTopicoInfo?ltik=${ltik}&id_modulo=${id_modulo}&id_aluno=${id_aluno}`)
-      return this.http.get<Topico[]>(`${this.baseUrlLTI}/userTopicoInfo?ltik=${ltik}&id_modulo=${id_modulo}&id_aluno=${id_aluno}`)
+      return this.http.get<Topico[]>(
+        `${this.baseUrlLTI}/userTopicoInfo?ltik=${ltik}&id_modulo=${id_modulo}&id_aluno=${id_aluno}&topico=${control_topico}`)
     }
 
   getInfoTopicos(id_modulo: number, id_aluno: number, ltik: string): Observable<InfoTopico[]>{
@@ -51,6 +78,7 @@ export class TopicoService {
 
   setInfoTopicos(dados: InfoTopico[]){
     this.infoTopicosSubject.next(dados)
+    localStorage.setItem('infoTopicos', JSON.stringify(dados))
   }
 
   get dadosTopico(): Topico[] | null {
@@ -66,5 +94,18 @@ export class TopicoService {
     if (dados){
       this.dados_topico = JSON.parse(dados)
     }
+  }
+
+  getDadosInfoTopicosStorage(): void {
+    const dados = localStorage.getItem('infoTopicos')
+    if (dados){
+      this.info_topicos= JSON.parse(dados)
+    }
+  }
+
+  limparCacheTopico(){
+    localStorage.removeItem('userTopico');
+    localStorage.removeItem('videosUrl');
+    localStorage.removeItem('saiba_mais');
   }
 }
