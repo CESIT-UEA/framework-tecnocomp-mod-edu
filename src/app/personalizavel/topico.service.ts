@@ -39,7 +39,7 @@ export class TopicoService {
       const aluno_id = this.moduloService.dados_modulo?.user?.id_aluno;
       const ltik =  this.moduloService.dados_modulo?.user?.ltik
 
-      return this.getUserTopicoInfo(modulo_id, aluno_id, ltik, 1).pipe(
+      return this.getUserTopicoInfo(modulo_id, aluno_id, ltik, this.moduloService.controll_topico + 1).pipe(
         tap((topico: Topico[]) => {
           this.setDadosTopico(topico) 
         }),
@@ -49,7 +49,7 @@ export class TopicoService {
   }
 
   getUserTopicoInfo(id_modulo: number, id_aluno: number, ltik: string, control_topico: number): Observable<Topico[]>{
-    console.log(`requisição sendo feita para ${this.baseUrlLTI}/userTopicoInfo?ltik=${ltik}&id_modulo=${id_modulo}&id_aluno=${id_aluno}`)
+    console.log(`requisição sendo feita para ${this.baseUrlLTI}/userTopicoInfo?ltik=${ltik}&id_modulo=${id_modulo}&id_aluno=${id_aluno}&control_topico=${control_topico}`)
       return this.http.get<Topico[]>(
         `${this.baseUrlLTI}/userTopicoInfo?ltik=${ltik}&id_modulo=${id_modulo}&id_aluno=${id_aluno}&topico=${control_topico}`)
     }
@@ -107,5 +107,6 @@ export class TopicoService {
     localStorage.removeItem('userTopico');
     localStorage.removeItem('videosUrl');
     localStorage.removeItem('saiba_mais');
+    localStorage.removeItem('referencias')
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InfoTopico } from 'src/app/interfaces/info-topico';
 import { Topico } from 'src/app/interfaces/topico';
 import { ModuloService } from 'src/app/personalizavel/modulo.service';
 import { TopicoService } from 'src/app/personalizavel/topico.service';
@@ -28,9 +29,10 @@ export class LinksNavegacaoTopicosComponent implements OnInit {
     
     verificaProximo() {
       let topicos: Topico[] = this.topicoService.dados_topico;
+      let infoTopicos: InfoTopico[] = this.topicoService.info_topicos;
       if (
         this.moduloService.controll_topico >= 0 &&
-        this.moduloService.controll_topico < topicos?.length - 1
+        this.moduloService.controll_topico < infoTopicos?.length - 1
       ) {
         return true;
       }
@@ -39,10 +41,11 @@ export class LinksNavegacaoTopicosComponent implements OnInit {
   }
   verificaVoltar() {
     let topicos: Topico[] = this.topicoService.dados_topico;
+    let infoTopicos: InfoTopico[] = this.topicoService.info_topicos;
 
     if (
       this.moduloService.controll_topico > 0 &&
-      this.moduloService.controll_topico <= topicos?.length
+      this.moduloService.controll_topico <= infoTopicos?.length
     ) {
       return true;
     }
@@ -53,7 +56,7 @@ export class LinksNavegacaoTopicosComponent implements OnInit {
   proximo(): void {
     this.ltiService.currentVideoIndex = 0;
     if (
-      this.moduloService.controll_topico < this.topicoService.dados_topico?.length - 1
+      this.moduloService.controll_topico < this.topicoService.info_topicos?.length - 1
     ) {
       if (
         this.topicoService.dados_topico?.[this.moduloService.controll_topico]?.UsuarioTopicos[0]?.encerrado
