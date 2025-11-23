@@ -43,7 +43,11 @@ export class HomeComponent {
 
   ngOnInit(): void {
     const ltik = this.route.snapshot.queryParamMap.get('ltik');
-    if (ltik) {
+    // busca token no local storage
+    let token = localStorage.getItem('token')
+  
+
+    if (ltik && ltik != token) {
       this.moduloService.getUserInfo(ltik).subscribe(
         (data) => {
           this.tokenData = data;
@@ -67,11 +71,12 @@ export class HomeComponent {
 
           localStorage.setItem('token', this.tokenData.user.ltik);
 
-          localStorage.setItem('url_retorno', this.tokenData.user.return_url);
+          localStorage.setItem('url_retorno', this.tokenData.userModulo.return_url);
           localStorage.setItem(
             'topicos',
             JSON.stringify(this.tokenData.topicos)
           );
+          console.log('token data kaue',this.tokenData)
 
           let bloqueio = localStorage.getItem('bloqueio');
           this.moduloService.topicos = this.tokenData.topicos;
@@ -84,10 +89,9 @@ export class HomeComponent {
           console.error('Error:', error);
         }
       );
+    } else {
+        this.appService.getDadosCompletos();
     }
-
-    this.appService.getDadosCompletos();
-
   }
 
   /**
