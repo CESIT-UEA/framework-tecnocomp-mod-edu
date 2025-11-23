@@ -84,6 +84,8 @@ export class HomeComponent {
           this.moduloService.bloqueio = bloqueio
             ? JSON.parse(bloqueio)
             : this.tokenData.userTopico;
+
+          this.appService.getDadosCompletosAsObservable()
         },
         (error) => {
           console.error('Error:', error);
@@ -91,7 +93,9 @@ export class HomeComponent {
       );
     } else {
         this.appService.getDadosCompletos();
+        this.appService.getDadosCompletosAsObservable()
     }
+    
   }
 
   /**
