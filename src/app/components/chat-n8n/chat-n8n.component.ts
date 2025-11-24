@@ -34,7 +34,7 @@ export class ChatN8nComponent implements OnInit {
     this.chatScript.text = `
       import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
       createChat({
-        webhookUrl: 'https://tecnocomp.uea.edu.br:5678/webhook/c3f42851-79f7-4579-ad10-a24e53ddb10b/chat',
+        webhookUrl: 'https://tecnocomp.uea.edu.br/webhook/c3f42851-79f7-4579-ad10-a24e53ddb10b/chat',
         metadata: {
           modulo: '${this.nomeModulo}'
         },
