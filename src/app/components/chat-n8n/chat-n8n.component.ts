@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { filter, take } from 'rxjs';
 import { ServiceAppService } from 'src/app/service-app.service';
 
 @Component({
@@ -13,42 +14,50 @@ export class ChatN8nComponent implements OnInit {
   constructor(private renderer: Renderer2, private apiService: ServiceAppService) {}
 
   ngOnInit(): void {
-    this.apiService.getDadosCompletos()
-    
-    if (this.apiService.dados_completos.length !== 0) {
-      this.nomeModulo = this.apiService.dados_completos.modulo.nome_modulo
-    }
+    this.apiService.dadosCompletos$
+    .pipe(
+      filter(d => !!d && !!d.modulo?.nome_modulo)
+    )
+    .subscribe(dados => {
+      this.nomeModulo = dados.modulo.nome_modulo;
+      this.inicializarChat();
+    });
 
-    // https://tecnocomp.uea.edu.br:5678/webhook/8e3b74b3-5941-4a21-a583-c07d8c45c1cb/chat/${this.nomeModulo}
+  }
+
+
+  inicializarChat(){
+    const cacheBuster = new Date().getTime();
 
     const link = this.renderer.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css';
+    link.href = `https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css?v=${cacheBuster}`;
     this.renderer.appendChild(document.head, link);
     this.chatScript = this.renderer.createElement('script');
     this.chatScript.type = 'module';
     this.chatScript.text = `
-      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js?v=${cacheBuster}';
       createChat({
         webhookUrl: 'https://tecnocomp.uea.edu.br:5678/webhook/c3f42851-79f7-4579-ad10-a24e53ddb10b/chat',
         metadata: {
           modulo: '${this.nomeModulo}'
         },
-	initialMessages: [
-		'Seja bem vindo! 👋',
-		'Inicie uma conversa com nosso assistente.'
-	],
-	i18n: {
-		en: {
-			title: 'Olá 👋',
-			subtitle: "Inicie uma conversa com nosso assistente.",
-			footer: 'Powered by UEA Chat 🤖',
-			getStarted: 'Nova Conversa',
-			inputPlaceholder: 'Digite sua dúvida...',
-		},
-	},
-      });
-    `;
-    this.renderer.appendChild(document.body, this.chatScript);
+  initialMessages: [
+    'Seja bem vindo! 👋',
+    'Inicie uma conversa com nosso assistente.'
+  ],
+  i18n: {
+    en: {
+      title: 'Olá 👋',
+      subtitle: "Inicie uma conversa com nosso assistente.",
+      footer: 'Powered by UEA Chat 🤖',
+      getStarted: 'Nova Conversa',
+      inputPlaceholder: 'Digite sua dúvida...',
+    },
+  },
+  });
+  `;
+      this.renderer.appendChild(document.body, this.chatScript);
   }
+
 }

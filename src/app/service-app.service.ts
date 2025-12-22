@@ -26,6 +26,11 @@ export class ServiceAppService {
   private storageKey = 'dados_completos_do_modulo';
   public dados_completos: any = [];
 
+  
+  private dadosCompletosSource = new BehaviorSubject<any>(null);
+  dadosCompletos$ = this.dadosCompletosSource.asObservable();
+
+
   perfilUser = false;
 
   abreMenuUser() {
@@ -543,5 +548,22 @@ export class ServiceAppService {
     headers: headers,
   });
 }
+
+
+  getDadosCompletosAsObservable(): void {
+    const dadosArmazenados = localStorage.getItem(this.storageKey);
+
+    if (dadosArmazenados) {
+      const dadosCompletos = JSON.parse(dadosArmazenados);
+      this.dadosCompletosSource.next(dadosCompletos); 
+      // console.log('Service data atualizado: ', dadosCompletos);
+    } else {
+      this.dadosCompletosSource.next(null);
+    }
+  }
+
+  clearDados() {
+    this.dadosCompletosSource.next(null)
+  }
 
 }
