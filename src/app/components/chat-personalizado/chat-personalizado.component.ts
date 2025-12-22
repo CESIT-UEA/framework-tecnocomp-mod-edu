@@ -24,96 +24,102 @@ export class ChatPersonalizadoComponent implements OnDestroy {
   }
 
 
-@ViewChild('chatContainer') chatContainer!: ElementRef<HTMLElement>;
+    @ViewChild('chatContainer') chatContainer!: ElementRef<HTMLElement>;
 
-private startX = 0;
-private startWidth = 0;
+    private startX = 0;
+    private startWidth = 0;
 
-private readonly larguraMinima = 500;
-private readonly larguraMaxima = 1350;
+    private readonly larguraMinima = 500;
+    private readonly larguraMaxima = 1350;
 
-constructor(private chatService: ChatPersonalizadoService) {}
-
-
-input = new FormControl('');
-
-/**
- * Inicia o redimensionamento
- */
-IniciarRedimensionar(event: PointerEvent) {
-  event.preventDefault();
-
-  this.startX = event.clientX;
-  this.startWidth = this.chatContainer.nativeElement.offsetWidth;
-
-  document.addEventListener('pointermove', this.onPointerMove);
-  document.addEventListener('pointerup', this.PararRedimensionar);
-}
-
-/**
- * Redimensiona enquanto arrasta
- */
-private onPointerMove = (e: PointerEvent) => {
-  const dx = e.clientX - this.startX;
-  const newWidth = this.startWidth - dx;
-
-  this.chatContainer.nativeElement.style.width =
-    this.clamp(newWidth) + 'px';
-};
-
-/**
- * Finaliza o redimensionamento
- */
-PararRedimensionar = () => {
-  document.removeEventListener('pointermove', this.onPointerMove);
-  document.removeEventListener('pointerup', this.PararRedimensionar);
-};
-
-/**
- * Limita a largura
- */
-private clamp(value: number) {
-  return Math.max(
-    this.larguraMinima,
-    Math.min(this.larguraMaxima, value)
-  );
-}
-
-ngOnDestroy() {
-  this.PararRedimensionar();
-}
+    constructor(private chatService: ChatPersonalizadoService) {}
 
 
-mensagens: { texto: string; tipo: 'user' | 'assistente' }[] = [];
+    input = new FormControl('');
 
-@ViewChild('chatMessages') chatMessages!: ElementRef<HTMLDivElement>;
-carregando: boolean | undefined;
+    /**
+     * Inicia o redimensionamento
+     */
+    IniciarRedimensionar(event: PointerEvent) {
+      event.preventDefault();
 
-scrollToBottom() {
-  const scroll = this.chatMessages.nativeElement;
-  scroll.scrollTop = scroll.scrollHeight;
-}
+      this.startX = event.clientX;
+      this.startWidth = this.chatContainer.nativeElement.offsetWidth;
 
- enviarMensagem() {
-   const texto = this.input.value?.trim();
-   if (!texto) return;
+      document.addEventListener('pointermove', this.onPointerMove);
+      document.addEventListener('pointerup', this.PararRedimensionar);
+    }
 
-   this.mensagens.push({ texto, tipo: 'user' });
-   this.input.setValue('');
+    /**
+     * Redimensiona enquanto arrasta
+     */
+    private onPointerMove = (e: PointerEvent) => {
+      const dx = e.clientX - this.startX;
+      const newWidth = this.startWidth - dx;
 
-   this.carregando = true;
+      this.chatContainer.nativeElement.style.width =
+        this.clamp(newWidth) + 'px';
+    };
 
-   this.chatService.enviarMensagemParaChat(texto).subscribe(response => {
+    /**
+     * Finaliza o redimensionamento
+     */
+    PararRedimensionar = () => {
+      document.removeEventListener('pointermove', this.onPointerMove);
+      document.removeEventListener('pointerup', this.PararRedimensionar);
+    };
 
-    this.carregando = false
+    /**
+     * Limita a largura
+     */
+    private clamp(value: number) {
+      return Math.max(
+        this.larguraMinima,
+        Math.min(this.larguraMaxima, value)
+      );
+    }
 
-    this.mensagens.push({
-      texto: response.output,
-      tipo: 'assistente'
-    });
+    ngOnDestroy() {
+      this.PararRedimensionar();
+    }
 
-     setTimeout(() => this.scrollToBottom());
-   });
- }
 
-}
+    mensagens: { texto: string; tipo: 'user' | 'assistente' }[] = [];
+
+    @ViewChild('chatMessages') chatMessages!: ElementRef<HTMLDivElement>;
+    carregando: boolean | undefined;
+
+    scrollToBottom() {
+      const el = this.chatMessages.nativeElement;
+
+      el.scrollTo({
+        top: el.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+
+    enviarMensagem() {
+      const texto = this.input.value?.trim();
+      if (!texto) return;
+
+      this.mensagens.push({ texto, tipo: 'user' });
+      this.input.setValue('');
+
+      this.carregando = true;
+
+      setTimeout(() => this.scrollToBottom());
+
+      this.chatService.enviarMensagemParaChat(texto).subscribe(response => {
+
+        this.carregando = false
+
+        this.mensagens.push({
+          texto: response.output,
+          tipo: 'assistente'
+        });
+
+        setTimeout(() => this.scrollToBottom());
+      });
+    }
+
+    }
