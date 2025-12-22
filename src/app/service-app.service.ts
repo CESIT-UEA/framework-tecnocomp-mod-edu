@@ -28,7 +28,7 @@ export class ServiceAppService {
 
   
   private dadosCompletosSource = new BehaviorSubject<any>(null);
-dadosCompletos$ = this.dadosCompletosSource.asObservable();
+  dadosCompletos$ = this.dadosCompletosSource.asObservable();
 
 
   perfilUser = false;
@@ -556,9 +556,14 @@ dadosCompletos$ = this.dadosCompletosSource.asObservable();
     if (dadosArmazenados) {
       const dadosCompletos = JSON.parse(dadosArmazenados);
       this.dadosCompletosSource.next(dadosCompletos); 
-      console.log('Service data atualizado: ', dadosCompletos);
+      // console.log('Service data atualizado: ', dadosCompletos);
     } else {
       this.dadosCompletosSource.next(null);
     }
   }
+
+  clearDados() {
+    this.dadosCompletosSource.next(null)
+  }
+
 }

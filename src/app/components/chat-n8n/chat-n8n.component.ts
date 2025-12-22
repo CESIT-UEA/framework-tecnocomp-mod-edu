@@ -14,27 +14,31 @@ export class ChatN8nComponent implements OnInit {
   constructor(private renderer: Renderer2, private apiService: ServiceAppService) {}
 
   ngOnInit(): void {
-    this.apiService.getDadosCompletosAsObservable()
     this.apiService.dadosCompletos$
-      .pipe(filter(d => !!d && !!d.modulo?.nome_modulo), take(1))
-      .subscribe(dados => {
-        this.nomeModulo = dados.modulo.nome_modulo;
-        this.inicializarChat();
-      });
+    .pipe(
+      filter(d => !!d && !!d.modulo?.nome_modulo)
+    )
+    .subscribe(dados => {
+      this.nomeModulo = dados.modulo.nome_modulo;
+      this.inicializarChat();
+    });
+
   }
 
 
   inicializarChat(){
+    const cacheBuster = new Date().getTime();
+
     const link = this.renderer.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css';
+    link.href = `https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css?v=${cacheBuster}`;
     this.renderer.appendChild(document.head, link);
     this.chatScript = this.renderer.createElement('script');
     this.chatScript.type = 'module';
     this.chatScript.text = `
-      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js?v=${cacheBuster}';
       createChat({
-        webhookUrl: 'https://tecnocomp.uea.edu.br/webhook/c3f42851-79f7-4579-ad10-a24e53ddb10b/chat',
+        webhookUrl: 'https://tecnocomp.uea.edu.br:5678/webhook/c3f42851-79f7-4579-ad10-a24e53ddb10b/chat',
         metadata: {
           modulo: '${this.nomeModulo}'
         },

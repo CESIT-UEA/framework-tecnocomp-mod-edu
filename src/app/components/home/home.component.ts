@@ -48,6 +48,15 @@ export class HomeComponent {
   
 
     if (ltik && ltik != token) {
+      this.appService.clearDados()
+      
+      localStorage.removeItem('token');
+      localStorage.removeItem('bloqueio');
+      localStorage.removeItem('topicos');
+      localStorage.removeItem('url_retorno');
+      localStorage.removeItem('dados_completos_do_modulo');
+
+
       this.moduloService.getUserInfo(ltik).subscribe(
         (data) => {
           this.tokenData = data;
@@ -76,7 +85,7 @@ export class HomeComponent {
             'topicos',
             JSON.stringify(this.tokenData.topicos)
           );
-          console.log('token data kaue',this.tokenData)
+          
 
           let bloqueio = localStorage.getItem('bloqueio');
           this.moduloService.topicos = this.tokenData.topicos;
