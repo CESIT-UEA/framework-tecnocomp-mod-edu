@@ -1,5 +1,5 @@
 <!-- Botão flutuante -->
-<button id="chat-button" (click)="alternarChat()">
+<button id="chat-button" (click)="alternarChat()" *ngIf="!aberto">
   <img src="../../../assets/icons/fechar chat.svg" alt="icone chat SabIA" class="chat-icon">
 </button>
 

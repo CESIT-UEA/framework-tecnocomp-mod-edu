@@ -100,6 +100,11 @@ app-video-section iframe {
   width: fit-content;
 }
 
+.chat {
+  display: flex;
+  justify-content: end;
+}
+
 /* Header e navegação */
 .header nav {
   width: 60%;
@@ -275,6 +280,11 @@ app-video-section iframe {
 
   .header img {
     height: 70px;
+  }
+
+  .container-direito {
+    justify-content: space-evenly;
+    row-gap: 20px;
   }
 
   .container-esquerdo{
