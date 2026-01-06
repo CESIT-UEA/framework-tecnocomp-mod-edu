@@ -29,7 +29,7 @@ export class ChatPersonalizadoComponent implements OnDestroy {
     private startX = 0;
     private startWidth = 0;
 
-    private readonly larguraMinima = 500;
+    private readonly larguraMinima = 0;
     private readonly larguraMaxima = 1350;
 
     constructor(private chatService: ChatPersonalizadoService) {}
@@ -45,6 +45,7 @@ export class ChatPersonalizadoComponent implements OnDestroy {
 
       this.startX = event.clientX;
       this.startWidth = this.chatContainer.nativeElement.offsetWidth;
+      
 
       document.addEventListener('pointermove', this.onPointerMove);
       document.addEventListener('pointerup', this.PararRedimensionar);
