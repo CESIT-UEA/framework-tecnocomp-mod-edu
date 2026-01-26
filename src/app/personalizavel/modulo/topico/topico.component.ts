@@ -40,6 +40,7 @@ export class TopicoComponent implements OnInit {
     this.ltiService.getDadosCompletos();
     this.ltiService.loadYouTubeAPI();
     this.downloadService.initEventInstall()
+    console.log(this.ltiService.dados_completos.referencias_modulo)
   }
 
   proximo(): void {
