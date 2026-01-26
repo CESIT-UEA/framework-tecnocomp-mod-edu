@@ -13,13 +13,24 @@
         <p>1.0.0</p>
       </div>
       <hr /> -->
-      <div class="bloco">
+      <div *ngFor="let equipe of this.ltiService.dados_completos.ficha_tecnica.Equipes">
+          <div class="equipe">
+              <h2>{{ equipe.nome }}:</h2>
+              <div class="bloco" *ngFor="let membro of equipe.Membros">
+                <h2>{{ membro.cargo }}:</h2>
+                <p>{{ membro.nome }}</p>
+              </div>
+              <hr />
+      </div>
+          </div>
+      </div>
+      <!-- <div class="bloco">
         <h2>Coordenação Geral:</h2>
         <p>Prof. Dr. João da Mata Libório Filho</p>
       </div>
       <hr />
-    </div>
-    <div class="equipe">
+    </div> -->
+    <!-- <div class="equipe">
       <h2>Equipe de Produção Educacional:</h2>
 
       <div class="bloco">
@@ -73,7 +84,7 @@
         <p>Harleison Jhonathan Maia de Souza</p>
       </div>
       <hr />
-    </div>
+    </div> -->
     <div class="laboratorios">
       <div class="bloco">
         <h2>Laboratorios envolvidos:</h2>
