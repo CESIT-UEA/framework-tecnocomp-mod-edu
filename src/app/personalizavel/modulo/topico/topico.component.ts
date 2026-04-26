@@ -14,6 +14,7 @@ import { ModuloService } from '../../modulo.service';
 import { config } from 'rxjs';
 import { MatSidenavContainer } from '@angular/material/sidenav';
 import { DownloadPlataformaService } from 'src/app/download-plataforma.service';
+import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-topico',
@@ -27,20 +28,23 @@ export class TopicoComponent implements OnInit {
   controllerSwitch = 'default'; // Inicialmente exibe o componente default
   @ViewChild(MatSidenavContainer) sidenavContainer!: MatSidenavContainer;
   menu = false;
+  videos: any;
 
   constructor(
     private route: ActivatedRoute,
     public moduloService: ModuloService,
     private router: Router,
     public ltiService: ServiceAppService,
-    public downloadService: DownloadPlataformaService
-  ) {}
+    public downloadService: DownloadPlataformaService,
+  ) { 
+     
+  }
 
   ngOnInit(): void {
     this.ltiService.getDadosCompletos();
     this.ltiService.loadYouTubeAPI();
     this.downloadService.initEventInstall()
-    console.log(this.ltiService.dados_completos.referencias_modulo)
+
   }
 
   proximo(): void {
@@ -55,6 +59,7 @@ export class TopicoComponent implements OnInit {
         ]?.UsuarioTopicos[0].encerrado
       ) {
         this.moduloService.controll_topico += 1;
+        
       } else {
         this.ltiService.mensagem('Você precisa responder à atividade antes!');
       }
@@ -85,6 +90,7 @@ export class TopicoComponent implements OnInit {
     if (this.moduloService.controll_topico > 0) {
       this.moduloService.controll_topico -= 1;
       this.ltiService.currentVideoIndex = 0;
+      
     }
 
     if (
@@ -196,7 +202,7 @@ export class TopicoComponent implements OnInit {
     }
     this.ltiService.recreatePlayer()
   }
-  resetaHome(){
+  resetaHome() {
     this.ltiService.controllerSwitchHome = 0;
   }
 

@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { Bloqueio } from './bloqueioInterface';
 import { Topico } from './components/forum/topico.interface';
 import { TopicoF } from './components/forum/topico-forum/topico-forum.interface';
 import { environment } from 'src/environments/environment.development';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { ModuloService } from './personalizavel/modulo.service';
+import { NgZone } from '@angular/core';
 
 /**
  * Service a qual guarda as operações essenciais, como o envio de notas, as informações do usuario, etc
@@ -30,6 +31,9 @@ export class ServiceAppService {
   private dadosCompletosSource = new BehaviorSubject<any>(null);
   dadosCompletos$ = this.dadosCompletosSource.asObservable();
 
+  private videoFinalizadoSubject = new Subject<any>();
+
+  videoFinalizado$ = this.videoFinalizadoSubject.asObservable();
 
   perfilUser = false;
 
@@ -50,7 +54,8 @@ export class ServiceAppService {
   constructor(
     private http: HttpClient,
     private _snackBar: MatSnackBar,
-    public moduloService: ModuloService
+    public moduloService: ModuloService,
+    private ngZone: NgZone
   ) {}
 
   /**
@@ -317,7 +322,7 @@ export class ServiceAppService {
     const body = {
       idTopico:
         this.dados_completos.topicos?.[this.moduloService.controll_topico].id,
-      ltik: this.dados_completos.user.ltik,
+        ltik: this.dados_completos.user.ltik
     };
 
     const headers = new HttpHeaders({
@@ -334,7 +339,7 @@ export class ServiceAppService {
     const body = {
       idTopico:
         this.dados_completos.topicos?.[this.moduloService.controll_topico].id,
-      ltik: this.dados_completos.user.ltik,
+      ltik: this.dados_completos.user.ltik
     };
     console.log(
       this.dados_completos.topicos?.[this.moduloService.controll_topico].id
@@ -353,7 +358,7 @@ export class ServiceAppService {
     const body = {
       idTopico:
         this.dados_completos.topicos?.[this.moduloService.controll_topico].id,
-      ltik: this.dados_completos.user.ltik,
+      ltik: this.dados_completos.user.ltik
     };
 
     const headers = new HttpHeaders({
@@ -373,7 +378,6 @@ export class ServiceAppService {
 
   recreatePlayer(): void {
     if (this.player) {
-      console.log('Caiu aqui');
       this.player.destroy(); // Destroi o player existente
     }
 
@@ -395,7 +399,6 @@ export class ServiceAppService {
         onStateChange: this.onPlayerStateChange.bind(this),
       },
     });
-    console.log(this.player);
   }
 
   loadYouTubeAPI(): void {
@@ -434,9 +437,12 @@ export class ServiceAppService {
             ?.VideoUrls[this.currentVideoIndex].id,
           this.dados_completos.user.ltik
         ).subscribe((response) => {
-          console.log('Vídeo finalizado:', response);
-          this.removeDadosCompletos();
-          this.setDadosCompletos(response);
+          this.ngZone.run(() => {
+            this.removeDadosCompletos();
+            this.setDadosCompletos(response);
+
+          this.videoFinalizadoSubject.next(response);
+          })
         });
       }
       /*       setTimeout(() => {
@@ -457,7 +463,6 @@ export class ServiceAppService {
       this.recreatePlayer();
     }
     this.salvarProgressoVideos().subscribe((response) => {
-      console.log('Progresso salvo:', response);
       this.removeDadosCompletos();
       this.setDadosCompletos(response);
     });
@@ -510,7 +515,7 @@ export class ServiceAppService {
       return false;
     }
   }
-  private webhookUrl = 'https://tecnocomp.uea.edu.br:5678/webhook/1cf5320a-77b7-4a3d-98ba-a5a9f83600ac';
+  private webhookUrl = 'https://n8n.tecnocomp.cloud/webhook/1cf5320a-77b7-4a3d-98ba-a5a9f83600ac';
   desativa_chat = false;
 
   enviarResposta(payload: {

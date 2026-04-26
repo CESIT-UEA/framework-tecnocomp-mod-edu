@@ -33,6 +33,7 @@ export class SlideUnidadeComponent implements OnInit, AfterViewInit, OnDestroy {
         ].UsuarioTopicos[0].indice_video;
     }
     this.ltiService.loadYouTubeAPI();
+   
   }
 
   ngAfterViewInit(): void {

@@ -7,7 +7,7 @@ import { ServiceAppService } from './service-app.service';
   providedIn: 'root'
 })
 export class ChatPersonalizadoService {
-  private chatUrl =  "https://tecnocomp.uea.edu.br:5678/webhook/chat-personalizado";
+  private chatUrl =  "https://n8n.tecnocomp.cloud/webhook/chat-personalizado";
   private sessionId!: string;
   private moduloAtual!: string;
 

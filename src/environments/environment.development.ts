@@ -1,4 +1,4 @@
 export const environment = {
   production:false,
-  baseUrl:'https://tecnocomp.uea.edu.br:8002',
+  baseUrl:'https://apilti.tecnocomp.cloud',
 };
