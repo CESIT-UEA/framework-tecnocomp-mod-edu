@@ -17,6 +17,7 @@ import { NgZone } from '@angular/core';
 })
 export class ServiceAppService {
   player: any; // Armazena o player do YouTube
+  playerCapa: any;
   controlAtividade: number = 1;
   /**
    * url da API
@@ -412,6 +413,49 @@ export class ServiceAppService {
       };
     }
   }
+
+   loadYouTubeAPICapa(): void {
+    if (!(window as any).YT) {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.body.appendChild(tag);
+
+      (window as any).onYouTubeIframeAPIReady = () => {
+        this.recreatePlayerCapa();
+      };
+    } else {
+      // API já foi carregada
+      this.recreatePlayerCapa();
+    }
+  }
+
+  recreatePlayerCapa(): void {
+    if (this.playerCapa) {
+      this.playerCapa.destroy(); // Destroi o player existente
+    }
+
+    const videoId = this.extractVideoId(
+      this.dados_completos.modulo.video_inicial
+    );
+
+    this.playerCapa = new (window as any).YT.Player('player-capa', {
+      height: '100%',
+      width: '100%',
+      videoId: videoId,
+      playerVars: {
+        rel: 0,
+        enablejsapi: 1,
+      },
+      events: {
+        onReady: this.onPlayerReady.bind(this),
+        onStateChange: this.onPlayerStateChange.bind(this),
+      },
+    });
+
+  }
+
+
+
 
   extractVideoId(url: string): string {
     const match = url.match(
