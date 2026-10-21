@@ -451,7 +451,6 @@ export class ServiceAppService {
         onStateChange: this.onPlayerStateChange.bind(this),
       },
     });
-
   }
 
 
